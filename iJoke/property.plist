@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>adcfg</key>
+	<string></string>
+	<key>app_net_append_header</key>
+	<dict/>
+	<key>host</key>
+	<string>42.96.151.160</string>
+	<key>service_entry_url</key>
+	<string>/phone/iJoke</string>
+	<key>swtype</key>
+	<string>iJoke</string>
+	<key>itunes_app_id</key>
+	<string>637384723</string>
+	<key>app_download_url_forweibo</key>
+	<string>http://guide.mobee.tv</string>
+	<key>about_website</key>
+	<string>待建</string>
+	<key>about_website_click</key>
+	<string>http://guide.mobee.tv</string>
+	<key>about_phone</key>
+	<string>175763217</string>
+	<key>about_mail</key>
+	<string>82978540@qq.com</string>
+	<key>help_phone</key>
+	<string>82978540</string>
+	<key>umeng_app_id</key>
+	<string>5297506656240b0cf0020ae3</string>
+</dict>
+</plist>

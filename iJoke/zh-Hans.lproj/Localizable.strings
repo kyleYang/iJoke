@@ -1,0 +1,224 @@
+/* 
+  Localizable.strings
+  iJoke
+
+  Created by Kyle on 13-7-29.
+  Copyright (c) 2013年 FantsMaker. All rights reserved.
+*/
+
+//category
+"joke.category.text" = "文字";
+"joke.category.image" = "图片";
+"joke.category.video" = "视频";
+"joke.category.topic" = "专题";
+"joke.category.verify" = "审核";
+"joke.content.hot" = "热门";
+"joke.content.new" = "新鲜";
+
+//setting
+"joke.setting.follow" = "发表的";
+"joke.setting.collect" = "收藏的";
+"joke.setting.commit" = "评论";
+"joke.setting.publish" = "发表笑话";
+"joke.setting.setting" = "设置";
+"joke.setting.download" = "下载";
+
+
+"joke.setting.cleanmess" = "清除缓存";
+"joke.setting.rate" = "给我五星好评";
+"joke.setting.feedback" = "反馈";
+"joke.setting.help" = "帮助";
+"joke.setting.about" = "关于";
+
+"joke.setting.clearing.mess" = "清除缓存中,请稍后";
+"joke.setting.help.title" = "帮助";
+"joke.setting.about.title" = "关于";
+
+"joke.setting.login.notice" = "未登录，请登录";
+
+
+//content
+"joke.content.nofresh" = "暂无更新，欢迎发表新的";
+"joke.content.freshnumber" = "更新了 %d 条";
+"joke.content.nomessage" = "暂无相关记录";
+"joke.content.loading" = "正在加载ing";
+"joke.content.loadfininsh" = "全部加载完成";
+
+//commit
+"joke.commit.numberfooler" = "%d 楼";
+"joke.commit.anonymous" = "匿名用户";
+"joke.commit.current" = "刚刚";
+"joke.commit.minutes" = "%d 分钟前";
+"joke.commit.hours" = "%d 小时前";
+"joke.commit.days" = "%d 天前";
+"joke.comment.loading" = "正在加载评论";
+"joke.comment.add.success" = "评论成功";
+
+"joke.comment.empty" = "暂无评论，赶紧抢沙发";
+"joke.comment.anonymous" = "匿名";
+"jole.comment.text.notice" = "请至少输入三个字";
+"joke.comment.text.muchmor" = "最多不超过250个字";
+"joke.comment.placeholder" = "元芳，你怎么看？";
+
+//video
+"video.notitle" = "视频暂无标题";
+"video.nosummary" = "视频暂无简介";
+"video.detail.title" = "详情";
+"video.detail.comment" = "评论";
+"video.detail.tuijian" = "推荐";
+"videoldetail.tuijian.notilte" = "暂时无标题";
+
+
+"title.error.nonetwork" = "网络断开链接";
+"title.nonetwork.cannot.paly" = "您已经断开网络,无法播放";
+"title.network.3G.play" = "您正在使用手机流量,会消耗较多流量,是否继续观看?";
+"tilt.newtwork.3G.continue" = "正在使用手机流量，是否继续观看";
+"error.networkfailed" = "网络错误";
+
+"settin.video.qulity.one" = "标清";
+"settin.video.qulity.two" = "高清";
+"settin.video.qulity.three" = "超清";
+
+"video.tableview.notitle" = "无标题";
+
+//topic
+"topic.no.category" = "暂时无专题，请稍后再试一试";
+
+
+//review
+"review.laoding.once.title" = "加载中...";
+"review.loading.next.title" = "加载下一组中...";
+"review.loading.nomore" = "没有未审核新内容，欢迎您发表新内容";
+"review.status.unkown" = "未知状态";
+"review.status.pass" = "审核通过";
+"review.status.review" = "审核中";
+"review.status.failed" = "审核未通过";
+
+//publish
+"joke.publish.title" = "发布新内容";
+"joke.publish.publishing" = "发布中...";
+"joke.publish.shareing" = "分享中...";
+"joke.publish.image.option" = "选项";
+"joke.publish.image.delete" = "删除照片";
+"joke.publish.image.camera" = "相机";
+"joke.publish.image.library" = "相册";
+"joke.publish.nocamera" = "该设备不支持相机";
+"joke.publish.nolibrary" = "该设备不支持相册";
+"joke.publish.savemessage" = "保存草稿";
+"joke.publish.draft" = "草稿";
+"joke.publish.nomessage"="无内容，请编辑内容再发布";
+"joke.publish.image.delete" = "删除照片";
+
+
+//alter
+"button.cancle" = "取消";
+"button.sure" = "确定";
+"button.check" = "查看";
+"button.back" = "返回";
+"button.done" = "完成";
+"version.no.newversion" = "当前版本已经是最新版本";
+
+
+//login
+"joke.login.usename.plachold" = "用户名 : 注册邮箱";
+"joke.login.password.plachold" = "密码 : 6-16非特殊字符";
+"joke.loing.title" = "用户登录";
+"joke.login.login" = "登录";
+"joke.login.logout" = "退出";
+"joke.login.resgister" = "注册";
+"joke.login.forgetpassword" = "忘记密码";
+"joke.login.changepassword" = "修改密码";
+"joke.login.sina.button" = "新浪微博";
+"joke.login.qq.button" = "腾讯微博";
+
+"joke.login.nousername" = "请输入用户名";
+"joke.login.username.macth.no" = "邮箱格式错误";
+"joke.login.password.no" = "请输入密码";
+"joke.login.passowrd.match.no" = "密码格式错误";
+
+"joke.login.running" = "正在登录，请稍等";
+"joke.login.longining" = "登录中....";
+"joke.login.failed" = "登录失败";
+"joke.login.success" = "登录成功";
+
+"joke.login.unOauth" = "解除 %@ 绑定";
+"joke.login.union.logout.failed" = "退出 %@ 联合登录失败，请重试";
+
+//userinfo
+"joke.user.usercenter" = "个人中心";
+"joke.userinfo.userinfo" = "基本信息";
+
+"joke.userinfo.report" = "我的发表";
+"joke.userinfo.comment" = "我的评论";
+"joke.userinfo.collect" = "我的收藏";
+
+"joke.userinfo.social" = "社交信息";
+
+"joke.userinfo.unoauth" = "解除授权";
+"joke.userinfo.logout" = "注销";
+
+"joke.userinfo.noupdata" = "无更改，不需要保存";
+"joke.userinfo.saving" = "正在保存，请稍后";
+
+//user action
+"joke.useraction.message.freshing" = "更新中，请稍后";
+"joke.useraction.nocollect" = "您还没有添加收藏，欢迎您收藏";
+"jole.useraction.nofollow" = "您还没有分享过，欢迎您分享自己有趣的内容";
+"joke.useraction.publish.noname" = "匿名用户";
+"joke.useraciton.publish.mytitle" = "我的发表";
+"joke.useraciton.collect.mytitle" = "我的收藏";
+"joke.useraction.collect.noname" = "本地收藏";
+"jole.useraction.collect.local.add.success" = "添加本地收藏成功";
+"jole.useraction.collect.local.del.success" = "删除本地收藏成功";
+
+//social
+"joke.sina" = "新浪微博";
+"joke.tencent" = "腾讯微博";
+"joke.qzone" = "QQ空间";
+"joke.wechat" = "微信";
+"joke.wechat_timeline" = "朋友圈";
+
+
+
+//register
+"joke.user.registering" = "注册中....";
+"joke.register.running" = "正在注册，请稍等";
+
+
+//reset password
+"joke.password.reset.oldpassword" = "旧密码";
+"joke.password.reset.newpassword" = "新密码，6-16非特殊字符";
+"joke.password.reset.reset" = "重置";
+"joke.password.reset.changing" = "修改中...";
+"joke.password.reset.running" = "正在重置，请稍等";
+"joke.password.reset.noold" = "请输入旧密码";
+"joke.password.reset.olderror" = "旧密码格式错误";
+"joke.password.reset.nonew" = "请输入新密码";
+"joke.password.reset.newerror" = "新密码格式错误";
+
+
+//foot load more
+"dota.more.normal" = "上拉加载(共%d项)";
+"dota.more.loading" = "加载中....";
+"dota.more.done" = "加载完成(共%d项)";
+"dota.more.noresult" = "无相关内容";
+
+
+
+//umeng feedback
+"Release_to_refresh" = "松开即可刷新...";
+"Last_updated" = "最后更新";
+"Fill in the Contact1" = "填写联系信息";
+"Fill in the Contact2" = "请留下您的QQ，邮箱，电话等联系方式";
+"a_m" = "上午";
+"p_m" = "下午";
+"Send" = "发送";
+"Feedback" = "用户反馈";
+"Close" = "关闭";
+"Your contact information" = "您的联系方式";
+"Pull down to refresh" = "下拉可以刷新...";
+"Loading" = "刷新中";
+"relapy.have" = "您有新的反馈回复";
+
+
+
