@@ -99,6 +99,21 @@
    
 }
 
+#pragma mark 
+#pragma mark report
+- (void)reportMessage{
+    NSInteger curIndex = [self.contentView current];
+    
+    if (curIndex >= [_dataArray count] ){
+        BqsLog(@"report index = %d > [_dataArray count] = %d",curIndex,[_dataArray count]);
+        return;
+    }
+    Words *word = [_dataArray objectAtIndex:curIndex];
+    
+    [FTSNetwork reportMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:word.wordId type:WordsSectionType];
+
+    
+}
 
 
 @end

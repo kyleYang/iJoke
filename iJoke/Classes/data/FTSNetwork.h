@@ -56,7 +56,7 @@ typedef enum {
 +(int)commitListDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId page:(NSInteger)page type:(NSInteger)type;
 +(int)addFavoriteDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
 +(int)delFavoriteDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
-
++(int)reportMessageDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
 
 
 //topic

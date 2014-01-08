@@ -49,6 +49,7 @@
 @property (nonatomic, strong, readwrite) JKIconTextButton *upBtn;
 @property (nonatomic, strong, readwrite) JKIconTextButton *downBtn;
 @property (nonatomic, strong, readwrite) JKIconTextButton *favBtn;
+@property (nonatomic, strong, readwrite) UIButton *reportButton;
 @property (nonatomic, strong, readwrite) UILabel *descriptLabel;
 @property (nonatomic, strong) UILabel *addImg;
 @end
@@ -101,7 +102,7 @@
 //        [self.downBtn addTarget:self action:@selector(downDetail:) forControlEvents:UIControlEventTouchUpInside];
 //        [self.tableView addSubview:self.downBtn];
 
-        self.favBtn = [[JKIconTextButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.tableView.frame)/2+CGRectGetMinX(self.titleLabel.frame), 0, kButtonWidht, kButtonHeight)];
+        self.favBtn = [[JKIconTextButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.tableView.frame)/3+CGRectGetMinX(self.titleLabel.frame), 0, kButtonWidht, kButtonHeight)];
         [self.favBtn setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"action_select_background.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) ] forState:UIControlStateHighlighted];
         [self.favBtn setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"action_select_background.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) ] forState:UIControlStateSelected];
         [self.favBtn setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"action_normal_background.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5) ] forState:UIControlStateNormal];
@@ -110,6 +111,17 @@
         [self.favBtn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [self.favBtn addTarget:self action:@selector(favoriteDetail:) forControlEvents:UIControlEventTouchUpInside];
         [self.tableView addSubview:self.favBtn];
+        
+        
+        self.reportButton = [[UIButton alloc] initWithFrame:CGRectMake(2*CGRectGetWidth(self.tableView.frame)/3+CGRectGetMinX(self.titleLabel.frame), 0, kButtonWidht*2, kButtonHeight)];
+        [self.reportButton setTitle:NSLocalizedString(@"joke.navigation.report", nil) forState:UIControlStateNormal];
+        [self.reportButton setBackgroundColor:[UIColor clearColor]];
+        [self.reportButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_hilight.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateHighlighted];
+        [self.reportButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_normal.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateNormal];
+        [self.reportButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+        [self.reportButton addTarget:self action:@selector(reportClick:) forControlEvents:UIControlEventTouchUpInside];
+        [self.tableView addSubview:self.reportButton];
+        
         
         self.descriptLabel = [[UILabel alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.titleLabel.frame), kTitleTopMargin,CGRectGetWidth(self.titleLabel.frame), 0)];
         self.descriptLabel.font = kContentFont;
@@ -207,6 +219,10 @@
     frame = self.favBtn.frame;
     frame.origin.y = CGRectGetMinY(self.upBtn.frame);
     self.favBtn.frame = frame;
+    
+    frame = self.reportButton.frame;
+    frame.origin.y = CGRectGetMinY(self.upBtn.frame);
+    self.reportButton.frame = frame;
     
     height += CGRectGetHeight(self.favBtn.frame);
     height += 25;
@@ -351,6 +367,16 @@
     
 }
 
+
+- (void)reportClick:(id)sender{
+    
+    if (_delegate && [_delegate respondsToSelector:@selector(reportMessageTableView:video:)]) {
+        
+        BqsLog(@"reportMessageTableView Video:%@ ",_video);
+        [_delegate reportMessageTableView:self video:_video];
+    }
+    
+}
 
 
 - (void)refreshRecordState{

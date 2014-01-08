@@ -12,6 +12,7 @@
 #import "MobclickMarco.h"
 #import "Downloader.h"
 #import "HMPopMsgView.h"
+#import "FTSNetwork.h"
 
 @protocol FTSCommitBaseViewControllerDelegate;
 
@@ -37,7 +38,8 @@
 - (NSUInteger)numberOfItemFor:(MptContentScrollView *)scrollView;
 - (MptCotentCell*)cellViewForScrollView:(MptContentScrollView *)scrollView frame:(CGRect)frame AtIndex:(NSUInteger)index;
 
-
+- (void)reportMessage;
+- (void)reportMessageCB:(DownloaderCallbackObj *)cb;
 @end
 
 

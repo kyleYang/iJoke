@@ -245,7 +245,6 @@
 		1868FD52185B1F4600897344 /* ErrViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA88185B1F4500897344 /* ErrViewController.xib */; };
 		1868FD53185B1F4600897344 /* ErrViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA8A185B1F4500897344 /* ErrViewController-iPad.xib */; };
 		1868FD54185B1F4600897344 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA8C185B1F4500897344 /* Default-568h@2x.png */; };
-		1868FD55185B1F4600897344 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA8D185B1F4500897344 /* Default.png */; };
 		1868FD56185B1F4600897344 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA8E185B1F4500897344 /* Default@2x.png */; };
 		1868FD57185B1F4600897344 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA8F185B1F4500897344 /* InfoPlist.strings */; };
 		1868FD58185B1F4600897344 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA91185B1F4500897344 /* Localizable.strings */; };
@@ -1013,7 +1012,6 @@
 		1868FA8A185B1F4500897344 /* ErrViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ErrViewController-iPad.xib"; sourceTree = "<group>"; };
 		1868FA8B185B1F4500897344 /* zh_CN */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = zh_CN; path = zh_CN.lproj/commonlib.strings; sourceTree = "<group>"; };
 		1868FA8C185B1F4500897344 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		1868FA8D185B1F4500897344 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		1868FA8E185B1F4500897344 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		1868FA90185B1F4500897344 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		1868FA92185B1F4500897344 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
@@ -1463,7 +1461,6 @@
 				1868F853185B1F4500897344 /* Classes */,
 				1868F9B7185B1F4500897344 /* CommonLib */,
 				1868FA8C185B1F4500897344 /* Default-568h@2x.png */,
-				1868FA8D185B1F4500897344 /* Default.png */,
 				1868FA8E185B1F4500897344 /* Default@2x.png */,
 				1868FA8F185B1F4500897344 /* InfoPlist.strings */,
 				1868FA91185B1F4500897344 /* Localizable.strings */,
@@ -3294,7 +3291,6 @@
 				1868FD79185B1F4600897344 /* con_cell_ding@2x.png in Resources */,
 				1868FD90185B1F4600897344 /* login_button_hilight@2x.png in Resources */,
 				1868FD52185B1F4600897344 /* ErrViewController.xib in Resources */,
-				1868FD55185B1F4600897344 /* Default.png in Resources */,
 				1868FC6A185B1F4600897344 /* HM_Notice_bg@2x.png in Resources */,
 				1868FD6C185B1F4600897344 /* action_collect_select@2x.png in Resources */,
 				1868FCF2185B1F4600897344 /* Prefix.pch.save in Resources */,
@@ -3908,9 +3904,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
 				FRAMEWORK_SEARCH_PATHS = /Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3924,13 +3921,14 @@
 					/Users/apple/offwork/iJoke/iJoke/openPlant/UMAnalytics,
 					/Users/apple/offwork/iJoke/iJoke/openPlant/UMFeedback,
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "389880B8-6767-4628-A00F-319189D19DE0";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};
@@ -3940,9 +3938,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
 				FRAMEWORK_SEARCH_PATHS = /Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI;
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -3956,13 +3955,14 @@
 					/Users/apple/offwork/iJoke/iJoke/openPlant/UMAnalytics,
 					/Users/apple/offwork/iJoke/iJoke/openPlant/UMFeedback,
 				);
-				ONLY_ACTIVE_ARCH = YES;
+				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
 					"-all_load",
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "389880B8-6767-4628-A00F-319189D19DE0";
+				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
 			};

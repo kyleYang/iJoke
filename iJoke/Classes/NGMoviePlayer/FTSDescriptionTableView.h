@@ -35,5 +35,7 @@
 - (void)descriptionTableView:(FTSDescriptionTableView *)cell downVideo:(Video *)video;
 - (void)descriptionTableView:(FTSDescriptionTableView *)cell favVideo:(Video *)video addType:(BOOL)value; //vale: true for add and false for del favorite
 
+- (void)reportMessageTableView:(FTSDescriptionTableView *)cell video:(Video *)video;
+
 
 @end

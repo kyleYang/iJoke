@@ -8,8 +8,10 @@
 
 #import "FTSCommitBaseViewController.h"
 #import "CustomUIBarButtonItem.h"
+#import "HMPopMsgView.h"
+#import "Msg.h"
 
-@interface FTSCommitBaseViewController (){
+@interface FTSCommitBaseViewController ()<UIActionSheetDelegate>{
    
 }
 
@@ -58,6 +60,7 @@
 
     
     self.navigationItem.leftBarButtonItem = [CustomUIBarButtonItem initWithImage:revealLeftImagePortrait eventImg:revealLeftImageLandscape title:nil target:self action:@selector(backSuper:)];
+    self.navigationItem.rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:NSLocalizedString(@"joke.navigation.report", nil) style:UIBarButtonItemStylePlain target:self action:@selector(reportClick:)];
 
     self.contentView = [[MptContentScrollView alloc] initWithFrame:self.view.bounds];
     self.contentView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
@@ -144,6 +147,52 @@
     
 }
 
+- (void)reportClick:(id)sender{
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"joke.comment.report", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"button.cancle", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"joke.navigation.report", nil), nil];
+    [actionSheet showInView:self.view];
+
+}
+
+
+#pragma mark
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0 ) { //click report
+        
+        [self reportMessage];
+        
+    }
+    
+}
+
+- (void)reportMessage{
+    
+}
+
+- (void)reportMessageCB:(DownloaderCallbackObj *)cb{
+    
+    if(nil == cb) return;
+    
+    if(nil != cb.error || 200 != cb.httpStatus) {
+		BqsLog(@"Error: len:%d, http%d, %@", [cb.rspData length], cb.httpStatus, cb.error);
+        return;
+	}
+    
+    Msg *msg = [Msg parseJsonData:cb.rspData];
+    
+    if (!msg.code) {
+        [HMPopMsgView showPopMsg:msg.msg];
+        return;
+    }else{
+        [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.comment.report.ok", nil)];
+    }
+
+    
+}
+
+
+#pragma mark
+#pragma mark SupportedInterface
 
 - (BOOL)shouldAutorotate{
     return NO;
@@ -156,13 +205,9 @@
     return toInterfaceOrientation == UIInterfaceOrientationPortrait;
 }
 
-/**
- *	scrollview dataSource, Must be rewrite,like tableView
- *
- *	@param	scrollView
- *
- *	@return
- */
+
+#pragma mark
+#pragma mark MptContentScrollView dataSource
 
 - (NSUInteger)numberOfItemFor:(MptContentScrollView *)scrollView{ // must be rewrite
     return 0;

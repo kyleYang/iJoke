@@ -26,7 +26,7 @@
 
 #define kSegmentControlHeiht 35
 
-@interface FTSMoviePlayerViewController ()<scrollDataSource,scrollDelegate,CommitBaseCellDelegate,UIGestureRecognizerDelegate,relationTableViewDelegate,DescriptionTableViewDelegate> {
+@interface FTSMoviePlayerViewController ()<scrollDataSource,scrollDelegate,CommitBaseCellDelegate,UIGestureRecognizerDelegate,relationTableViewDelegate,DescriptionTableViewDelegate,UIActionSheetDelegate> {
     NSUInteger activeCount_;
     NSString *_strUrl;
     NSString *_title;
@@ -399,6 +399,58 @@
         }else{
             [FTSNetwork delFavoriteDownloader:self.downloader Target:self Sel:@selector(delFavCB:) Attached:_video artId:_video.videoId type:VideoSectionType];
         }
+    }
+    
+    
+}
+
+- (void)reportMessageTableView:(FTSDescriptionTableView *)cell video:(Video *)video{
+    if (video == nil) {
+        BqsLog(@"reportMessageTableView favVideo video == nil");
+        return;
+    }
+    
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:NSLocalizedString(@"joke.comment.report", nil) delegate:self cancelButtonTitle:NSLocalizedString(@"button.cancle", nil) destructiveButtonTitle:nil otherButtonTitles:NSLocalizedString(@"joke.navigation.report", nil), nil];
+    [actionSheet showInView:self.view];
+    
+}
+
+
+#pragma mark
+#pragma mark UIActionSheetDelegate
+- (void)actionSheet:(UIActionSheet *)actionSheet didDismissWithButtonIndex:(NSInteger)buttonIndex{
+    if (buttonIndex == 0 ) { //click report
+        
+        [self reportMessage];
+        
+    }
+    
+}
+
+- (void)reportMessage{
+    
+    Video *video = self.descriptionCell.video;
+    
+    [FTSNetwork reportMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:video.videoId type:VideoSectionType];
+}
+
+- (void)reportMessageCB:(DownloaderCallbackObj *)cb{
+    
+    if(nil == cb) return;
+    
+    if(nil != cb.error || 200 != cb.httpStatus) {
+		BqsLog(@"Error: len:%d, http%d, %@", [cb.rspData length], cb.httpStatus, cb.error);
+        return;
+	}
+    
+    Msg *msg = [Msg parseJsonData:cb.rspData];
+    
+    if (!msg.code) {
+        [HMPopMsgView showPopMsg:msg.msg];
+        return;
+    }else{
+        [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.comment.report.ok", nil)];
     }
     
     

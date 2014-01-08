@@ -37,6 +37,8 @@
 #define kSEDelFavWords @"delfavwords"
 #define kSEDefDelFavWordsURL @"/ijoke/front/delArticleCollect.action"
 
+#define kSEReportMessage @"reportmessage"
+#define kSEDefReportMessageURL @"/ijoke/front/addReport.action"
 
 //newimage
 #define kSENewImageFreshList @"newImagefrsh"
@@ -273,7 +275,14 @@
     return [dl addTask:url Target:target Callback:action Attached:att];
 }
 
-
++(int)reportMessageDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type{
+    Env *env = [Env sharedEnv];
+    NSString *url = [env getSEKey:kSEReportMessage Def:kSEDefReportMessageURL];
+    
+    url = [BqsUtils setURL:url ParameterName:@"articleId" Value:[NSString stringWithFormat:@"%d",artId]];
+    url = [BqsUtils setURL:url ParameterName:@"type" Value:[NSString stringWithFormat:@"%d",type]];
+    return [dl addTask:url Target:target Callback:action Attached:att];
+}
 
 
 #pragma mark topic

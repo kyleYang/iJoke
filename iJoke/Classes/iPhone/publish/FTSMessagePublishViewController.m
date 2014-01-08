@@ -139,6 +139,7 @@
     
     self.panel = [[UIImageView alloc] initWithFrame:CGRectMake(0,CGRectGetHeight(self.view.bounds)-kToolPanHeight, self.view.frame.size.width, kToolPanHeight)];
     self.panel.userInteractionEnabled = YES;
+    self.panel.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     self.panel.backgroundColor = [UIColor clearColor];
     self.panel.image = [[Env sharedEnv] cacheResizableImage:@"toolbar_translucent_background.png" WithCapInsets:UIEdgeInsetsMake(0, 1, 5, 5)];
     
