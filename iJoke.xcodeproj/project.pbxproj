@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18202F81187EE31900080D04 /* PanguLogoinBT.m in Sources */ = {isa = PBXBuildFile; fileRef = 18202F80187EE31900080D04 /* PanguLogoinBT.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		18202F83187EE52600080D04 /* pg_link_line@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18202F82187EE52600080D04 /* pg_link_line@2x.png */; };
+		18202F85187EEA6400080D04 /* eula.html in Resources */ = {isa = PBXBuildFile; fileRef = 18202F84187EEA6400080D04 /* eula.html */; };
 		1868FC5A185B1F4600897344 /* agreement_cn.txt in Resources */ = {isa = PBXBuildFile; fileRef = 1868F852185B1F4500897344 /* agreement_cn.txt */; };
 		1868FC5B185B1F4600897344 /* ASImageScrollView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F856185B1F4500897344 /* ASImageScrollView.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1868FC5C185B1F4600897344 /* CustomNavigationBar.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868F859185B1F4500897344 /* CustomNavigationBar.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
@@ -524,6 +527,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18202F7F187EE31900080D04 /* PanguLogoinBT.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PanguLogoinBT.h; sourceTree = "<group>"; };
+		18202F80187EE31900080D04 /* PanguLogoinBT.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PanguLogoinBT.m; sourceTree = "<group>"; };
+		18202F82187EE52600080D04 /* pg_link_line@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pg_link_line@2x.png"; sourceTree = "<group>"; };
+		18202F84187EEA6400080D04 /* eula.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = eula.html; sourceTree = "<group>"; };
 		1868F852185B1F4500897344 /* agreement_cn.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = agreement_cn.txt; sourceTree = "<group>"; };
 		1868F855185B1F4500897344 /* ASImageScrollView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASImageScrollView.h; sourceTree = "<group>"; };
 		1868F856185B1F4500897344 /* ASImageScrollView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASImageScrollView.m; sourceTree = "<group>"; };
@@ -1467,6 +1474,7 @@
 				1868FA93185B1F4500897344 /* FTSAppDelegate.h */,
 				1868FA94185B1F4600897344 /* FTSAppDelegate.m */,
 				1868FA95185B1F4600897344 /* help.html */,
+				18202F84187EEA6400080D04 /* eula.html */,
 				1890FBA618674A1E003A4514 /* about.html */,
 				1868FA96185B1F4600897344 /* iJoke-Info.plist */,
 				1868FA97185B1F4600897344 /* iJoke-Prefix.pch */,
@@ -1495,6 +1503,8 @@
 		1868F854185B1F4500897344 /* CommonUI */ = {
 			isa = PBXGroup;
 			children = (
+				18202F7F187EE31900080D04 /* PanguLogoinBT.h */,
+				18202F80187EE31900080D04 /* PanguLogoinBT.m */,
 				1868F855185B1F4500897344 /* ASImageScrollView.h */,
 				1868F856185B1F4500897344 /* ASImageScrollView.m */,
 				1868F857185B1F4500897344 /* CustomBar */,
@@ -2491,6 +2501,7 @@
 		1868FAD1185B1F4600897344 /* logo */ = {
 			isa = PBXGroup;
 			children = (
+				18202F82187EE52600080D04 /* pg_link_line@2x.png */,
 				1868FAD2185B1F4600897344 /* login_button_hilight@2x.png */,
 				1868FAD3185B1F4600897344 /* login_button_normal@2x.png */,
 				1868FAD4185B1F4600897344 /* login_input_background@2x.png */,
@@ -3338,6 +3349,7 @@
 				1868FD54185B1F4600897344 /* Default-568h@2x.png in Resources */,
 				1868FD85185B1F4600897344 /* toolbarbg@2x.png in Resources */,
 				1868FE35185B1F4700897344 /* iRate.bundle in Resources */,
+				18202F85187EEA6400080D04 /* eula.html in Resources */,
 				1868FCF4185B1F4600897344 /* NGVolumeControl.bundle in Resources */,
 				1868FD7E185B1F4600897344 /* icon_share@2x.png in Resources */,
 				1890FBA718674A1E003A4514 /* about.html in Resources */,
@@ -3362,6 +3374,7 @@
 				1868FD58185B1F4600897344 /* Localizable.strings in Resources */,
 				1868FDE3185B1F4700897344 /* UMSCommentInputControlleriPad.xib in Resources */,
 				1868FE27185B1F4700897344 /* About.txt in Resources */,
+				18202F83187EE52600080D04 /* pg_link_line@2x.png in Resources */,
 				1868FD5F185B1F4600897344 /* cate_image@2x.png in Resources */,
 				1868FD40185B1F4600897344 /* README.md in Resources */,
 				1868FD8A185B1F4600897344 /* joke_clean_down@2x.png in Resources */,
@@ -3745,6 +3758,7 @@
 				1868FDBB185B1F4600897344 /* main.m in Sources */,
 				1868FE11185B1F4700897344 /* ASMediaFocusController.m in Sources */,
 				1868FDFB185B1F4700897344 /* ASIS3Bucket.m in Sources */,
+				18202F81187EE31900080D04 /* PanguLogoinBT.m in Sources */,
 				1868FD45185B1F4600897344 /* mztools.c in Sources */,
 				1868FDF8185B1F4700897344 /* ASICloudFilesObject.m in Sources */,
 				1868FE31185B1F4700897344 /* AnimationFrame.m in Sources */,

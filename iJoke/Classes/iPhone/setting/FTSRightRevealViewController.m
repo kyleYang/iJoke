@@ -20,6 +20,7 @@
 #import "FTSFollowUpViewController.h"
 #import "FTSSettingViewController.h"
 #import "iVersion.h"
+#import "HumDotaHelpViewController.h"
 
 @interface FTSRightRevealViewController ()<FTSLoginDelegate>
 
@@ -126,7 +127,7 @@
     [self.view addSubview:feedbackBtn];
     
     
-    UIButton *versionButton = [[UIButton alloc] initWithFrame:CGRectMake(150, CGRectGetHeight(self.view.bounds)-50, 100, 30)];
+    UIButton *versionButton = [[UIButton alloc] initWithFrame:CGRectMake(80, CGRectGetHeight(self.view.bounds)-50, 100, 30)];
     [self.view addSubview:versionButton];
     [versionButton addTarget:self action:@selector(versionCheck:) forControlEvents:UIControlEventTouchUpInside];
     versionButton.backgroundColor = [UIColor clearColor];
@@ -142,6 +143,19 @@
     versionTitle.textColor = [UIColor whiteColor];
     [versionButton addSubview:versionTitle];
     versionTitle.text = [NSString stringWithFormat:@"V %@",versionString];
+    
+    
+    UIButton *eulaButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)-100, CGRectGetMinY(versionButton.frame), 100, 30)];
+    [self.view addSubview:eulaButton];
+    [eulaButton addTarget:self action:@selector(eulaClick:) forControlEvents:UIControlEventTouchUpInside];
+    eulaButton.backgroundColor = [UIColor clearColor];
+    UILabel *eulaTitle = [[UILabel alloc] initWithFrame:versionButton.bounds];
+    eulaTitle.backgroundColor = [UIColor clearColor];
+    eulaTitle.textColor = [UIColor whiteColor];
+    [eulaButton addSubview:eulaTitle];
+    eulaTitle.text = NSLocalizedString(@"joke.setting.eula", nil);
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
@@ -324,6 +338,10 @@
     [[iVersion sharedInstance] checkForNewVersion];
 }
 
+- (void)eulaClick:(id)sender{
+    HumDotaHelpViewController *about = [[HumDotaHelpViewController alloc] initWithTitle:NSLocalizedString(@"joke.setting.eula.title", nil) html:@"eula"];
+    [FTSUIOps flipNavigationController:self.revealController.flipboardNavigationController pushNavigationWithController:about];
+}
 
 #pragma mark
 #pragma mark FTSLoginDelegate

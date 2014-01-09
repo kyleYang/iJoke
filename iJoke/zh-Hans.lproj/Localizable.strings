@@ -29,9 +29,11 @@
 "joke.setting.feedback" = "反馈";
 "joke.setting.help" = "帮助";
 "joke.setting.about" = "关于";
+"joke.setting.eula" = "用户协议";
 
 "joke.setting.clearing.mess" = "清除缓存中,请稍后";
 "joke.setting.help.title" = "帮助";
+"joke.setting.eula.title" = "用户协议";
 "joke.setting.about.title" = "关于";
 
 "joke.setting.login.notice" = "未登录，请登录";
@@ -132,6 +134,8 @@
 "joke.login.changepassword" = "修改密码";
 "joke.login.sina.button" = "新浪微博";
 "joke.login.qq.button" = "腾讯微博";
+"joke.user.eula" = "用户使用协议";
+"joke.user.register.noeula" = "您必须同意用户协议";
 
 "joke.login.nousername" = "请输入用户名";
 "joke.login.username.macth.no" = "邮箱格式错误";

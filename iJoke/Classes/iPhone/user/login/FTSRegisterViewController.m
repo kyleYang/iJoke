@@ -19,8 +19,15 @@
 #import "CustomUIBarButtonItem.h"
 #import "FTSUserInfoViewController.h"
 #import "FTSUIOps.h"
+#import "PanguLogoinBT.h"
+#import "PanguCheckButton.h"
+#import "HumDotaHelpViewController.h"
 
 #define kPointArc 40
+#define kAnonymousWidth 25
+#define kAnonymousHeight 35
+
+#define kLinkColor [UIColor colorWithRed:92.0f/255.0f green:92.0f/255.0f blue:254.0f/255.0f alpha:1.0f]
 
 @interface FTSRegisterViewController ()<FTSTextFieldDelegate>{
     int _taskID;
@@ -30,6 +37,7 @@
 @property (nonatomic, strong) Downloader *download;
 @property (nonatomic, strong) FTSTextField *username;
 @property (nonatomic, strong) FTSTextField *password;
+@property (nonatomic, strong) PanguCheckButton *anonymousButton;
 @property (nonatomic, strong) MBProgressHUD *activityNotice;
 
 
@@ -100,6 +108,23 @@
     self.password.textField.font = [UIFont systemFontOfSize:14.0f];
     self.password.textField.secureTextEntry = YES;
     [self.contentView addSubview:self.password];
+    
+    self.anonymousButton = [[PanguCheckButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.username.frame)+5,CGRectGetMaxY(self.password.frame)+10, kAnonymousWidth,kAnonymousHeight)] ;
+    self.anonymousButton.style = CheckButtonStyleBox;
+    self.anonymousButton.label.font = [UIFont systemFontOfSize:11];
+    [self.anonymousButton setChecked:FALSE];
+    [self.contentView addSubview:self.anonymousButton];
+    
+    PanguLogoinBT *siteBt = [[PanguLogoinBT alloc] initWithFrame:CGRectMake(CGRectGetMaxX(self.anonymousButton.frame)-3,CGRectGetMinY(self.anonymousButton.frame),250,CGRectGetHeight(self.anonymousButton.frame))];
+    [siteBt addTarget:self action:@selector(openEual:) forControlEvents:UIControlEventTouchUpInside];
+    siteBt.txtFont = [UIFont systemFontOfSize:12.0f];
+    siteBt.txtColor = kLinkColor;
+    siteBt.lineName = @"pg_link_line.png";
+    siteBt.userName = NSLocalizedString(@"joke.user.eula", nil);
+    siteBt.message.text = nil;
+    siteBt.backgroundColor = [UIColor clearColor];
+    [self.contentView addSubview:siteBt];
+
     
     
     UIButton *registerButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(self.username.frame),CGRectGetMaxY(self.password.frame)+50, CGRectGetWidth(self.username.frame),50)];
@@ -295,6 +320,13 @@
 
 
 #pragma mark login
+
+- (void)openEual:(id)sender{
+    HumDotaHelpViewController *about = [[HumDotaHelpViewController alloc] initWithTitle:NSLocalizedString(@"joke.setting.eula.title", nil) html:@"eula"];
+    [FTSUIOps flipNavigationController:self.flipboardNavigationController pushNavigationWithController:about];
+}
+
+
 //登陆启动，进行网络操作
 - (void)userRegister:(id)sender
 {
@@ -341,6 +373,13 @@
         [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.login.passowrd.match.no", nil)];
         return;
         
+    }
+    
+    
+    if (!self.anonymousButton.isChecked) {
+        [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.user.register.noeula", nil)];
+        
+        return;
     }
     
        
