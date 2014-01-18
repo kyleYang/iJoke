@@ -9,22 +9,226 @@
 
 
 
+"joke.category.text" = "Words";
+"joke.category.image" = "Images";
+"joke.category.video" = "Video";
+"joke.category.topic" = "Topic";
+"joke.category.verify" = "Verifier";
+"joke.content.hot" = "Hotest";
+"joke.content.new" = "Newest";
+
+//setting
+"joke.setting.follow" = "My Published";
+"joke.setting.collect" = "My Collected";
+"joke.setting.commit" = "My Comment";
+"joke.setting.publish" = "Send Joke";
+"joke.setting.setting" = "Setting";
+"joke.setting.download" = "Downlad";
 
 
+"joke.setting.cleanmess" = "Cache Clean";
+"joke.setting.rate" = "Five Star Rate";
+"joke.setting.feedback" = "Feedback";
+"joke.setting.help" = "Help";
+"joke.setting.about" = "About";
+"joke.setting.eula" = "EULA";
+
+"joke.setting.clearing.mess" = "Cleaning,Please Wait!";
+"joke.setting.help.title" = "Help";
+"joke.setting.eula.title" = "EULA";
+"joke.setting.about.title" = "About";
+
+"joke.setting.login.notice" = "Please Login!";
+
+
+//content
+"joke.content.nofresh" = "Have no new joke, welcome publish a new joke";
+"joke.content.freshnumber" = "update %d ";
+"joke.content.nomessage" = "Have no record";
+"joke.content.loading" = "Loading...";
+"joke.content.loadfininsh" = "Load finish";
+
+//commit
+"joke.commit.numberfooler" = "%d floor";
+"joke.commit.anonymous" = "anonymous";
+"joke.commit.current" = "Just";
+"joke.commit.minutes" = "%d minutes ago";
+"joke.commit.hours" = "%d hours ago";
+"joke.commit.days" = "%d days ago";
+"joke.comment.loading" = "loading comment";
+"joke.comment.add.success" = "comment success";
+
+"joke.comment.empty" = "submit comment";
+"joke.comment.anonymous" = "anonymous";
+"jole.comment.text.notice" = "please at least 3 words";
+"joke.comment.text.muchmor" = "no more than 250 words";
+"joke.comment.placeholder" = "what do you think, Yuanfang?";
+"joke.comment.report" = "corruption reporting";
+"joke.comment.report.ok" = "corruption reporting success";
+
+//video
+"video.notitle" = "Have no title";
+"video.nosummary" = "Have no summary";
+"video.detail.title" = "Details";
+"video.detail.comment" = "Comment";
+"video.detail.tuijian" = "Recommend";
+"videoldetail.tuijian.notilte" = "Have no title";
+
+
+"title.error.nonetwork" = "Have no Network!";
+"title.nonetwork.cannot.paly" = "No network, Can not play";
+"title.network.3G.play" = "You are using 3G, Play?";
+"tilt.newtwork.3G.continue" = "You are using 3G, Continue?";
+"error.networkfailed" = "Network Error";
+
+"settin.video.qulity.one" = "standard";
+"settin.video.qulity.two" = "Hight";
+"settin.video.qulity.three" = "Super";
+
+"video.tableview.notitle" = "No tilte";
+
+//topic
+"topic.no.category" = "Have no topic, Please try again later";
+
+
+//review
+"review.laoding.once.title" = "loading...";
+"review.loading.next.title" = "Next loading...";
+"review.loading.nomore" = "Have no unverifier joke!";
+"review.status.unkown" = "Unknow status";
+"review.status.pass" = "Pass Verifier";
+"review.status.review" = "Verifier...";
+"review.status.failed" = "Faile Verifier";
+
+//publish
+"joke.publish.title" = "Publish New";
+"joke.publish.publishing" = "Publish...";
+"joke.publish.shareing" = "Sharing...";
+"joke.publish.image.option" = "Option";
+"joke.publish.image.delete" = "Delete Photo";
+"joke.publish.image.camera" = "Camera";
+"joke.publish.image.library" = "Photo Album";
+"joke.publish.nocamera" = "Device can not support Camera";
+"joke.publish.nolibrary" = "Device can not support Photo Album";
+"joke.publish.savemessage" = "Save Draft";
+"joke.publish.draft" = "Draft";
+"joke.publish.nomessage"="No message";
+"joke.publish.image.delete" = "Photo Deleting...";
+
+
+//alter
+"button.cancle" = "Cancle";
+"button.sure" = "Sure";
+"button.check" = "Check";
+"button.back" = "Back";
+"button.done" = "Done";
+"version.no.newversion" = "Current Version is Newest";
+
+
+//login
+"joke.login.usename.plachold" = "username : e-mail";
+"joke.login.password.plachold" = "password : 6-16words";
+"joke.loing.title" = "User Login";
+"joke.login.login" = "Login";
+"joke.login.logout" = "Logout";
+"joke.login.resgister" = "Resgister";
+"joke.login.forgetpassword" = "Password Forget";
+"joke.login.changepassword" = "Password Change";
+"joke.login.sina.button" = "Sina Weibo";
+"joke.login.qq.button" = "Tencent Weibo";
+"joke.user.eula" = "EULA";
+"joke.user.register.noeula" = "Your have to agree EULA";
+
+"joke.login.nousername" = "Please input username";
+"joke.login.username.macth.no" = "E-mail Format Error";
+"joke.login.password.no" = "Please input password";
+"joke.login.passowrd.match.no" = "Password Format Error";
+
+"joke.login.running" = "Loging....";
+"joke.login.longining" = "Loging....";
+"joke.login.failed" = "Login Failed";
+"joke.login.success" = "Login Success";
+
+"joke.login.unOauth" = "Unauthor %@ ";
+"joke.login.union.logout.failed" = "Logout %@ failed";
+
+//userinfo
+"joke.user.usercenter" = "User Center";
+"joke.userinfo.userinfo" = "User Info";
+
+
+
+"joke.userinfo.report" = "My Published";
+"joke.userinfo.comment" = "My Comment";
+"joke.userinfo.collect" = "My Collected";
+
+"joke.userinfo.social" = "SNS Message";
+
+"joke.userinfo.unoauth" = "Unauthor";
+"joke.userinfo.logout" = "Logout";
+
+"joke.userinfo.noupdata" = "unchanged";
+"joke.userinfo.saving" = "Saving...";
+
+//user action
+"joke.useraction.message.freshing" = "updating...";
+"joke.useraction.nocollect" = "You have no Collect";
+"jole.useraction.nofollow" = "You have no share joke";
+"joke.useraction.publish.noname" = "anonymous";
+"joke.useraciton.publish.mytitle" = "My Published";
+"joke.useraciton.collect.mytitle" = "My Collected";
+"joke.useraction.collect.noname" = "Local Collect";
+"jole.useraction.collect.local.add.success" = "Local Collect Add Success!";
+"jole.useraction.collect.local.del.success" = "Delete Local Collect Success!";
+
+//social
+"joke.sina" = "Sina";
+"joke.tencent" = "Tencent";
+"joke.qzone" = "QZone";
+"joke.wechat" = "Wechate";
+"joke.wechat_timeline" = "wechat_timeline";
+
+
+
+//register
+"joke.user.registering" = "registering....";
+"joke.register.running" = "registering....";
+
+
+//reset password
+"joke.password.reset.oldpassword" = "old";
+"joke.password.reset.newpassword" = "new，6-16words";
+"joke.password.reset.reset" = "reset";
+"joke.password.reset.changing" = "changing...";
+"joke.password.reset.running" = "changing...";
+"joke.password.reset.noold" = "please input old password";
+"joke.password.reset.olderror" = "old password format error";
+"joke.password.reset.nonew" = "please input new password";
+"joke.password.reset.newerror" = "new password format error";
+
+
+//foot load more
+"dota.more.normal" = "pull up,load more(Total %d )";
+"dota.more.loading" = "Loading....";
+"dota.more.done" = "Load finish (Total %d )";
+"dota.more.noresult" = "No Record";
+
+//navigation
+"joke.navigation.report" = "corruption reporting";
 
 
 //umeng feedback
-"Release_to_refresh" = "Release to refresh...";
-"Fill_in_the_Contact" = "填写联系信息";
-"Fill in the Contact" = "Fill in the Contact";
-"a_m" = "a.m.";
-"p_m" = "p.m.";
-"Send" = "Send";
-"Feedback" = "Feedback";
-"Close" = "Close";
-"Your contact information" = "Your contact information";
-"Pull down to refresh" = "Pull down to refresh...";
-"Loading" = "Loading";
-"Last_updated" = "Last updated";
-"Fill in the Contact1" = "Fill in the Contact";
-"Fill in the Contact2" = "Fill in the Contact";
+"Release_to_refresh" = "松开即可刷新...";
+"Last_updated" = "最后更新";
+"Fill in the Contact1" = "填写联系信息";
+"Fill in the Contact2" = "请留下您的QQ，邮箱，电话等联系方式";
+"a_m" = "上午";
+"p_m" = "下午";
+"Send" = "发送";
+"Feedback" = "用户反馈";
+"Close" = "关闭";
+"Your contact information" = "您的联系方式";
+"Pull down to refresh" = "下拉可以刷新...";
+"Loading" = "刷新中";
+"relapy.have" = "您有新的反馈回复";
+

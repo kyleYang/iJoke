@@ -382,8 +382,19 @@ typedef enum {
 #pragma mark - Gesture recognizer
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     UIViewController * vc =  [self.viewControllers lastObject];
+    
+    if ([vc isKindOfClass:[UINavigationController class]]  && ((UINavigationController *)vc).navigationBar.hidden == FALSE) {
+        
+        if (CGRectContainsPoint(((UINavigationController *) vc).navigationBar.frame,[touch locationInView:vc.view])) {
+            return FALSE;
+        }
+    
+    }
+    
     _panOrigin = vc.view.frame.origin;
     gestureRecognizer.enabled = YES;
+    
+    
     return !_animationInProgress;
 }
 
