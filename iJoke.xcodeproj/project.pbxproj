@@ -3922,7 +3922,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
-				FRAMEWORK_SEARCH_PATHS = /Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iJoke/iJoke-Prefix.pch";
@@ -3930,10 +3930,10 @@
 				INFOPLIST_FILE = "iJoke/iJoke-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/Wechat,
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1,
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMAnalytics,
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMFeedback,
+					"$(PROJECT_DIR)/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/Wechat",
+					"$(PROJECT_DIR)/iJoke/openPlant/UMSocial_Sdk_3.1",
+					"$(PROJECT_DIR)/iJoke/openPlant/UMAnalytics",
+					"$(PROJECT_DIR)/iJoke/openPlant/UMFeedback",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -3941,7 +3941,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DB7AB614-F539-4CF6-A114-9D8F2018D59B";
+				PROVISIONING_PROFILE = "FC75F567-65C7-457F-BC9F-33F052156C91";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;
@@ -3956,7 +3956,7 @@
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CODE_SIGN_IDENTITY = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: ZHIYUN YANG (JLMRKUQTA9)";
-				FRAMEWORK_SEARCH_PATHS = /Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI;
+				FRAMEWORK_SEARCH_PATHS = "$(PROJECT_DIR)/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/TencentOpenAPI";
 				GCC_C_LANGUAGE_STANDARD = c99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "iJoke/iJoke-Prefix.pch";
@@ -3964,10 +3964,10 @@
 				INFOPLIST_FILE = "iJoke/iJoke-Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				LIBRARY_SEARCH_PATHS = (
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/Wechat,
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMSocial_Sdk_3.1,
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMAnalytics,
-					/Users/apple/offwork/iJoke/iJoke/openPlant/UMFeedback,
+					"$(PROJECT_DIR)/iJoke/openPlant/UMSocial_Sdk_3.1/frameworks/Wechat",
+					"$(PROJECT_DIR)/iJoke/openPlant/UMSocial_Sdk_3.1",
+					"$(PROJECT_DIR)/iJoke/openPlant/UMAnalytics",
+					"$(PROJECT_DIR)/iJoke/openPlant/UMFeedback",
 				);
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_LDFLAGS = (
@@ -3975,7 +3975,7 @@
 					"-licucore",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "DB7AB614-F539-4CF6-A114-9D8F2018D59B";
+				PROVISIONING_PROFILE = "FC75F567-65C7-457F-BC9F-33F052156C91";
 				TARGETED_DEVICE_FAMILY = 1;
 				VALID_ARCHS = "armv7 armv7s";
 				WRAPPER_EXTENSION = app;

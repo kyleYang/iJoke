@@ -14,7 +14,7 @@
 @interface FTSImageDetailViewController()<ImageDetailCellDelegate,ImagePopControllerDataSource,ImagePopControllerDelegate,HMImagePopManagerDelegate>{
     
     HMImagePopManager *_popMange;
-
+    
 }
 
 
@@ -73,7 +73,7 @@
     if (_popMange) {
         [_popMange.focusViewController reloadData];
     }
-
+    
 }
 
 
@@ -133,12 +133,12 @@
     }
     
     JKImageCellImageView *imageView = [head.imageViews objectAtIndex:index];
-   
+    
     CGRect newFrame = [self.view convertRect:imageView.frame fromView:head.backgroundImageView];
     if(DeviceSystemMajorVersion() >=7){ //ios7
         
     }else{
-         newFrame.origin.y += 44.0f;
+        newFrame.origin.y += 44.0f;
     }
     
     if (cellIndex >= [self.dataArray count]) {
@@ -153,17 +153,17 @@
         return;
         
     }
-
+    
     self.imagesIndex = index;
     Picture *picture = [info.imageArray objectAtIndex:index];
-
+    
     _popMange = [[HMImagePopManager alloc] initWithParentConroller:self.parentViewController DefaultImg:imageView.imageView.image imageUrl:picture.picUrl imageFrame:newFrame];
     _popMange.focusViewController.delegate = self;
     _popMange.focusViewController.dataSource = self;
     _popMange.index = cellIndex;
     _popMange.delegate = self;
     [_popMange handleFocusGesture:nil];
-
+    
     
 }
 
@@ -202,10 +202,10 @@
         picture = [info.imageArray objectAtIndex:0];
         
     }
-
+    
     
     return picture.content;
-
+    
     
 }
 
@@ -220,7 +220,7 @@
         BqsLog(@"imageTableCell touchImageIndex:%@ > self.dataArray",index);
         return cell;
     }
-
+    
     Image *info = [self.dataArray objectAtIndex:self.currentIndex];
     CGRect newFrame = CGRectZero;
     
@@ -231,7 +231,7 @@
         imageViewIndex = 0;
         
     }
-
+    
     
     Picture *picture = [info.imageArray objectAtIndex:imageViewIndex];
     if (picture.width < CGRectGetWidth(self.view.bounds)) {
@@ -257,12 +257,12 @@
         return ;
     }
     
-//    [self.contentView setCurrentItemIndex:self.currentIndex animation:FALSE];
+    //    [self.contentView setCurrentItemIndex:self.currentIndex animation:FALSE];
     
 }
 
 - (void)imagePopControllerDidTap:(HMImagePopController *)popController currentIndex:(NSInteger)index{
-
+    
     if(_popMange == nil) return;
     
     if (index >= [self.dataArray count] ) {
@@ -270,7 +270,7 @@
         return ;
     }
     
-//    [self.contentView setCurrentItemIndex:index animation:FALSE];
+    //    [self.contentView setCurrentItemIndex:index animation:FALSE];
     
     FTSImageDetailCell *cell = (FTSImageDetailCell *)[self.contentView cellForRowAtIndex:self.currentIndex];
     if (cell == nil) {
@@ -297,7 +297,7 @@
     }
     _popMange.imgRect = newFrame;
     
-   BOOL finish =  [_popMange handleDefocusGesture:nil];
+    BOOL finish =  [_popMange handleDefocusGesture:nil];
     if (finish) {
         _popMange = nil;
     }
@@ -312,14 +312,14 @@
 - (void)HMImagePopManager:(HMImagePopManager *)popManag loadIndex:(NSUInteger)index{
     
     FTSImageDetailCell *cell = (FTSImageDetailCell *)[self.contentView cellForRowAtIndex:index];
-
+    
     if (cell == nil) {
         BqsLog(@"FTSImageDetailCell did not contain cell at index:%d",index);
         return;
         
     }
     [cell.headView reloadData];
-
+    
 }
 
 
@@ -334,7 +334,12 @@
     }
     Image *image = [_dataArray objectAtIndex:curIndex];
     
+#ifdef iJokeAdministratorVersion
+    [FTSNetwork deleteMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:image.imageId type:ImageSectionType];
+#else
+    
     [FTSNetwork reportMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:image.imageId type:ImageSectionType];
+#endif
     
     
 }

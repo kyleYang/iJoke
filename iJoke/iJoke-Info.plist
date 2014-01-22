@@ -82,5 +82,7 @@
 	</array>
 	<key>UIViewControllerBasedStatusBarAppearance</key>
 	<false/>
+	<key>UIPrerenderedIcon</key>
+	<true/>
 </dict>
 </plist>

@@ -1461,7 +1461,14 @@ static int jk_parse_string(JKParseState *parseState) {
         goto slowMatch;
       }
 
-      if(JK_EXPECT_F(currentChar < 0x20UL)) { jk_error(parseState, @"Invalid character < 0x20 found in string: 0x%2.2x.", currentChar); stringState = JSONStringStateError; goto finishedParsing; }
+//      if(JK_EXPECT_F(currentChar < 0x20UL)) { jk_error(parseState, @"Invalid character < 0x20 found in string: 0x%2.2x.", currentChar); stringState = JSONStringStateError; goto finishedParsing; } //JSONKit for \U bugs ,edity by kyle yang
+    
+        if(JK_EXPECT_F(currentChar < 0x20UL) && (parseState->parseOptionFlags & JKParseOptionLooseUnicode) == 0) {
+            jk_error(parseState, @"Invalid character < 0x20 found in string: 0x%2.2x.", currentChar); stringState = JSONStringStateError; goto finishedParsing;
+        }
+        else {
+            currentChar = 0xFFFDUL;
+        }
 
       stringHash = jk_calculateHash(stringHash, currentChar);
     }

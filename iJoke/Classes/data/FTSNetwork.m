@@ -40,6 +40,9 @@
 #define kSEReportMessage @"reportmessage"
 #define kSEDefReportMessageURL @"/ijoke/front/addReport.action"
 
+#define kSEDeleteMessage @"deletemessage"
+#define kSEDefDeleteMessageURL @"/ijoke/front/notPassArticle.action"
+
 //newimage
 #define kSENewImageFreshList @"newImagefrsh"
 #define kSEDefNewImageFreshURL @"/ijoke/front/listTopPicture.action"
@@ -281,6 +284,17 @@
     
     url = [BqsUtils setURL:url ParameterName:@"articleId" Value:[NSString stringWithFormat:@"%d",artId]];
     url = [BqsUtils setURL:url ParameterName:@"type" Value:[NSString stringWithFormat:@"%d",type]];
+    return [dl addTask:url Target:target Callback:action Attached:att];
+}
+
+
++(int)deleteMessageDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type
+{
+    Env *env = [Env sharedEnv];
+    NSString *url = [env getSEKey:kSEDeleteMessage Def:kSEDefDeleteMessageURL];
+    
+    url = [BqsUtils setURL:url ParameterName:@"articleId" Value:[NSString stringWithFormat:@"%d",artId]];
+//    url = [BqsUtils setURL:url ParameterName:@"type" Value:[NSString stringWithFormat:@"%d",type]];
     return [dl addTask:url Target:target Callback:action Attached:att];
 }
 

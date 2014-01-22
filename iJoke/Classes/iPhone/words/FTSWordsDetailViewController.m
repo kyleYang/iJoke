@@ -110,7 +110,16 @@
     }
     Words *word = [_dataArray objectAtIndex:curIndex];
     
+    
+#ifdef iJokeAdministratorVersion
+
+    [FTSNetwork deleteMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:word.wordId type:WordsSectionType];
+#else
+    
     [FTSNetwork reportMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:word.wordId type:WordsSectionType];
+#endif
+    
+   
 
     
 }

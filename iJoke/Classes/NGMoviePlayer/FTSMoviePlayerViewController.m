@@ -432,7 +432,16 @@
     
     Video *video = self.descriptionCell.video;
     
-    [FTSNetwork reportMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:video.videoId type:VideoSectionType];
+#ifdef iJokeAdministratorVersion
+    
+    [FTSNetwork deleteMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:video.videoId type:VideoSectionType];
+#else
+    
+   [FTSNetwork reportMessageDownloader:self.downloader Target:self Sel:@selector(reportMessageCB:) Attached:nil artId:video.videoId type:VideoSectionType];
+#endif
+    
+    
+   
 }
 
 - (void)reportMessageCB:(DownloaderCallbackObj *)cb{

@@ -57,7 +57,7 @@ typedef enum {
 +(int)addFavoriteDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
 +(int)delFavoriteDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
 +(int)reportMessageDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
-
++(int)deleteMessageDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att artId:(int)artId type:(NSInteger)type;
 
 //topic
 +(int)topicTitleFreshDownloader:(Downloader *)dl Target:(id)target Sel:(SEL)action Attached:(id)att;

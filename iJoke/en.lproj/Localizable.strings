@@ -18,10 +18,10 @@
 "joke.content.new" = "Newest";
 
 //setting
-"joke.setting.follow" = "My Published";
-"joke.setting.collect" = "My Collected";
-"joke.setting.commit" = "My Comment";
-"joke.setting.publish" = "Send Joke";
+"joke.setting.follow" = "Published";
+"joke.setting.collect" = "Collected";
+"joke.setting.commit" = "Comment";
+"joke.setting.publish" = "Deliver";
 "joke.setting.setting" = "Setting";
 "joke.setting.download" = "Downlad";
 
@@ -63,7 +63,7 @@
 "jole.comment.text.notice" = "please at least 3 words";
 "joke.comment.text.muchmor" = "no more than 250 words";
 "joke.comment.placeholder" = "what do you think, Yuanfang?";
-"joke.comment.report" = "corruption reporting";
+"joke.comment.report" = "reporting";
 "joke.comment.report.ok" = "corruption reporting success";
 
 //video
@@ -134,8 +134,8 @@
 "joke.login.resgister" = "Resgister";
 "joke.login.forgetpassword" = "Password Forget";
 "joke.login.changepassword" = "Password Change";
-"joke.login.sina.button" = "Sina Weibo";
-"joke.login.qq.button" = "Tencent Weibo";
+"joke.login.sina.button" = "Sina";
+"joke.login.qq.button" = "Tencent";
 "joke.user.eula" = "EULA";
 "joke.user.register.noeula" = "Your have to agree EULA";
 
@@ -214,7 +214,7 @@
 "dota.more.noresult" = "No Record";
 
 //navigation
-"joke.navigation.report" = "corruption reporting";
+"joke.navigation.report" = "reporting";
 
 
 //umeng feedback
