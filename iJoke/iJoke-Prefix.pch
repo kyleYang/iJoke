@@ -16,7 +16,10 @@
     #import "FTSMacro.h"
     #import "PKRevealController.h"
     #import "FlipBoardNavigationController.h"
-    #import "MLNavigationController.h"
+    #import "RDVTabBarController.h"
+    #import "AMScrollingNavbarViewController.h"
+    #import "AMScrollingNavbarTableViewController.h"
+    #import "AMScrollingCollectionViewController.h"
 #endif
 
 

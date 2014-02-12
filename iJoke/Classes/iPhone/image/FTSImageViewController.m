@@ -20,6 +20,9 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        self.title = NSLocalizedString(@"joke.category.image", nil);
+        
     }
     return self;
 }
@@ -28,7 +31,7 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
-    self.navigationItem.title = NSLocalizedString(@"joke.category.image", nil);
+//    self.navigationItem.title = NSLocalizedString(@"joke.category.image", nil);
 }
 
 - (void)didReceiveMemoryWarning

@@ -115,10 +115,10 @@
 //    [navc setValue:navBar forKey:@"navigationBar"];
     UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:font];
     
-    CustomNavigationBar *navBar = [[CustomNavigationBar alloc] init];
-    UIImage *bgImg = [[Env sharedEnv] cacheImage:@"navbar_background.png"];
-    [navBar setCustomBgImage:bgImg];
-    [navc setValue:navBar forKey:@"navigationBar"];
+//    CustomNavigationBar *navBar = [[CustomNavigationBar alloc] init];
+//    UIImage *bgImg = [[Env sharedEnv] cacheImage:@"navbar_background.png"];
+//    [navBar setCustomBgImage:bgImg];
+//    [navc setValue:navBar forKey:@"navigationBar"];
 
     
     
@@ -134,11 +134,11 @@
     
     UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:controler];
     
-    CustomNavigationBar *navBar = [[CustomNavigationBar alloc] init];
-    [navBar setBarTintGradientColor:[UIColor whiteColor]];
-    UIImage *bgImg = [[Env sharedEnv] cacheImage:@"navbar_background.png"];
-    [navBar setCustomBgImage:bgImg];
-    [navc setValue:navBar forKey:@"navigationBar"];
+//    CustomNavigationBar *navBar = [[CustomNavigationBar alloc] init];
+//    [navBar setBarTintGradientColor:[UIColor whiteColor]];
+//    UIImage *bgImg = [[Env sharedEnv] cacheImage:@"navbar_background.png"];
+//    [navBar setCustomBgImage:bgImg];
+//    [navc setValue:navBar forKey:@"navigationBar"];
     
     [flipNav pushViewController:navc];
 }

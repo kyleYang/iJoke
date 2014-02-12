@@ -89,7 +89,7 @@
     
     //    MLNavigationController *nav = [[MLNavigationController alloc] initWithRootViewController:self.detailController];
     
-    [FTSUIOps flipNavigationController:self.parCtl.navigationController.revealController.flipboardNavigationController pushNavigationWithController:self.detailController];
+    [FTSUIOps flipNavigationController:self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushNavigationWithController:self.detailController];
     
 }
 
@@ -153,9 +153,7 @@
     self.detailController.delegate = self;
     self.detailController.baseDelegate = self;
     
-    //    MLNavigationController *nav = [[MLNavigationController alloc] initWithRootViewController:self.detailController];
-    
-    [FTSUIOps flipNavigationController:self.parCtl.navigationController.revealController.flipboardNavigationController pushNavigationWithController:self.detailController];
+    [FTSUIOps flipNavigationController:self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushNavigationWithController:self.detailController];
     return;
     
     
@@ -175,7 +173,7 @@
     }
     
     FTSUserInfoViewController *infoViewController = [[FTSUserInfoViewController alloc] initWithUser:info.user];
-    [FTSUIOps flipNavigationController:self.parCtl.navigationController.revealController.flipboardNavigationController pushNavigationWithController:infoViewController];
+    [FTSUIOps flipNavigationController:self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushNavigationWithController:infoViewController];
     
 }
 

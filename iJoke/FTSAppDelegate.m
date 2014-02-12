@@ -19,13 +19,17 @@
 #import "Reachability.h"
 //#import "HumDotaVideoManager.h"
 #import "PKRevealController.h"
-#import "FTSTopicViewController.h"
 #import "FTSWordsViewController.h"
 #import "FTSImageViewController.h"
+#import "FTSVideoViewController.h"
+#import "FTSReviewViewController.h"
+#import "FTSTopicViewController.h"
 #import "CustomNavigationBar.h"
 #import "FTSLeftRevealViewController.h"
 #import "FTSRightRevealViewController.h"
 #import "SDImageCache.h"
+#import "RDVTabBarController.h"
+#import "RDVTabBarItem.h"
 
 
 @interface FTSAppDelegate()<EnvProtocol>{
@@ -33,6 +37,7 @@
 }
 @property (nonatomic, strong) Env *theEnv;
 @property (nonatomic, strong) HTTPServer *httpServer;
+@property (nonatomic, strong) RDVTabBarController *tabBarController;
 @property (nonatomic, strong) PKRevealController *revealController;
 @property (nonatomic, strong) FTSRightRevealViewController *rightController;
 @property (nonatomic, strong) FlipBoardNavigationController *flipNavgationController;
@@ -87,7 +92,6 @@
     [UMSocialConfig setSupportedInterfaceOrientations:UIInterfaceOrientationMaskPortrait];
     
     //设置友盟appkey
-  
     
     [UMSocialConfig setWXAppId:@"wxd9a39c7122aa6516" url:nil];
     //打开Qzone的SSO开关
@@ -97,8 +101,8 @@
     //打开新浪微博的SSO开关
     [UMSocialConfig setSupportSinaSSO:YES];
 
-    
 }
+
 
 - (void)onlineConfigCallBack:(NSNotification *)note {
     
@@ -109,10 +113,7 @@
 + (void)initialize
 {
     
-    
 	[iRate sharedInstance].onlyPromptIfLatestVersion = NO;
-    
-    
     //enable preview mode
     
 }
@@ -170,27 +171,30 @@
     if (!self.theEnv.bIsPad) {
         
         
-        FTSWordsViewController *ctl = [[FTSWordsViewController alloc] initWithNibName:nil bundle:nil];
         
-        UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:ctl];
+//        FTSWordsViewController *ctl = [[FTSWordsViewController alloc] initWithNibName:nil bundle:nil];
+//        
+//        UINavigationController *navc = [[UINavigationController alloc] initWithRootViewController:ctl];
+//        
+//        CustomNavigationBar *navBar = [[CustomNavigationBar alloc] init];
+//        [navBar setBarTintGradientColor:[UIColor whiteColor]];
+//
+//        UIImage *bgImg = [[Env sharedEnv] cacheImage:@"navbar_background.png"];
+//        [navBar setCustomBgImage:bgImg];
+//        [navc setValue:navBar forKey:@"navigationBar"];
         
-        CustomNavigationBar *navBar = [[CustomNavigationBar alloc] init];
-        [navBar setBarTintGradientColor:[UIColor whiteColor]];
-
-        UIImage *bgImg = [[Env sharedEnv] cacheImage:@"navbar_background.png"];
-        [navBar setCustomBgImage:bgImg];
-        [navc setValue:navBar forKey:@"navigationBar"];
+        [self setupTabBarViewControllers];
         
         
-        FTSLeftRevealViewController *leftCtl = [[FTSLeftRevealViewController alloc] initWithNibName:nil bundle:nil];
+//        FTSLeftRevealViewController *leftCtl = [[FTSLeftRevealViewController alloc] initWithNibName:nil bundle:nil];
         
         
         self.rightController = [[FTSRightRevealViewController alloc] initWithNibName:nil bundle:nil];
         
         
-        self.revealController = [PKRevealController revealControllerWithFrontViewController:navc
-                                                                         leftViewController:leftCtl
-                                                                        rightViewController:self.rightController
+        self.revealController = [PKRevealController revealControllerWithFrontViewController:self.tabBarController
+                                                                         leftViewController:self.rightController
+                                                                        rightViewController:nil
                                                                                     options:nil];
         
         self.flipNavgationController =  [[FlipBoardNavigationController alloc]initWithRootViewController:self.revealController];
@@ -220,13 +224,110 @@
     _hostReach = [Reachability reachabilityWithHostName:@"www.baidu.com"];
     [_hostReach startNotifier];
     
-    
+    [self customizeInterface];
     
     application.applicationIconBadgeNumber = 0;
 
     
     return YES;
 }
+
+
+
+#pragma mark - Methods
+
+- (void)setupTabBarViewControllers {
+    UIViewController *imageViewController = [[FTSImageViewController alloc] initWithNibName:nil bundle:nil];
+    UIViewController *imageNavigationController = [[UINavigationController alloc]
+                                                   initWithRootViewController:imageViewController];
+    
+    UIViewController *wordsViewController = [[FTSWordsViewController alloc] init];
+    UIViewController *wordsNavigationController = [[UINavigationController alloc]
+                                                    initWithRootViewController:wordsViewController];
+    
+    UIViewController *videoViewController = [[FTSVideoViewController alloc] init];
+    UIViewController *videoNavigationController = [[UINavigationController alloc]
+                                                   initWithRootViewController:videoViewController];
+    
+    UIViewController *topicViewController = [[FTSTopicViewController alloc] init];
+    UIViewController *topicNavigationController = [[UINavigationController alloc]
+                                                   initWithRootViewController:topicViewController];
+    
+    UIViewController *reviewViewController = [[FTSReviewViewController alloc] init];
+    UIViewController *reviewNavigationController = [[UINavigationController alloc]
+                                                   initWithRootViewController:reviewViewController];
+    
+    
+    RDVTabBarController *tabBarController = [[RDVTabBarController alloc] init];
+    [tabBarController setViewControllers:@[imageNavigationController, wordsNavigationController,
+                                           videoNavigationController,topicNavigationController,reviewNavigationController]];
+    
+    
+    self.tabBarController = tabBarController;
+    
+    [self customizeTabBarForController:tabBarController];
+}
+
+- (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
+    UIImage *finishedImage = [UIImage imageNamed:@"tabbar_selected_background"];
+    UIImage *unfinishedImage = [UIImage imageNamed:@"tabbar_normal_background"];
+    NSArray *tabBarItemImages = @[@"first", @"second", @"third",@"first", @"second"];
+    
+//  @[NSLocalizedString(@"joke.category.image", nil), NSLocalizedString(@"joke.category.text", nil), NSLocalizedString(@"joke.category.video", nil),NSLocalizedString(@"joke.category.topic", nil),NSLocalizedString(@"joke.category.verify", nil)];
+    
+//    "joke.category.text" = "文字";
+//    "joke.category.image" = "图片";
+//    "joke.category.video" = "视频";
+//    "joke.category.topic" = "专题";
+//    "joke.category.verify" = "审核";
+    
+    NSInteger index = 0;
+    for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
+        [item setBackgroundSelectedImage:finishedImage withUnselectedImage:unfinishedImage];
+        UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",
+                                                      [tabBarItemImages objectAtIndex:index]]];
+        UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_normal",
+                                                        [tabBarItemImages objectAtIndex:index]]];
+        [item setFinishedSelectedImage:selectedimage withFinishedUnselectedImage:unselectedimage];
+        
+        index++;
+    }
+}
+
+
+- (void)customizeInterface {
+    UINavigationBar *navigationBarAppearance = [UINavigationBar appearance];
+    
+    if (DeviceSystemMajorVersion() >= 7) {
+        [navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"navigationbar_background_tall"]
+                                      forBarMetrics:UIBarMetricsDefault];
+    } else {
+        [navigationBarAppearance setBackgroundImage:[UIImage imageNamed:@"navigationbar_background"]
+                                      forBarMetrics:UIBarMetricsDefault];
+        
+        NSDictionary *textAttributes = nil;
+        
+        if (DeviceSystemMajorVersion() >= 7) {
+            textAttributes = @{
+                               NSFontAttributeName: [UIFont boldSystemFontOfSize:20],
+                               NSForegroundColorAttributeName: [UIColor blackColor],
+                               };
+        } else {
+#if __IPHONE_OS_VERSION_MIN_REQUIRED < __IPHONE_7_0
+            textAttributes = @{
+                               UITextAttributeFont: [UIFont boldSystemFontOfSize:20],
+                               UITextAttributeTextColor: [UIColor blackColor],
+                               UITextAttributeTextShadowColor: [UIColor clearColor],
+                               UITextAttributeTextShadowOffset: [NSValue valueWithUIOffset:UIOffsetZero],
+                               };
+#endif
+        }
+        
+        [navigationBarAppearance setTitleTextAttributes:textAttributes];
+    }
+}
+
+
 
 
 - (void)umCheck:(NSNotification *)notification {

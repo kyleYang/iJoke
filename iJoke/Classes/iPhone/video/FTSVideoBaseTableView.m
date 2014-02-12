@@ -108,7 +108,7 @@
             break;
     }
 //    [ctl dismissViewControllerAnimated:YES completion:^{}];
-    [self.parCtl.navigationController.revealController.flipboardNavigationController popViewController];
+    [self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController popViewController];
 }
 
 
@@ -155,7 +155,7 @@
     FTSMoviePlayerViewController *playViewController = [[FTSMoviePlayerViewController alloc] initWithVideo:info videoArray:videoArray];
     playViewController.delegate = self;
 //    [self.parCtl.navigationController.revealController.flipboardNavigationController presentViewController:playViewController animated:YES completion:^{}];
-    [self.parCtl.navigationController.revealController.flipboardNavigationController pushViewController:playViewController];
+    [self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushViewController:playViewController];
 }
 
 
@@ -200,7 +200,7 @@
         FTSMoviePlayerViewController *playViewController = [[FTSMoviePlayerViewController alloc] initWithVideo:info videoArray:videoArray];
         playViewController.delegate = self;
         //    [self.parCtl.navigationController.revealController.flipboardNavigationController presentViewController:playViewController animated:YES completion:^{}];
-        [self.parCtl.navigationController.revealController.flipboardNavigationController pushViewController:playViewController];
+        [self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushViewController:playViewController];
 
 
     }

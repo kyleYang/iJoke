@@ -49,7 +49,7 @@
     backgroundView.image = [[Env sharedEnv] cacheImage:@"reveal_background.png"];
     [self.view addSubview:backgroundView];
     
-    self.headImage = [[FTSCircleImageView alloc] initWithFrame:CGRectMake(60, 30, 60, 60)];
+    self.headImage = [[FTSCircleImageView alloc] initWithFrame:CGRectMake(15, 30, 60, 60)];
     self.headImage.backgroundColor = [UIColor whiteColor];
     [self.view addSubview:self.headImage];
     
@@ -127,7 +127,7 @@
     [self.view addSubview:feedbackBtn];
     
     
-    UIButton *versionButton = [[UIButton alloc] initWithFrame:CGRectMake(80, CGRectGetHeight(self.view.bounds)-50, 100, 30)];
+    UIButton *versionButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMidX(self.headImage.frame), CGRectGetHeight(self.view.bounds)-50, 100, 30)];
     [self.view addSubview:versionButton];
     [versionButton addTarget:self action:@selector(versionCheck:) forControlEvents:UIControlEventTouchUpInside];
     versionButton.backgroundColor = [UIColor clearColor];
@@ -145,11 +145,12 @@
     versionTitle.text = [NSString stringWithFormat:@"V %@",versionString];
     
     
-    UIButton *eulaButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)-100, CGRectGetMinY(versionButton.frame), 100, 30)];
+    UIButton *eulaButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetWidth(self.view.bounds)-150, CGRectGetMinY(versionButton.frame), 100, 30)];
     [self.view addSubview:eulaButton];
     [eulaButton addTarget:self action:@selector(eulaClick:) forControlEvents:UIControlEventTouchUpInside];
     eulaButton.backgroundColor = [UIColor clearColor];
     UILabel *eulaTitle = [[UILabel alloc] initWithFrame:versionButton.bounds];
+    eulaTitle.font = [UIFont systemFontOfSize:12.0f];
     eulaTitle.backgroundColor = [UIColor clearColor];
     eulaTitle.textColor = [UIColor whiteColor];
     [eulaButton addSubview:eulaTitle];

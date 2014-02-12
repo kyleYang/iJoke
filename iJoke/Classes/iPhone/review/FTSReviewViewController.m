@@ -45,6 +45,8 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        
+        self.title = NSLocalizedString(@"joke.category.verify", nil);
     }
     return self;
 }
@@ -63,13 +65,23 @@
     
     self.view.backgroundColor = [UIColor whiteColor];
     
-    UIImage *revealLeftImagePortrait = [env cacheImage:@"content_navigationbar_back.png"];
-    UIImage *revealLeftImageLandscape = [env cacheImage:@"content_navigationbar_back_highlighted.png"];
+    UIImage *revealRightImagePortrait = [env cacheImage:@"joke_nav_option.png"];
+    //    UIImage *revealLeftImageLandscape = [env cacheImage:@"joke_nav_option_down.png"];
     
-    UIImage *revealRightImagePortrait = [env cacheImage:@"joke_nav_setting.png"];
-    UIImage *revealRightImageLandscape = [env cacheImage:@"joke_nav_setting_down.png"];
+    UIImage *revealLeftImagePortrait = [env cacheImage:@"joke_nav_setting.png"];
+    //    UIImage *revealRightImageLandscape = [env cacheImage:@"joke_nav_setting_down.png"];
     
-    self.navigationItem.leftBarButtonItem = [CustomUIBarButtonItem initWithImage:revealLeftImagePortrait eventImg:revealLeftImageLandscape title:nil target:self action:@selector(backSuper:)];
+    if (self.navigationController.rdv_tabBarController.revealController.type & PKRevealControllerTypeLeft)
+    {
+        self.navigationItem.leftBarButtonItem = [CustomUIBarButtonItem initWithImage:revealLeftImagePortrait eventImg:nil title:nil target:self action:@selector(showLeftView:)];
+        
+    }
+    
+    if (self.navigationController.rdv_tabBarController.revealController.type & PKRevealControllerTypeRight)
+    {
+        self.navigationItem.rightBarButtonItem = [CustomUIBarButtonItem initWithImage:revealRightImagePortrait eventImg:nil title:nil target:self action:@selector(showRgihtView:)];
+    }
+
     
     
     
@@ -82,6 +94,7 @@
     }
     
     self.scrollView = [[UIScrollView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds)-kBarHeight)];
+    self.scrollView.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.scrollView.showsHorizontalScrollIndicator = FALSE;
     [self.view addSubview:self.scrollView];
     
@@ -92,6 +105,7 @@
     
     
     UIView *toolBar = [[UIView alloc] initWithFrame:CGRectMake(0, CGRectGetHeight(self.view.bounds)-kBarHeight, CGRectGetWidth(self.view.bounds), kBarHeight)];
+    toolBar.autoresizingMask = UIViewAutoresizingFlexibleTopMargin;
     [self.view addSubview:toolBar];
     
     UIButton *passBtn = [[UIButton alloc] initWithFrame:CGRectMake(0, 10, 106, 50)];
@@ -461,20 +475,28 @@
 
 #pragma mark
 #pragma mark barbutton method
-- (void)backSuper:(id)sender{
+- (void)showLeftView:(id)sender{
     
-    [self.flipboardNavigationController popViewController];
+    if (self.navigationController.rdv_tabBarController.revealController.focusedController == self.navigationController.rdv_tabBarController.revealController.rightViewController)
+    {
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.rdv_tabBarController.revealController.frontViewController];
+    }
+    else
+    {
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.rdv_tabBarController.revealController.leftViewController];
+    }
+
     
 }
 - (void)showRgihtView:(id)sender
 {
-    if (self.navigationController.revealController.focusedController == self.navigationController.revealController.leftViewController)
+    if (self.navigationController.rdv_tabBarController.revealController.focusedController == self.navigationController.revealController.leftViewController)
     {
-        [self.navigationController.revealController showViewController:self.navigationController.revealController.frontViewController];
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.revealController.frontViewController];
     }
     else
     {
-        [self.navigationController.revealController showViewController:self.navigationController.revealController.rightViewController];
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.revealController.rightViewController];
     }
 }
 

@@ -79,6 +79,7 @@
     self.navigationItem.title = self.titleName;
     
     self.htmlWeb = [[[UIWebView alloc] initWithFrame:CGRectMake(0, 0, CGRectGetWidth(self.view.bounds), CGRectGetHeight(self.view.bounds))] autorelease];
+    self.htmlWeb.autoresizingMask = UIViewAutoresizingFlexibleWidth|UIViewAutoresizingFlexibleHeight;
     self.htmlWeb.delegate = self;
 
     

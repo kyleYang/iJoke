@@ -50,6 +50,7 @@ enum TopicType {
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        self.title = NSLocalizedString(@"joke.category.topic", nil);
     }
     return self;
 }
@@ -58,7 +59,7 @@ enum TopicType {
 {
     [super viewDidLoad];
 	
-    self.navigationItem.title = NSLocalizedString(@"joke.category.topic", nil);
+    
     
     _nTaskId = -1;
     
@@ -269,13 +270,13 @@ enum TopicType {
         case TopicTypeImage:
         {
             FTSTopicImageDetailViewController *topicImageVC = [[FTSTopicImageDetailViewController alloc] initWithTopic:topic];
-            [FTSUIOps flipNavigationController:self.navigationController.revealController.flipboardNavigationController pushNavigationWithController:topicImageVC];
+            [FTSUIOps flipNavigationController:self.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushNavigationWithController:topicImageVC];
             break;
         }
         case TopicTypeVideo:
         {
             FTSTopicVideoDetailViewController *topicVideoVC = [[FTSTopicVideoDetailViewController alloc] initWithTopic:topic];
-            [FTSUIOps flipNavigationController:self.navigationController.revealController.flipboardNavigationController pushNavigationWithController:topicVideoVC];
+            [FTSUIOps flipNavigationController:self.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushNavigationWithController:topicVideoVC];
             break;
         }
             

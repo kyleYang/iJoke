@@ -40,19 +40,19 @@
     
     self.view.backgroundColor = RGBA(255, 248, 240, 1.0);
     
-    UIImage *revealLeftImagePortrait = [env cacheImage:@"joke_nav_option.png"];
+    UIImage *revealRightImagePortrait = [env cacheImage:@"joke_nav_option.png"];
 //    UIImage *revealLeftImageLandscape = [env cacheImage:@"joke_nav_option_down.png"];
     
-    UIImage *revealRightImagePortrait = [env cacheImage:@"joke_nav_setting.png"];
+    UIImage *revealLeftImagePortrait = [env cacheImage:@"joke_nav_setting.png"];
 //    UIImage *revealRightImageLandscape = [env cacheImage:@"joke_nav_setting_down.png"];
     
-    if (self.navigationController.revealController.type & PKRevealControllerTypeLeft)
+    if (self.navigationController.rdv_tabBarController.revealController.type & PKRevealControllerTypeLeft)
     {
         self.navigationItem.leftBarButtonItem = [CustomUIBarButtonItem initWithImage:revealLeftImagePortrait eventImg:nil title:nil target:self action:@selector(showLeftView:)];
         
     }
     
-    if (self.navigationController.revealController.type & PKRevealControllerTypeRight)
+    if (self.navigationController.rdv_tabBarController.revealController.type & PKRevealControllerTypeRight)
     {
         self.navigationItem.rightBarButtonItem = [CustomUIBarButtonItem initWithImage:revealRightImagePortrait eventImg:nil title:nil target:self action:@selector(showRgihtView:)];
     }
@@ -139,25 +139,25 @@
 #pragma mark barbutton method
 - (void)showLeftView:(id)sender
 {
-    if (self.navigationController.revealController.focusedController == self.navigationController.revealController.leftViewController)
+    if (self.navigationController.rdv_tabBarController.revealController.focusedController == self.navigationController.rdv_tabBarController.revealController.leftViewController)
     {
-        [self.navigationController.revealController showViewController:self.navigationController.revealController.frontViewController];
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.rdv_tabBarController.revealController.frontViewController];
     }
     else
     {
-        [self.navigationController.revealController showViewController:self.navigationController.revealController.leftViewController];
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.rdv_tabBarController.revealController.leftViewController];
     }
 }
 
 - (void)showRgihtView:(id)sender
 {
-    if (self.navigationController.revealController.focusedController == self.navigationController.revealController.leftViewController)
+    if (self.navigationController.rdv_tabBarController.revealController.focusedController == self.navigationController.rdv_tabBarController.revealController.leftViewController)
     {
-        [self.navigationController.revealController showViewController:self.navigationController.revealController.frontViewController];
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.rdv_tabBarController.revealController.frontViewController];
     }
     else
     {
-        [self.navigationController.revealController showViewController:self.navigationController.revealController.rightViewController];
+        [self.navigationController.rdv_tabBarController.revealController showViewController:self.navigationController.rdv_tabBarController.revealController.rightViewController];
     }
 }
 
