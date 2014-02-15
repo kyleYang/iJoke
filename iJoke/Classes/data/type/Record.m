@@ -19,6 +19,7 @@
 #define kCollect @"collect"
 #define kUpdown @"updown"
 #define kTime @"time"
+#define kType @"type"
 
 @implementation Record
 
@@ -45,8 +46,15 @@
     }
     
     if([subDic objectForKey:kUpdown]!=[NSNull null]){
-        record.type = [[subDic objectForKey:kUpdown] intValue];
+        record.updown = [[subDic objectForKey:kUpdown] intValue];
     }
+    if([subDic objectForKey:kType]!=[NSNull null]){
+        record.type = [[subDic objectForKey:kType] intValue];
+    }
+    if([subDic objectForKey:kTime]!=[NSNull null]){
+        record.time = [subDic objectForKey:kTime];
+    }
+
 
     return record;
 }

@@ -9,12 +9,14 @@
 #import "FTSRevealBaseViewController.h"
 #import "PKRevealController.h"
 #import "CustomUIBarButtonItem.h"
+#import "FTSAppDelegate.h"
 
 @interface FTSRevealBaseViewController ()
 
 @end
 
 @implementation FTSRevealBaseViewController
+@synthesize managedObjectContext = _managedObjectContext;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -73,6 +75,8 @@
 
     self.downloader = [[Downloader alloc] init];
     self.downloader.bSearialLoad = YES;
+    
+    _managedObjectContext = ((FTSAppDelegate*) [UIApplication sharedApplication].delegate).managedObjectContext;
 }
 
 - (void)didReceiveMemoryWarning

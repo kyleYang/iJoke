@@ -30,6 +30,8 @@
     id<CommitBaseCellDelegate> __weak_delegate _inputDelegate;
 }
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @property (nonatomic, weak_delegate) id<CommitBaseCellDelegate> inputDelegate;
 
 @property (nonatomic, strong) NSMutableArray *dataArray;

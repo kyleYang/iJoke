@@ -35,6 +35,8 @@ typedef enum
     
 }
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @property (nonatomic, assign) BOOL bSuperOrientFix;
 @property (nonatomic, strong) NSArray *dataArray;
 

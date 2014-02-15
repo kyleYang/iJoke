@@ -9,6 +9,7 @@
 #import <UIKit/UIKit.h>
 #import "Words.h"
 #import "FTSMacro.h"
+#import "FTSRecord.h"
 #import "FTSCellUserControl.h"
 #import "JKIconTextButton.h"
 
@@ -19,6 +20,7 @@
     Words *_words;
     id<WordTableDetailHeadDelegate> __weak_delegate _delegate;
 }
+
 
 @property (nonatomic, strong, readonly) FTSCellUserControl *userControl;
 @property (nonatomic, strong, readonly) Words *words;
@@ -37,6 +39,8 @@
 
 
 @protocol WordTableDetailHeadDelegate <NSObject>
+
+- (FTSRecord *)recordForDetailUpHeadViewWord:(Words *)words;
 
 @optional
 - (void)wordsDetailUpHeadView:(FTSWordsDetailHeadView *)cell;

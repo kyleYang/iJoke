@@ -12,6 +12,7 @@
 #import "JKImageCellImageView.h"
 #import "FTSCellUserControl.h"
 #import "JKIconTextButton.h"
+#import "FTSRecord.h"
 
 @protocol ImageTableDetailHeadDelegate;
 
@@ -41,6 +42,8 @@
 
 
 @protocol ImageTableDetailHeadDelegate <NSObject>
+
+- (FTSRecord *)imageRecordForeImageDetailHeadViewImage:(Image *)image;
 
 @optional
 - (BOOL)subViewShouldReceiveTouch:(FTSImageDetailHeadView *)cell;

@@ -64,6 +64,7 @@
     FTSVideoNewTableView *cell = (FTSVideoNewTableView *)[scrollView dequeueCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[FTSVideoNewTableView alloc] initWithFrame:frame withIdentifier:identifier withController:self];
+        cell.managedObjectContext = self.managedObjectContext;
     }
     return cell;
 }

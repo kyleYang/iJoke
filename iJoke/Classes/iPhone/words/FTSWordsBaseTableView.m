@@ -53,6 +53,7 @@
     FTSWordsTableCell *cell = (FTSWordsTableCell *)[aTableView dequeueReusableCellWithIdentifier:cellIden];
     if (!cell) {
         cell = [[FTSWordsTableCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIden];
+        cell.managedObjectContext = self.managedObjectContext;
     }
     
     cell.delegate = self;
@@ -81,6 +82,7 @@
 - (void)wordsTableCell:(FTSWordsTableCell *)cell selectIndexPath:(NSIndexPath *)indexPath{
     
     self.detailController = [[FTSWordsDetailViewController alloc] initWithDataArray:self.dataArray hasMore:self.hasMore curIndex:indexPath.row];
+    self.detailController.managedObjectContext = self.managedObjectContext;
     self.detailController.delegate = self;
     self.detailController.baseDelegate = self;
     
@@ -150,6 +152,10 @@
   
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(upWordsCB:) Attached:indexPath artId:info.wordId type:WordsSectionType upDown:1];
     
+    
+    [FTSDatabaseMgr jokeAddRecordWords:info upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
+
+    
   
 //    if (!cell) {
 //        BqsLog(@"upWordsCB tableView did not contain cell at indexPath:%@",indexPath);
@@ -172,6 +178,7 @@
     Words *info = [self.dataArray objectAtIndex:indexPath.row];
     
    [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:indexPath artId:info.wordId type:WordsSectionType upDown:-1];
+    [FTSDatabaseMgr jokeAddRecordWords:info upType:iJokeUpDownDown managedObjectContext:self.managedObjectContext];
     
    //    if (!cell) {
 //        BqsLog(@"upWordsCB tableView did not contain cell at indexPath:%@",indexPath);
@@ -197,7 +204,8 @@
         
         if (value) {
             if([[FTSDataMgr sharedInstance] addOneJokeSave:info]){
-                [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:TRUE];
+                [FTSDatabaseMgr jokeAddRecordWords:info favorite:TRUE managedObjectContext:self.managedObjectContext];
+//                [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:TRUE];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.add.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -205,7 +213,8 @@
         }else{
         
             if([[FTSDataMgr sharedInstance] removeOneJoke:info]){
-                [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:FALSE];
+                [FTSDatabaseMgr jokeAddRecordWords:info favorite:FALSE managedObjectContext:self.managedObjectContext];
+//                [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:FALSE];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.del.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -333,7 +342,10 @@
     }
     
     Words *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
-    [[FTSDataMgr sharedInstance] addRecordWords:info upType:iJokeUpDownUp];
+    
+    
+    
+//    [[FTSDataMgr sharedInstance] addRecordWords:info upType:iJokeUpDownUp];
     
     UITableViewCell *cell = [self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -420,7 +432,6 @@
         BqsLog(@"attacth is not kind of NSIndexPath");
         
         return;
-        
     }
     NSIndexPath *indexPath = (NSIndexPath *)cb.attached;
     
@@ -428,11 +439,17 @@
         BqsLog(@"addFavCB attatch  indexPath:%@ > [self.dataArray count]:%d",indexPath,self.dataArray.count);
         return;
     }
-    
-    Words *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
-    [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:TRUE];
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.add.success", nil)];
     
     FTSWordsTableCell *cell = (FTSWordsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath];
+    
+    Words *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
+    
+    
+    [FTSDatabaseMgr jokeAddRecordWords:info favorite:TRUE managedObjectContext:self.managedObjectContext];
+    
+    
+    
     
     if (!cell) {
         BqsLog(@"addFavCB tableView did not contain cell at indexPath:%@",indexPath);
@@ -477,9 +494,11 @@
         return;
     }
     
-    Words *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
-    [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:FALSE];
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
     
+    Words *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
+//    [[FTSDataMgr sharedInstance] addFavoritedWords:info addType:FALSE];
+    [FTSDatabaseMgr jokeAddRecordWords:info favorite:FALSE managedObjectContext:self.managedObjectContext];
     
     FTSWordsTableCell *cell = (FTSWordsTableCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     

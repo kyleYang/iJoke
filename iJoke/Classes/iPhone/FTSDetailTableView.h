@@ -9,6 +9,7 @@
 #import "FTSDetailBaseView.h"
 #import "PgLoadingFooterView.h"
 #import "ODRefreshControl.h"
+#import "FTSDatabaseMgr.h"
 
 @interface FTSDetailTableView : FTSDetailBaseView<UITableViewDataSource,UITableViewDelegate>{
     
@@ -17,7 +18,7 @@
     BOOL _hasMore;
     
 }
-
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
 
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *tempArray;

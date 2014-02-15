@@ -8,6 +8,7 @@
 
 #import "MptCotentCell.h"
 #import "Video.h"
+#import "FTSRecord.h"
 
 
 @protocol DescriptionTableViewDelegate;
@@ -28,6 +29,8 @@
 
 
 @protocol DescriptionTableViewDelegate <NSObject>
+
+- (FTSRecord *)recordForDescriptionTableViewVideo:(Video *)video;
 
 @optional
 

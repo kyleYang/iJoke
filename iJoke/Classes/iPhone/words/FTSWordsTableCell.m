@@ -8,6 +8,7 @@
 
 #import "FTSWordsTableCell.h"
 #import "FTSDataMgr.h"
+#import "FTSDatabaseMgr.h"
 #import "Record.h"
 
 #define kImageOffX 8
@@ -231,7 +232,7 @@
         self.addImg.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
         
         _words.up ++;
-        [[FTSDataMgr sharedInstance] addRecordWords:_words upType:iJokeUpDownUp];
+       
         
         
         CGRect frame = self.addImg.frame;
@@ -289,7 +290,7 @@
         self.addImg.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
         
         _words.down ++;
-        [[FTSDataMgr sharedInstance] addRecordWords:_words upType:iJokeUpDownDown];
+        
         
         
         CGRect frame = self.addImg.frame;
@@ -434,15 +435,15 @@
 
 -(void)refreshRecordState{
     
-    Record *record= [[FTSDataMgr sharedInstance] judgeWordsUpType:_words];
+    FTSRecord *record= [FTSDatabaseMgr judgeRecordWords:_words managedObjectContext:self.managedObjectContext];
     if (record) {
         
-        if (record.type == iJokeUpDownUp) {
+        if ([record.updown intValue] == iJokeUpDownUp) {
 //            self.upBtn.enabled = FALSE;
             self.upBtn.buttonSelected = YES;
 //            self.downBtn.enabled = FALSE;
 //            self.downBtn.buttonSelected = FALSE;
-        }else if (record.type == iJokeUpDownDown){
+        }else if ([record.updown intValue] == iJokeUpDownDown){
 //            self.upBtn.enabled = FALSE;
             self.upBtn.buttonSelected = FALSE;
 //            self.downBtn.enabled = FALSE;
@@ -454,7 +455,7 @@
 //            self.downBtn.buttonSelected = FALSE;
         }
         
-        if (record.favorite) {
+        if ([record.favorite boolValue]) {
             self.favBtn.buttonSelected = TRUE;
         }else{
             self.favBtn.buttonSelected = FALSE;

@@ -12,6 +12,7 @@
 #import "FTSMacro.h"
 #import "FTSCellUserControl.h"
 #import "JKIconTextButton.h"
+#import "FTSRecord.h";
 
 @protocol FTSImageTableCellDelegate;
 
@@ -39,6 +40,8 @@
 
 
 @protocol FTSImageTableCellDelegate <NSObject>
+
+- (FTSRecord *)imageRecordFroImageTableCellImage:(Image *)image;
 
 @optional
 - (void)imageTableCell:(FTSImageTableCell *)cell touchImageIndex:(NSIndexPath *)indexPath;

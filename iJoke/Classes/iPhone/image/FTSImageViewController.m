@@ -65,6 +65,7 @@
     FTSImageNewTableView *cell = (FTSImageNewTableView *)[scrollView dequeueCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[FTSImageNewTableView alloc] initWithFrame:frame withIdentifier:identifier withController:self];
+        cell.managedObjectContext = self.managedObjectContext;
     }
     return cell;
     

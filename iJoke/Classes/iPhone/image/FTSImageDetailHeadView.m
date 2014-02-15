@@ -327,15 +327,18 @@
 
 -(void)refreshRecordState{
     
-    Record *record= [[FTSDataMgr sharedInstance] judgeImagesUpType:_image];
+    FTSRecord *record = nil;
+    if ([self.delegate respondsToSelector:@selector(imageRecordForeImageDetailHeadViewImage:)]) {
+        record = [self.delegate imageRecordForeImageDetailHeadViewImage:_image];
+    }
     
     if (record) {
         if (record) {
             
-            if (record.type == iJokeUpDownUp) {
+            if ([record.updown intValue] == iJokeUpDownUp) {
                 self.upBtn.buttonSelected = YES;
 //                self.downBtn.buttonSelected = FALSE;
-            }else if (record.type == iJokeUpDownDown){
+            }else if ([record.updown intValue] == iJokeUpDownDown){
                 self.upBtn.buttonSelected = FALSE;
 //                self.downBtn.buttonSelected = TRUE;
             }else{
@@ -343,7 +346,7 @@
 //                self.downBtn.buttonSelected = FALSE;
             }
             
-            if (record.favorite) {
+            if ([record.favorite boolValue]) {
                 self.favBtn.buttonSelected = TRUE;
             }else{
                 self.favBtn.buttonSelected = FALSE;
@@ -413,7 +416,7 @@
         self.addImg.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
         
         _image.up ++;
-        [[FTSDataMgr sharedInstance] addRecordImages:_image upType:iJokeUpDownUp];
+        
         
         CGRect frame = self.addImg.frame;
         frame.origin.y -= 15;
@@ -462,8 +465,7 @@
         self.addImg.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
         
         _image.down ++;
-        [[FTSDataMgr sharedInstance] addRecordImages:_image upType:iJokeUpDownDown];
-        
+    
         CGRect frame = self.addImg.frame;
         frame.origin.y -= 15;
         self.addImg.frame = frame;

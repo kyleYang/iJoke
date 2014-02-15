@@ -92,6 +92,7 @@
         cell = (FTSImageDetailCell *)[scrollView dequeueCellWithIdentifier:celleIdentifier];
         if (!cell) {
             cell = [[FTSImageDetailCell alloc] initWithFrame:frame withIdentifier:celleIdentifier withController:self];
+            cell.managedObjectContext = self.managedObjectContext;
         }
         
         cell.image = [_dataArray objectAtIndex:index];

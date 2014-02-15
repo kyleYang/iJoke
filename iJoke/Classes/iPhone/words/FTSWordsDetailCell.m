@@ -10,6 +10,7 @@
 #import "FTSWordsDetailHeadView.h"
 #import "FTSNetwork.h"
 #import "FTSDataMgr.h"
+#import "FTSDatabaseMgr.h"
 #import "Msg.h"
 #import "HMPopMsgView.h"
 #import "MobClick.h"
@@ -101,6 +102,11 @@
 #pragma mark
 #pragma mark WordTableDetailHeadDelegate
 
+- (FTSRecord *)recordForDetailUpHeadViewWord:(Words *)words{
+    
+    return [FTSDatabaseMgr judgeRecordWords:words managedObjectContext:self.managedObjectContext];
+}
+
 
 - (void)wordsDetailHeadViewUserInfo:(FTSWordsDetailHeadView *)cell{
     
@@ -117,6 +123,8 @@
 - (void)wordsDetailUpHeadView:(FTSWordsDetailHeadView *)cell{
     
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(upWordsCB:) Attached:nil artId:_words.wordId type:WordsSectionType upDown:1];
+    [FTSDatabaseMgr jokeAddRecordWords:_words upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
+
     
     //    [self.headView refreshRecordState];
     
@@ -126,6 +134,7 @@
 - (void)wordsDetailDownHeadView:(FTSWordsDetailHeadView *)cell{
     
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:nil artId:_words.wordId type:WordsSectionType upDown:-1];
+    [FTSDatabaseMgr jokeAddRecordWords:_words upType:iJokeUpDownDown managedObjectContext:self.managedObjectContext];
     
     //    [self.headView refreshRecordState];
     
@@ -136,7 +145,7 @@
         
         if (value) {
             if([[FTSDataMgr sharedInstance] addOneJokeSave:_words]){
-                [[FTSDataMgr sharedInstance] addFavoritedWords:_words addType:TRUE];
+                [FTSDatabaseMgr jokeAddRecordWords:_words favorite:TRUE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.add.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -144,7 +153,8 @@
         }else{
             
             if([[FTSDataMgr sharedInstance] removeOneJoke:_words]){
-                [[FTSDataMgr sharedInstance] addFavoritedWords:_words addType:FALSE];
+                
+                [FTSDatabaseMgr jokeAddRecordWords:_words favorite:FALSE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.del.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -298,7 +308,7 @@
     
     
     
-    [[FTSDataMgr sharedInstance] addFavoritedWords:_words addType:TRUE];
+    [FTSDatabaseMgr jokeAddRecordWords:_words favorite:TRUE managedObjectContext:self.managedObjectContext];
     
     [self.headView refreshRecordState];
     
@@ -323,7 +333,7 @@
         return;
     }
     
-    [[FTSDataMgr sharedInstance] addFavoritedWords:_words addType:FALSE];
+    [FTSDatabaseMgr jokeAddRecordWords:_words favorite:FALSE managedObjectContext:self.managedObjectContext];
     
     [self.headView refreshRecordState];
     

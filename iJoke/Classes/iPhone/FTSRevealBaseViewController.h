@@ -19,7 +19,7 @@
 
 @property (nonatomic, strong) Downloader *downloader;
 @property (nonatomic, strong) MptContentScrollView *contentView;
-
+@property (nonatomic, strong) NSManagedObjectContext* managedObjectContext;
 
 
 

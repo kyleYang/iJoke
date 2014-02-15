@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "Constants.h"
 #import "Downloader.h"
 #import "PackageFile.h"
 #import "Downloader.h"
@@ -48,17 +49,17 @@
 - (NSString *)pathOfImageRecords;
 - (NSString *)pathOfVideoRecords;
 
-- (Record*)judgeWordsUpType:(Words*)words;
-- (BOOL)addRecordWords:(Words *)words upType:(iJokeUpDownType)type;
-- (BOOL)addFavoritedWords:(Words *)words addType:(BOOL)value; //true for add,false for del
+//- (Record*)judgeWordsUpType:(Words*)words;
+//- (BOOL)addRecordWords:(Words *)words upType:(iJokeUpDownType)type;
+//- (BOOL)addFavoritedWords:(Words *)words addType:(BOOL)value; //true for add,false for del
 
-- (Record*)judgeImagesUpType:(Image*)image;
-- (BOOL)addRecordImages:(Image *)image upType:(iJokeUpDownType)type;
-- (BOOL)addFavoritedImages:(Image *)image addType:(BOOL)value; //true for add,false for del
+//- (Record*)judgeImagesUpType:(Image*)image;
+//- (BOOL)addRecordImages:(Image *)image upType:(iJokeUpDownType)type;
+//- (BOOL)addFavoritedImages:(Image *)image addType:(BOOL)value; //true for add,false for del
 
-- (Record*)judgeVideoUpType:(Video *)video;
-- (BOOL)addRecordVideo:(Video *)video upType:(iJokeUpDownType)type;
-- (BOOL)addFavoritedVideo:(Video *)video addType:(BOOL)value;
+//- (Record*)judgeVideoUpType:(Video *)video;
+//- (BOOL)addRecordVideo:(Video *)video upType:(iJokeUpDownType)type;
+//- (BOOL)addFavoritedVideo:(Video *)video addType:(BOOL)value;
 
 //favorite
 
@@ -121,6 +122,7 @@
 
 //record message use
 - (void)synchronizationRecordMessage;
+- (void)removeAllRecordMessage;
 
 - (void)loginUnionWithSocail;
 - (void)attachUnionWithSocailUserName:(NSString *)userName nickName:(NSString *)nikeName iconUrl:(NSString *)iconUrl type:(UnionLogoinType)socailType;

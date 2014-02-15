@@ -30,6 +30,8 @@
 @property (nonatomic, strong, readonly) JKIconTextButton *favBtn;
 @property (nonatomic, weak_delegate) id<WordTableCellDelegate> delegate;
 
+@property (nonatomic,strong) NSManagedObjectContext* managedObjectContext;
+
 
 - (void)configCellForWords:(Words *)word;
 +(float)caculateHeighForWords:(Words *)word;

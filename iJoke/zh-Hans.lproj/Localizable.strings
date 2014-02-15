@@ -176,7 +176,8 @@
 "joke.useraction.collect.noname" = "本地收藏";
 "jole.useraction.collect.local.add.success" = "添加本地收藏成功";
 "jole.useraction.collect.local.del.success" = "删除本地收藏成功";
-
+"joke.useraction.collect.add.success" = "添加收藏成功";
+"joke.useraction.collect.del.success" = "删除收藏成功";
 //social
 "joke.sina" = "新浪微博";
 "joke.tencent" = "腾讯微博";

@@ -272,6 +272,7 @@
         }
     }
     if (!hasOauth) {
+        [[FTSDataMgr sharedInstance] removeAllRecordMessage];
         [FTSUserCenter setBoolVaule:FALSE forKey:kDftUserLogin];
         [[NSNotificationCenter defaultCenter] postNotificationName:kLoginStateChange object:nil];
         [self.flipboardNavigationController popViewController];

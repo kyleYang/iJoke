@@ -21,6 +21,7 @@
 #import "Downloader.h"
 #import "HMPopMsgView.h"
 #import "Msg.h"
+#import "FTSDatabaseMgr.h"
 
 #define kScreenHeighOff 180
 
@@ -347,12 +348,21 @@
 
 #pragma mark
 #pragma mark DescriptionTableViewDelegate
+
+- (FTSRecord *)recordForDescriptionTableViewVideo:(Video *)video{
+    
+    return [FTSDatabaseMgr judgeRecordVideo:video managedObjectContext:self.managedObjectContext];
+}
+
+
 - (void)descriptionTableView:(FTSDescriptionTableView *)cell upVideo:(Video *)video{
     if (video == nil) {
         BqsLog(@"descriptionTableView upVideo video == nil");
         return;
     }
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:_video artId:_video.videoId type:VideoSectionType upDown:1];
+    [FTSDatabaseMgr jokeAddRecordVideo:_video upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
+
     
     
 }
@@ -363,6 +373,7 @@
         return;
     }
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:_video artId:_video.videoId type:VideoSectionType upDown:-1];
+    [FTSDatabaseMgr jokeAddRecordVideo:_video upType:iJokeUpDownDown managedObjectContext:self.managedObjectContext];
     
 }
 - (void)descriptionTableView:(FTSDescriptionTableView *)cell favVideo:(Video *)video addType:(BOOL)value{ //vale: true for add and false for del favorite
@@ -376,7 +387,7 @@
         
         if (value) {
             if([[FTSDataMgr sharedInstance] addOneJokeSave:_video]){
-                [[FTSDataMgr sharedInstance] addFavoritedVideo:_video addType:TRUE];
+                [FTSDatabaseMgr jokeAddRecordVideo:_video favorite:TRUE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.add.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -384,7 +395,7 @@
         }else{
             
             if([[FTSDataMgr sharedInstance] removeOneJoke:_video]){
-                [[FTSDataMgr sharedInstance] addFavoritedVideo:_video addType:FALSE];
+                [FTSDatabaseMgr jokeAddRecordVideo:_video favorite:FALSE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.del.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -499,7 +510,7 @@
     }
     
     Video *info = (Video *)cb.attached; //should set data and save data
-    [[FTSDataMgr sharedInstance] addFavoritedVideo:info addType:TRUE];
+    [FTSDatabaseMgr jokeAddRecordVideo:info favorite:TRUE managedObjectContext:self.managedObjectContext];
     
     [self.descriptionCell refreshRecordState];
     
@@ -532,7 +543,7 @@
     }
     
     Video *info = (Video *)cb.attached; //should set data and save data
-    [[FTSDataMgr sharedInstance] addFavoritedVideo:info addType:FALSE];
+    [FTSDatabaseMgr jokeAddRecordVideo:info favorite:FALSE managedObjectContext:self.managedObjectContext];
     
     [self.descriptionCell refreshRecordState];
     

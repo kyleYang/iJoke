@@ -25,7 +25,7 @@
 @end
 
 @implementation FTSDetailTableView
-
+@synthesize managedObjectContext = _managedObjectContext;
 @synthesize dataArray = _dataArray;
 @synthesize hasMore = _hasMore;
 

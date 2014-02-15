@@ -518,6 +518,11 @@
 		18FBD4FB18AB9E1700F87E7C /* third_normal@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FBD4E718AB9E1700F87E7C /* third_normal@2x.png */; };
 		18FBD4FC18AB9E1700F87E7C /* third_selected.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FBD4E818AB9E1700F87E7C /* third_selected.png */; };
 		18FBD4FD18AB9E1700F87E7C /* third_selected@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FBD4E918AB9E1700F87E7C /* third_selected@2x.png */; };
+		18FBD4FF18AD151600F87E7C /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 18FBD4FE18AD151600F87E7C /* CoreData.framework */; };
+		18FBD50218AD17FB00F87E7C /* iJoke.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50018AD17FB00F87E7C /* iJoke.xcdatamodeld */; };
+		18FBD50618AD1CB000F87E7C /* FTSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50518AD1CB000F87E7C /* FTSBaseModel.m */; };
+		18FBD50918AD1D4400F87E7C /* FTSRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50818AD1D4400F87E7C /* FTSRecord.m */; };
+		18FBD50C18AE0DB600F87E7C /* FTSDatabaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50B18AE0DB600F87E7C /* FTSDatabaseMgr.m */; };
 		3101B6D517BD1A2A008E8C16 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3101B6D417BD1A28008E8C16 /* ImageIO.framework */; };
 		3101B6D717BD1A7F008E8C16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3101B6D617BD1A7E008E8C16 /* MapKit.framework */; };
 		311418A917A3628D0035D33E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311418A817A3628D0035D33E /* UIKit.framework */; };
@@ -1440,6 +1445,15 @@
 		18FBD4E718AB9E1700F87E7C /* third_normal@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "third_normal@2x.png"; sourceTree = "<group>"; };
 		18FBD4E818AB9E1700F87E7C /* third_selected.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = third_selected.png; sourceTree = "<group>"; };
 		18FBD4E918AB9E1700F87E7C /* third_selected@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "third_selected@2x.png"; sourceTree = "<group>"; };
+		18FBD4FE18AD151600F87E7C /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		18FBD50118AD17FB00F87E7C /* CoreDataSqlite.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataSqlite.xcdatamodel; sourceTree = "<group>"; };
+		18FBD50418AD1CB000F87E7C /* FTSBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSBaseModel.h; sourceTree = "<group>"; };
+		18FBD50518AD1CB000F87E7C /* FTSBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSBaseModel.m; sourceTree = "<group>"; };
+		18FBD50718AD1D4400F87E7C /* FTSRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSRecord.h; sourceTree = "<group>"; };
+		18FBD50818AD1D4400F87E7C /* FTSRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSRecord.m; sourceTree = "<group>"; };
+		18FBD50A18AE0DB600F87E7C /* FTSDatabaseMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSDatabaseMgr.h; sourceTree = "<group>"; };
+		18FBD50B18AE0DB600F87E7C /* FTSDatabaseMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSDatabaseMgr.m; sourceTree = "<group>"; };
+		18FBD50D18AE6E0300F87E7C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = model/Constants.h; sourceTree = "<group>"; };
 		3101B6D417BD1A28008E8C16 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		3101B6D617BD1A7E008E8C16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		311418A517A3628D0035D33E /* iJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -1472,6 +1486,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18FBD4FF18AD151600F87E7C /* CoreData.framework in Frameworks */,
 				1892FDC918479BC400C5E67D /* StoreKit.framework in Frameworks */,
 				1868FDE0185B1F4700897344 /* libUMSocial_Sdk_Comment_3.1.a in Frameworks */,
 				1868FDDD185B1F4700897344 /* TencentOpenAPI.framework in Frameworks */,
@@ -1518,15 +1533,13 @@
 		1868F851185B1F4500897344 /* iJoke */ = {
 			isa = PBXGroup;
 			children = (
-				1868FE7A185F54E200897344 /* icon-120.png */,
-				1868FE7B185F54E200897344 /* iTunesArtwork */,
-				1868FE76185F53FD00897344 /* icon.png */,
-				1868FE77185F53FD00897344 /* icon@2x.png */,
-				1868F852185B1F4500897344 /* agreement_cn.txt */,
 				1868F853185B1F4500897344 /* Classes */,
 				1868F9B7185B1F4500897344 /* CommonLib */,
 				1868FA8C185B1F4500897344 /* Default-568h@2x.png */,
 				1868FA8E185B1F4500897344 /* Default@2x.png */,
+				1868FE7A185F54E200897344 /* icon-120.png */,
+				1868FE76185F53FD00897344 /* icon.png */,
+				1868FE77185F53FD00897344 /* icon@2x.png */,
 				1868FA8F185B1F4500897344 /* InfoPlist.strings */,
 				1868FA91185B1F4500897344 /* Localizable.strings */,
 				1868FA93185B1F4500897344 /* FTSAppDelegate.h */,
@@ -1534,12 +1547,15 @@
 				1868FA95185B1F4600897344 /* help.html */,
 				18202F84187EEA6400080D04 /* eula.html */,
 				1890FBA618674A1E003A4514 /* about.html */,
+				18FBD50018AD17FB00F87E7C /* iJoke.xcdatamodeld */,
+				1868FB60185B1F4600897344 /* property.plist */,
+				1868FE7B185F54E200897344 /* iTunesArtwork */,
+				1868F852185B1F4500897344 /* agreement_cn.txt */,
 				1868FA96185B1F4600897344 /* iJoke-Info.plist */,
 				1868FA97185B1F4600897344 /* iJoke-Prefix.pch */,
 				1868FA98185B1F4600897344 /* img */,
 				1868FB10185B1F4600897344 /* main.m */,
 				1868FB11185B1F4600897344 /* openPlant */,
-				1868FB60185B1F4600897344 /* property.plist */,
 				1868FB61185B1F4600897344 /* ThirdParty */,
 			);
 			path = iJoke;
@@ -1661,8 +1677,11 @@
 		1868F894185B1F4500897344 /* data */ = {
 			isa = PBXGroup;
 			children = (
+				18FBD50D18AE6E0300F87E7C /* Constants.h */,
 				1868F895185B1F4500897344 /* FTSDataMgr.h */,
 				1868F896185B1F4500897344 /* FTSDataMgr.m */,
+				18FBD50A18AE0DB600F87E7C /* FTSDatabaseMgr.h */,
+				18FBD50B18AE0DB600F87E7C /* FTSDatabaseMgr.m */,
 				1868F897185B1F4500897344 /* FTSMacro.h */,
 				1868F898185B1F4500897344 /* FTSNetwork.h */,
 				1868F899185B1F4500897344 /* FTSNetwork.m */,
@@ -1671,6 +1690,7 @@
 				1868F89C185B1F4500897344 /* FTSUserCenter.h */,
 				1868F89D185B1F4500897344 /* FTSUserCenter.m */,
 				1868F89E185B1F4500897344 /* MobclickMarco.h */,
+				18FBD50318AD1C6C00F87E7C /* model */,
 				1868F89F185B1F4500897344 /* type */,
 			);
 			path = data;
@@ -1969,9 +1989,9 @@
 				1868F94A185B1F4500897344 /* FTSWordsDetailCell.h */,
 				1868F94B185B1F4500897344 /* FTSWordsDetailCell.m */,
 				1868F94C185B1F4500897344 /* FTSWordsDetailHeadView.h */,
+				1868F94D185B1F4500897344 /* FTSWordsDetailHeadView.m */,
 				1868F946185B1F4500897344 /* FTSSplitViewController.h */,
 				1868F947185B1F4500897344 /* FTSSplitViewController.m */,
-				1868F94D185B1F4500897344 /* FTSWordsDetailHeadView.m */,
 			);
 			path = words;
 			sourceTree = "<group>";
@@ -3233,6 +3253,17 @@
 			path = Images;
 			sourceTree = "<group>";
 		};
+		18FBD50318AD1C6C00F87E7C /* model */ = {
+			isa = PBXGroup;
+			children = (
+				18FBD50418AD1CB000F87E7C /* FTSBaseModel.h */,
+				18FBD50518AD1CB000F87E7C /* FTSBaseModel.m */,
+				18FBD50718AD1D4400F87E7C /* FTSRecord.h */,
+				18FBD50818AD1D4400F87E7C /* FTSRecord.m */,
+			);
+			path = model;
+			sourceTree = "<group>";
+		};
 		3114189C17A3628D0035D33E = {
 			isa = PBXGroup;
 			children = (
@@ -3256,6 +3287,7 @@
 		311418A717A3628D0035D33E /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				18FBD4FE18AD151600F87E7C /* CoreData.framework */,
 				1892FDC818479BC400C5E67D /* StoreKit.framework */,
 				1892FD181847981E00C5E67D /* libstdc++.dylib */,
 				1892FD161847980A00C5E67D /* CoreTelephony.framework */,
@@ -3696,6 +3728,7 @@
 				1868FCBC185B1F4600897344 /* FTSUserOptionCell.m in Sources */,
 				1868FE23185B1F4700897344 /* DELETEResponse.m in Sources */,
 				1868FE4B185B1F4700897344 /* UIImage+GIF.m in Sources */,
+				18FBD50918AD1D4400F87E7C /* FTSRecord.m in Sources */,
 				1868FD2B185B1F4600897344 /* PopMsgViews.m in Sources */,
 				1868FCA2185B1F4600897344 /* FTSSettingViewController.m in Sources */,
 				1868FC92185B1F4600897344 /* FTSDetailBaseView.m in Sources */,
@@ -3813,6 +3846,7 @@
 				1868FD2C185B1F4600897344 /* PopupWebviewController.m in Sources */,
 				1868FD34185B1F4600897344 /* BqsColorAdditions.m in Sources */,
 				1868FDEF185B1F4700897344 /* ASIFormDataRequest.m in Sources */,
+				18FBD50C18AE0DB600F87E7C /* FTSDatabaseMgr.m in Sources */,
 				1868FCC3185B1F4600897344 /* FTSVideoBaseTableView.m in Sources */,
 				1868FD00185B1F4600897344 /* BqsAutoRegInfo.m in Sources */,
 				1868FE39185B1F4700897344 /* MBProgressHUD.m in Sources */,
@@ -3859,6 +3893,7 @@
 				1868FCB8185B1F4600897344 /* FTSPublishWordsCell.m in Sources */,
 				1868FE49185B1F4700897344 /* SDWebImagePrefetcher.m in Sources */,
 				1868FCCC185B1F4600897344 /* FTSWordsDetailViewController.m in Sources */,
+				18FBD50618AD1CB000F87E7C /* FTSBaseModel.m in Sources */,
 				1868FE2F185B1F4700897344 /* DACircularProgressView.m in Sources */,
 				1868FCAC185B1F4600897344 /* FTSTopicImageDetailViewController.m in Sources */,
 				1868FDF0185B1F4700897344 /* ASIHTTPRequest.m in Sources */,
@@ -3894,6 +3929,7 @@
 				1868FE2C185B1F4700897344 /* DDFileLogger.m in Sources */,
 				1868FC7F185B1F4600897344 /* Image.m in Sources */,
 				1868FC87185B1F4600897344 /* Video.m in Sources */,
+				18FBD50218AD17FB00F87E7C /* iJoke.xcdatamodeld in Sources */,
 				1868FDBB185B1F4600897344 /* main.m in Sources */,
 				1868FE11185B1F4700897344 /* ASMediaFocusController.m in Sources */,
 				1868FDFB185B1F4700897344 /* ASIS3Bucket.m in Sources */,
@@ -4187,6 +4223,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		18FBD50018AD17FB00F87E7C /* iJoke.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				18FBD50118AD17FB00F87E7C /* CoreDataSqlite.xcdatamodel */,
+			);
+			currentVersion = 18FBD50118AD17FB00F87E7C /* CoreDataSqlite.xcdatamodel */;
+			path = iJoke.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 3114189D17A3628D0035D33E /* Project object */;
 }

@@ -10,6 +10,7 @@
 #import "FTSImageDetailHeadView.h"
 #import "FTSNetwork.h"
 #import "FTSDataMgr.h"
+#import "FTSDatabaseMgr.h"
 #import "Msg.h"
 #import "HMPopMsgView.h"
 #import "MobClick.h"
@@ -101,6 +102,11 @@
 #pragma mark
 #pragma mark ImageTableDetailHeadDelegate
 
+
+- (FTSRecord *)imageRecordForeImageDetailHeadViewImage:(Image *)image{
+    return [FTSDatabaseMgr judgeRecordImage:image managedObjectContext:self.managedObjectContext];
+}
+
 - (BOOL)subViewShouldReceiveTouch:(FTSImageDetailHeadView *)cell{
     return !_keyboardIsShow;
 }
@@ -130,6 +136,7 @@
 - (void)imageDetailUpHeadView:(FTSImageDetailHeadView *)cell{
     
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(upWordsCB:) Attached:nil artId:_image.imageId type:ImageSectionType upDown:1];
+    [FTSDatabaseMgr jokeAddRecordImage:_image upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
     
     
 //    [self.headView refreshRecordState];
@@ -139,7 +146,7 @@
 }
 - (void)imageDetailDownHeadView:(FTSImageDetailHeadView *)cell{
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:nil artId:_image.imageId type:ImageSectionType upDown:-1];
-    
+    [FTSDatabaseMgr jokeAddRecordImage:_image upType:iJokeUpDownDown managedObjectContext:self.managedObjectContext];
 //    [self.headView refreshRecordState];
     
 }
@@ -151,7 +158,7 @@
         
         if (value) {
             if([[FTSDataMgr sharedInstance] addOneJokeSave:_image]){
-                [[FTSDataMgr sharedInstance] addFavoritedImages:_image addType:TRUE];
+                [FTSDatabaseMgr jokeAddRecordImage:_image favorite:TRUE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.add.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -159,7 +166,7 @@
         }else{
             
             if([[FTSDataMgr sharedInstance] removeOneJoke:_image]){
-                [[FTSDataMgr sharedInstance] addFavoritedImages:_image addType:FALSE];
+                 [FTSDatabaseMgr jokeAddRecordImage:_image favorite:FALSE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.del.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -326,14 +333,13 @@
 	}
     
     Msg *msg = [Msg parseJsonData:cb.rspData];
-    [HMPopMsgView showPopMsg:msg.msg];
     if (!msg.code) {
+        [HMPopMsgView showPopMsg:msg.msg];
         return;
     }
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
+    [FTSDatabaseMgr jokeAddRecordImage:_image favorite:TRUE managedObjectContext:self.managedObjectContext];
     
-    
-    
-    [[FTSDataMgr sharedInstance] addFavoritedImages:_image addType:TRUE];
     
     [self.headView refreshRecordState];
     
@@ -352,13 +358,12 @@
 	}
     
     Msg *msg = [Msg parseJsonData:cb.rspData];
-    [HMPopMsgView showPopMsg:msg.msg];
     if (!msg.code) {
-        
+        [HMPopMsgView showPopMsg:msg.msg];
         return;
     }
-    
-    [[FTSDataMgr sharedInstance] addFavoritedImages:_image addType:FALSE];
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
+    [FTSDatabaseMgr jokeAddRecordImage:_image favorite:FALSE managedObjectContext:self.managedObjectContext];
     
     [self.headView refreshRecordState];
     

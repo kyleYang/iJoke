@@ -12,6 +12,7 @@
 #import "FTSUIOps.h"
 #import "FTSNetwork.h"
 #import "FTSDataMgr.h"
+#import "FTSDatabaseMgr.h"
 
 
 @interface FTSImageBaseTableView()<FTSImageTableCellDelegate,HMImagePopManagerDelegate,ImagePopControllerDataSource,ImagePopControllerDelegate,ImageDetailViewControllerDelegate,FTSCommitBaseViewControllerDelegate>{
@@ -86,6 +87,7 @@
     self.detailController = [[FTSImageDetailViewController alloc] initWithDataArray:self.dataArray hasMore:self.hasMore curIndex:indexPath.row];
     self.detailController.delegate = self;
     self.detailController.baseDelegate = self;
+    self.detailController.managedObjectContext =self.managedObjectContext;
     
     //    MLNavigationController *nav = [[MLNavigationController alloc] initWithRootViewController:self.detailController];
     
@@ -145,6 +147,13 @@
 }
 
 
+#pragma mark
+#pragma mark FTSImageTableCellDelegate
+
+
+- (FTSRecord *)imageRecordFroImageTableCellImage:(Image *)image{
+    return [FTSDatabaseMgr judgeRecordImage:image managedObjectContext:self.managedObjectContext];
+}
 
 
 - (void)imageTableCell:(FTSImageTableCell *)cell touchImageIndex:(NSIndexPath *)indexPath{
@@ -152,6 +161,7 @@
     self.detailController = [[FTSImageDetailViewController alloc] initWithDataArray:self.dataArray hasMore:self.hasMore curIndex:indexPath.row];
     self.detailController.delegate = self;
     self.detailController.baseDelegate = self;
+    self.detailController.managedObjectContext = self.managedObjectContext;
     
     [FTSUIOps flipNavigationController:self.parCtl.navigationController.rdv_tabBarController.revealController.flipboardNavigationController pushNavigationWithController:self.detailController];
     return;
@@ -189,7 +199,8 @@
     Image *info = [self.dataArray objectAtIndex:indexPath.row];
     
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:indexPath artId:info.imageId type:ImageSectionType upDown:1];
-    
+    [FTSDatabaseMgr jokeAddRecordImage:info upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
+   
     
     //    info.up++;
     
@@ -211,6 +222,8 @@
     
     Image *info = [self.dataArray objectAtIndex:indexPath.row];
     [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(downWordsCB:) Attached:indexPath artId:info.imageId type:ImageSectionType upDown:-1];
+    [FTSDatabaseMgr jokeAddRecordImage:info upType:iJokeUpDownDown managedObjectContext:self.managedObjectContext];
+    
     //    info.down++;
     
     //    if (!cell) {
@@ -237,7 +250,7 @@
         
         if (value) {
             if([[FTSDataMgr sharedInstance] addOneJokeSave:info]){
-                [[FTSDataMgr sharedInstance] addFavoritedImages:info addType:TRUE];
+                [FTSDatabaseMgr jokeAddRecordImage:info favorite:TRUE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.add.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -245,7 +258,7 @@
         }else{
             
             if([[FTSDataMgr sharedInstance] removeOneJoke:info]){
-                [[FTSDataMgr sharedInstance] addFavoritedImages:info addType:FALSE];
+                [FTSDatabaseMgr jokeAddRecordImage:info favorite:FALSE managedObjectContext:self.managedObjectContext];
                 [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.del.success", nil)];
                 [cell refreshRecordState];
                 return;
@@ -304,8 +317,9 @@
 	}
     
     Msg *msg = [Msg parseJsonData:cb.rspData];
-    [HMPopMsgView showPopMsg:msg.msg];
+   
     if (!msg.code) {
+        [HMPopMsgView showPopMsg:msg.msg];
         return;
     }
     
@@ -323,8 +337,10 @@
         return;
     }
     
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.add.success", nil)];
+    
     Image *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
-    [[FTSDataMgr sharedInstance] addFavoritedImages:info addType:TRUE];
+    [FTSDatabaseMgr jokeAddRecordImage:info favorite:TRUE managedObjectContext:self.managedObjectContext];
     
     FTSImageTableCell *cell = (FTSImageTableCell *)[self.tableView cellForRowAtIndexPath:indexPath];
     
@@ -352,9 +368,9 @@
 	}
     
     Msg *msg = [Msg parseJsonData:cb.rspData];
-    [HMPopMsgView showPopMsg:msg.msg];
+
     if (!msg.code) {
-        
+        [HMPopMsgView showPopMsg:msg.msg];
         return;
     }
     
@@ -371,9 +387,10 @@
         BqsLog(@"delFavCB attatch  indexPath:%@ > [self.dataArray count]:%d",indexPath,self.dataArray.count);
         return;
     }
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
     
     Image *info = [self.dataArray objectAtIndex:indexPath.row]; //should set data and save data
-    [[FTSDataMgr sharedInstance] addFavoritedImages:info addType:FALSE];
+    [FTSDatabaseMgr jokeAddRecordImage:info favorite:FALSE managedObjectContext:self.managedObjectContext];
     
     
     FTSImageTableCell *cell = (FTSImageTableCell *)[self.tableView cellForRowAtIndexPath:indexPath];

@@ -10,6 +10,8 @@
 #import "FTSCollectImageCell.h"
 #import "FTSCollectWordsCell.h"
 #import "FTSCollectVideoCell.h"
+#import "FTSDatabaseMgr.h"
+#import "FTSAppDelegate.h"
 
 @interface FTSCollectMessageViewController ()<collectWordsCellDelegate,CollectImageCellDelegate,FTSCollectVideoCellDelegate>{
     
@@ -17,6 +19,8 @@
     NSIndexPath *_playedIndexPath;
     
 }
+
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, strong) NSIndexPath *playedIndexPath;
 
@@ -51,6 +55,9 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     Env *env = [Env sharedEnv];
+    self.managedObjectContext = ((FTSAppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
+    
+    
     UIImage *revealRightImagePortrait = [env cacheImage:@"joke_nav_option.png"];
     UIImage *revealRightImageLandscape = [env cacheImage:@"joke_nav_option.png"];
     self.navigationItem.rightBarButtonItem = [CustomUIBarButtonItem initWithImage:revealRightImagePortrait eventImg:revealRightImageLandscape title:nil target:self action:@selector(editTable:)];
@@ -317,13 +324,13 @@
             
             id joke = [_dataArray objectAtIndex:indexPath.row];
             if ([joke isKindOfClass:[Words class]]) {
-                [[FTSDataMgr sharedInstance] addFavoritedWords:(Words *)joke addType:FALSE];
+                [FTSDatabaseMgr jokeAddRecordWords:(Words *)joke favorite:FALSE managedObjectContext:self.managedObjectContext];
             }else if([joke isKindOfClass:[Image class]]){
-                [[FTSDataMgr sharedInstance] addFavoritedImages:(Image *)joke addType:FALSE];
+                [FTSDatabaseMgr jokeAddRecordImage:(Image *)joke favorite:FALSE managedObjectContext:self.managedObjectContext];
             }else if([joke isKindOfClass:[Video class]]){
-                [[FTSDataMgr sharedInstance] addFavoritedVideo:(Video *)joke addType:FALSE];
+                [FTSDatabaseMgr jokeAddRecordVideo:(Video *)joke favorite:FALSE managedObjectContext:self.managedObjectContext];
             }
-
+            [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
             
             [_dataArray removeObjectAtIndex:indexPath.row];
             [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
@@ -454,9 +461,9 @@
 	}
     
     Msg *msg = [Msg parseJsonData:cb.rspData];
-    [HMPopMsgView showPopMsg:msg.msg];
+    
     if (!msg.code) {
-        
+        [HMPopMsgView showPopMsg:msg.msg];
         return;
     }
     
@@ -474,13 +481,15 @@
         return;
     }
     
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
+    
     id joke = [_dataArray objectAtIndex:indexPath.row];
     if ([joke isKindOfClass:[Words class]]) {
-       [[FTSDataMgr sharedInstance] addFavoritedWords:(Words *)joke addType:FALSE];
+        [FTSDatabaseMgr jokeAddRecordWords:(Words *)joke favorite:FALSE managedObjectContext:self.managedObjectContext];
     }else if([joke isKindOfClass:[Image class]]){
-        [[FTSDataMgr sharedInstance] addFavoritedImages:(Image *)joke addType:FALSE];
+        [FTSDatabaseMgr jokeAddRecordImage:(Image *)joke favorite:FALSE managedObjectContext:self.managedObjectContext];
     }else if([joke isKindOfClass:[Video class]]){
-        [[FTSDataMgr sharedInstance] addFavoritedVideo:(Video *)joke addType:FALSE];
+        [FTSDatabaseMgr jokeAddRecordVideo:(Video *)joke favorite:FALSE managedObjectContext:self.managedObjectContext];
     }
     
     [_dataArray removeObjectAtIndex:indexPath.row];

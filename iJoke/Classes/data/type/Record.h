@@ -7,20 +7,14 @@
 //
 
 #import <Foundation/Foundation.h>
-
-typedef NS_ENUM(NSInteger, iJokeUpDownType)
-{
-    iJokeUpDownDown = -1,
-    iJokeUpDownNone = 0,
-    iJokeUpDownUp = 1,
-};
-
+#import "Constants.h"
 
 @interface Record : NSObject
 
 @property (nonatomic, assign) NSInteger itemId;
 @property (nonatomic, assign) BOOL favorite;
-@property (nonatomic, assign) NSInteger type; //for up and down, type:1 --up type:-1--down
+@property (nonatomic, assign) NSInteger type;
+@property (nonatomic, assign) NSInteger updown; //for up and down, type:1 --up type:-1--down
 @property (nonatomic, strong) NSString *time;
 
 +(NSMutableArray *)parseJsonData:(NSData*)data;

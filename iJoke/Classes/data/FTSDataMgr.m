@@ -15,6 +15,8 @@
 #import "FTSNetwork.h"
 #import "FTSUserCenter.h"
 #import "Msg.h"
+#import "FTSDatabaseMgr.h"
+#import "FTSAppDelegate.h"
 
 
 #define kFTSJoke @"iJoker"
@@ -115,6 +117,7 @@ static FTSDataMgr *sharedMgr = nil;
     self.downloader.bSearialLoad = YES;
     
     [self doNetworkUpdataChecks];
+    [FTSDatabaseMgr removeRedundancyRecodeManagedObjectContext:((FTSAppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appTermNtf:) name:UIApplicationWillResignActiveNotification object:nil];
 	[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(appResumeNtf:) name:UIApplicationDidBecomeActiveNotification object:nil];
@@ -257,533 +260,533 @@ static FTSDataMgr *sharedMgr = nil;
 
 // words
 
-- (Record*)judgeWordsUpType:(Words *)words{
-    
-    int i = 0;
-    int j = [self.wordsRecords count] -1;
-    
-    while (i<=j) {
-        
-        NSInteger temp = (i+j)/2;
-        Record *tRecord = [self.wordsRecords objectAtIndex:temp];
-        if (tRecord.itemId == words.wordId) {
-            return tRecord;
-        }else if (tRecord.itemId<words.wordId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    return nil;
-}
+//- (Record*)judgeWordsUpType:(Words *)words{
+//    
+//    int i = 0;
+//    int j = [self.wordsRecords count] -1;
+//    
+//    while (i<=j) {
+//        
+//        NSInteger temp = (i+j)/2;
+//        Record *tRecord = [self.wordsRecords objectAtIndex:temp];
+//        if (tRecord.itemId == words.wordId) {
+//            return tRecord;
+//        }else if (tRecord.itemId<words.wordId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    return nil;
+//}
+//
+//- (BOOL)addRecordWords:(Words *)words upType:(iJokeUpDownType)type{
+//    
+//    int i = 0;
+//    int j = [self.wordsRecords count] -1;
+//    
+//    NSInteger temp = 0;
+//    BOOL exist = FALSE;
+//    while (i<=j && !exist) {
+//        
+//        temp = (i+j)/2;
+//        Record *tRecord = [self.wordsRecords objectAtIndex:temp];
+//        if (tRecord.itemId == words.wordId) {
+//            tRecord.type = type;
+//           
+//            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//            BqsLog(@"exist time:%@",time);
+//            tRecord.time = time;
+//            
+//            exist = TRUE;
+//        }else if (tRecord.itemId<words.wordId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    if (!exist) {
+//        Record *record = [[Record alloc] init];
+//        record.itemId = words.wordId;
+//        record.type = type;
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//        BqsLog(@"not exist time:%@",time);
+//        
+//        record.time = time;
+//        
+//        [self.wordsRecords insertObject:record atIndex:i];
+//        
+//    }
+//    
+//    if ([self.wordsRecords count] > kMaxRecord) {
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        
+//        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
+//        
+//        for (int k= [self.wordsRecords count]-1; k>=0;k--) {
+//            
+//            Record *record = [self.wordsRecords objectAtIndex:k];
+//            NSDate *rDate =[ dateFormatter dateFromString:record.time];
+//            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
+//            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
+//                
+//                [self.wordsRecords removeObjectAtIndex:k];
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//
+//    
+//    
+//    return TRUE;
+//    
+//}
+//
+//
+//- (BOOL)addFavoritedWords:(Words *)words addType:(BOOL)value{ //true for add,false for del
+//    
+//    int i = 0;
+//    int j = [self.wordsRecords count] -1;
+//    
+//    NSInteger temp = 0;
+//    BOOL exist = FALSE;
+//    while (i<=j && !exist) {
+//        
+//        temp = (i+j)/2;
+//        Record *tRecord = [self.wordsRecords objectAtIndex:temp];
+//        if (tRecord.itemId == words.wordId) {
+//            exist = TRUE;
+//            if (!value) { //del favorite
+//                if (tRecord.type == iJokeUpDownNone) {//have no up and down ,remove item
+//                    [self.wordsRecords removeObjectAtIndex:temp];
+//                    break;
+//                }
+//            }
+//            
+//            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//            BqsLog(@"exist time:%@",time);
+//            tRecord.favorite = value;
+//            tRecord.time = time;
+//            
+//            
+//        }else if (tRecord.itemId<words.wordId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    if (!exist&&!value) { //not exist and remove favorite ,not need to rewrite
+//        
+//        return FALSE;
+//        
+//    } else if (!exist&&value) { //not exist and add favorite ,add a record
+//        
+//        Record *record = [[Record alloc] init];
+//        record.itemId = words.wordId;
+//        record.favorite = value;
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//        BqsLog(@"not exist time:%@",time);
+//        
+//        record.time = time;
+//        
+//        [self.wordsRecords insertObject:record atIndex:i];
+//        
+//    }
+//    
+//    if ([self.wordsRecords count] > kMaxRecord) {
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        
+//        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
+//        
+//        for (int k= [self.wordsRecords count]-1; k>=0;k--) {
+//            
+//            Record *record = [self.wordsRecords objectAtIndex:k];
+//            NSDate *rDate =[ dateFormatter dateFromString:record.time];
+//            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
+//            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
+//                
+//                [self.wordsRecords removeObjectAtIndex:k];
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    return TRUE;
+//}
 
-- (BOOL)addRecordWords:(Words *)words upType:(iJokeUpDownType)type{
-    
-    int i = 0;
-    int j = [self.wordsRecords count] -1;
-    
-    NSInteger temp = 0;
-    BOOL exist = FALSE;
-    while (i<=j && !exist) {
-        
-        temp = (i+j)/2;
-        Record *tRecord = [self.wordsRecords objectAtIndex:temp];
-        if (tRecord.itemId == words.wordId) {
-            tRecord.type = type;
-           
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-            BqsLog(@"exist time:%@",time);
-            tRecord.time = time;
-            
-            exist = TRUE;
-        }else if (tRecord.itemId<words.wordId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    if (!exist) {
-        Record *record = [[Record alloc] init];
-        record.itemId = words.wordId;
-        record.type = type;
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-        BqsLog(@"not exist time:%@",time);
-        
-        record.time = time;
-        
-        [self.wordsRecords insertObject:record atIndex:i];
-        
-    }
-    
-    if ([self.wordsRecords count] > kMaxRecord) {
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
-        
-        for (int k= [self.wordsRecords count]-1; k>=0;k--) {
-            
-            Record *record = [self.wordsRecords objectAtIndex:k];
-            NSDate *rDate =[ dateFormatter dateFromString:record.time];
-            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
-            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
-                
-                [self.wordsRecords removeObjectAtIndex:k];
-                
-            }
-            
-        }
-        
-    }
 
-    
-    
-    return TRUE;
-    
-}
-
-
-- (BOOL)addFavoritedWords:(Words *)words addType:(BOOL)value{ //true for add,false for del
-    
-    int i = 0;
-    int j = [self.wordsRecords count] -1;
-    
-    NSInteger temp = 0;
-    BOOL exist = FALSE;
-    while (i<=j && !exist) {
-        
-        temp = (i+j)/2;
-        Record *tRecord = [self.wordsRecords objectAtIndex:temp];
-        if (tRecord.itemId == words.wordId) {
-            exist = TRUE;
-            if (!value) { //del favorite
-                if (tRecord.type == iJokeUpDownNone) {//have no up and down ,remove item
-                    [self.wordsRecords removeObjectAtIndex:temp];
-                    break;
-                }
-            }
-            
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-            BqsLog(@"exist time:%@",time);
-            tRecord.favorite = value;
-            tRecord.time = time;
-            
-            
-        }else if (tRecord.itemId<words.wordId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    if (!exist&&!value) { //not exist and remove favorite ,not need to rewrite
-        
-        return FALSE;
-        
-    } else if (!exist&&value) { //not exist and add favorite ,add a record
-        
-        Record *record = [[Record alloc] init];
-        record.itemId = words.wordId;
-        record.favorite = value;
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-        BqsLog(@"not exist time:%@",time);
-        
-        record.time = time;
-        
-        [self.wordsRecords insertObject:record atIndex:i];
-        
-    }
-    
-    if ([self.wordsRecords count] > kMaxRecord) {
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
-        
-        for (int k= [self.wordsRecords count]-1; k>=0;k--) {
-            
-            Record *record = [self.wordsRecords objectAtIndex:k];
-            NSDate *rDate =[ dateFormatter dateFromString:record.time];
-            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
-            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
-                
-                [self.wordsRecords removeObjectAtIndex:k];
-                
-            }
-            
-        }
-        
-    }
-    
-    return TRUE;
-}
-
-
-//image
-- (Record*)judgeImagesUpType:(Image*)image{
-    
-    int i = 0;
-    int j = [self.imageRecords count] -1;
-    
-    while (i<=j) {
-        
-        NSInteger temp = (i+j)/2;
-        Record *tRecord = [self.imageRecords objectAtIndex:temp];
-        if (tRecord.itemId == image.imageId) {
-            return tRecord;
-        }else if (tRecord.itemId<image.imageId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    return nil;
-}
-- (BOOL)addRecordImages:(Image *)image upType:(iJokeUpDownType)type{
-    
-    int i = 0;
-    int j = [self.imageRecords count] -1;
-    
-    NSInteger temp = 0;
-    BOOL exist = FALSE;
-    while (i<=j && !exist) {
-        
-        temp = (i+j)/2;
-        Record *tRecord = [self.imageRecords objectAtIndex:temp];
-        if (tRecord.itemId == image.imageId) {
-            tRecord.type = type;
-            
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-            BqsLog(@"exist time:%@",time);
-            tRecord.time = time;
-            
-            exist = TRUE;
-        }else if (tRecord.itemId<image.imageId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    if (!exist) {
-        Record *record = [[Record alloc] init];
-        record.itemId = image.imageId;
-        record.type = type;
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-        BqsLog(@"not exist time:%@",time);
-        
-        record.time = time;
-        
-        [self.imageRecords insertObject:record atIndex:i];
-        
-    }
-    
-    if ([self.imageRecords count] > kMaxRecord) {
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
-        
-        for (int k= [self.imageRecords count]-1; k>=0;k--) {
-            
-            Record *record = [self.imageRecords objectAtIndex:k];
-            NSDate *rDate =[ dateFormatter dateFromString:record.time];
-            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
-            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
-                
-                [self.imageRecords removeObjectAtIndex:k];
-                
-            }
-            
-        }
-        
-    }
-    
-   
-    
-    return TRUE;
-    
-}
-- (BOOL)addFavoritedImages:(Image *)image addType:(BOOL)value{ //true for add,false for del
-    
-    int i = 0;
-    int j = [self.imageRecords count] -1;
-    
-    NSInteger temp = 0;
-    BOOL exist = FALSE;
-    while (i<=j && !exist) {
-        
-        temp = (i+j)/2;
-        Record *tRecord = [self.imageRecords objectAtIndex:temp];
-        if (tRecord.itemId == image.imageId) {
-            exist = TRUE;
-            if (!value) { //del favorite
-                if (tRecord.type == iJokeUpDownNone) {//have no up and down ,remove item
-                    [self.imageRecords removeObjectAtIndex:temp];
-                    break;
-                }
-            }
-            
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-            BqsLog(@"exist time:%@",time);
-            tRecord.favorite = value;
-            tRecord.time = time;
-            
-            
-        }else if (tRecord.itemId<image.imageId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    if (!exist&&!value) { //not exist and remove favorite ,not need to rewrite
-        
-        return FALSE;
-        
-    } else if (!exist&&value) { //not exist and add favorite ,add a record
-        
-        Record *record = [[Record alloc] init];
-        record.itemId = image.imageId;
-        record.favorite = value;
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-        BqsLog(@"not exist time:%@",time);
-        
-        record.time = time;
-        
-        [self.imageRecords insertObject:record atIndex:i];
-        
-    }
-    
-    if ([self.imageRecords count] > kMaxRecord) {
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
-        
-        for (int k= [self.imageRecords count]-1; k>=0;k--) {
-            
-            Record *record = [self.imageRecords objectAtIndex:k];
-            NSDate *rDate =[ dateFormatter dateFromString:record.time];
-            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
-            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
-                
-                [self.imageRecords removeObjectAtIndex:k];
-                
-            }
-            
-        }
-        
-    }
-    
-    return TRUE;
-}
+////image
+//- (Record*)judgeImagesUpType:(Image*)image{
+//    
+//    int i = 0;
+//    int j = [self.imageRecords count] -1;
+//    
+//    while (i<=j) {
+//        
+//        NSInteger temp = (i+j)/2;
+//        Record *tRecord = [self.imageRecords objectAtIndex:temp];
+//        if (tRecord.itemId == image.imageId) {
+//            return tRecord;
+//        }else if (tRecord.itemId<image.imageId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    return nil;
+//}
+//- (BOOL)addRecordImages:(Image *)image upType:(iJokeUpDownType)type{
+//    
+//    int i = 0;
+//    int j = [self.imageRecords count] -1;
+//    
+//    NSInteger temp = 0;
+//    BOOL exist = FALSE;
+//    while (i<=j && !exist) {
+//        
+//        temp = (i+j)/2;
+//        Record *tRecord = [self.imageRecords objectAtIndex:temp];
+//        if (tRecord.itemId == image.imageId) {
+//            tRecord.type = type;
+//            
+//            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//            BqsLog(@"exist time:%@",time);
+//            tRecord.time = time;
+//            
+//            exist = TRUE;
+//        }else if (tRecord.itemId<image.imageId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    if (!exist) {
+//        Record *record = [[Record alloc] init];
+//        record.itemId = image.imageId;
+//        record.type = type;
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//        BqsLog(@"not exist time:%@",time);
+//        
+//        record.time = time;
+//        
+//        [self.imageRecords insertObject:record atIndex:i];
+//        
+//    }
+//    
+//    if ([self.imageRecords count] > kMaxRecord) {
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        
+//        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
+//        
+//        for (int k= [self.imageRecords count]-1; k>=0;k--) {
+//            
+//            Record *record = [self.imageRecords objectAtIndex:k];
+//            NSDate *rDate =[ dateFormatter dateFromString:record.time];
+//            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
+//            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
+//                
+//                [self.imageRecords removeObjectAtIndex:k];
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//   
+//    
+//    return TRUE;
+//    
+//}
+//- (BOOL)addFavoritedImages:(Image *)image addType:(BOOL)value{ //true for add,false for del
+//    
+//    int i = 0;
+//    int j = [self.imageRecords count] -1;
+//    
+//    NSInteger temp = 0;
+//    BOOL exist = FALSE;
+//    while (i<=j && !exist) {
+//        
+//        temp = (i+j)/2;
+//        Record *tRecord = [self.imageRecords objectAtIndex:temp];
+//        if (tRecord.itemId == image.imageId) {
+//            exist = TRUE;
+//            if (!value) { //del favorite
+//                if (tRecord.type == iJokeUpDownNone) {//have no up and down ,remove item
+//                    [self.imageRecords removeObjectAtIndex:temp];
+//                    break;
+//                }
+//            }
+//            
+//            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//            BqsLog(@"exist time:%@",time);
+//            tRecord.favorite = value;
+//            tRecord.time = time;
+//            
+//            
+//        }else if (tRecord.itemId<image.imageId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    if (!exist&&!value) { //not exist and remove favorite ,not need to rewrite
+//        
+//        return FALSE;
+//        
+//    } else if (!exist&&value) { //not exist and add favorite ,add a record
+//        
+//        Record *record = [[Record alloc] init];
+//        record.itemId = image.imageId;
+//        record.favorite = value;
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//        BqsLog(@"not exist time:%@",time);
+//        
+//        record.time = time;
+//        
+//        [self.imageRecords insertObject:record atIndex:i];
+//        
+//    }
+//    
+//    if ([self.imageRecords count] > kMaxRecord) {
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        
+//        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
+//        
+//        for (int k= [self.imageRecords count]-1; k>=0;k--) {
+//            
+//            Record *record = [self.imageRecords objectAtIndex:k];
+//            NSDate *rDate =[ dateFormatter dateFromString:record.time];
+//            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
+//            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
+//                
+//                [self.imageRecords removeObjectAtIndex:k];
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    return TRUE;
+//}
 
 #pragma mark
 #pragma mark Video Judege
 
-- (Record*)judgeVideoUpType:(Video *)video{
-    
-    int i = 0;
-    int j = [self.videoRecords count] -1;
-    
-    while (i<=j) {
-        
-        NSInteger temp = (i+j)/2;
-        Record *tRecord = [self.videoRecords objectAtIndex:temp];
-        if (tRecord.itemId == video.videoId) {
-            return tRecord;
-        }else if (tRecord.itemId<video.videoId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    return nil;
-}
-
-- (BOOL)addRecordVideo:(Video *)video upType:(iJokeUpDownType)type{
-    
-    int i = 0;
-    int j = [self.videoRecords count] -1;
-    
-    NSInteger temp = 0;
-    BOOL exist = FALSE;
-    while (i<=j && !exist) {
-        
-        temp = (i+j)/2;
-        Record *tRecord = [self.videoRecords objectAtIndex:temp];
-        if (tRecord.itemId == video.videoId) {
-            tRecord.type = type;
-            
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-            BqsLog(@"exist time:%@",time);
-            tRecord.time = time;
-            
-            exist = TRUE;
-        }else if (tRecord.itemId<video.videoId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    if (!exist) {
-        Record *record = [[Record alloc] init];
-        record.itemId = video.videoId;
-        record.type = type;
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-        BqsLog(@"not exist time:%@",time);
-        
-        record.time = time;
-        
-        [self.videoRecords insertObject:record atIndex:i];
-        
-    }
-    
-    if ([self.videoRecords count] > kMaxRecord) {
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
-        
-        for (int k= [self.videoRecords count]-1; k>=0;k--) {
-            
-            Record *record = [self.videoRecords objectAtIndex:k];
-            NSDate *rDate =[ dateFormatter dateFromString:record.time];
-            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
-            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
-                
-                [self.videoRecords removeObjectAtIndex:k];
-                
-            }
-            
-        }
-        
-    }
-    
-    
-    
-    return TRUE;
-    
-}
-
-
-- (BOOL)addFavoritedVideo:(Video *)video addType:(BOOL)value{ //true for add,false for del
-    
-    int i = 0;
-    int j = [self.videoRecords count] -1;
-    
-    NSInteger temp = 0;
-    BOOL exist = FALSE;
-    while (i<=j && !exist) {
-        
-        temp = (i+j)/2;
-        Record *tRecord = [self.videoRecords objectAtIndex:temp];
-        if (tRecord.itemId == video.videoId) {
-            exist = TRUE;
-            if (!value) { //del favorite
-                if (tRecord.type == iJokeUpDownNone) {//have no up and down ,remove item
-                    [self.videoRecords removeObjectAtIndex:temp];
-                    break;
-                }
-            }
-            
-            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-            BqsLog(@"exist time:%@",time);
-            tRecord.favorite = value;
-            tRecord.time = time;
-            
-            
-        }else if (tRecord.itemId<video.videoId){
-            j = temp-1;
-        }else{
-            i = temp+1;
-        }
-    }
-    
-    if (!exist&&!value) { //not exist and remove favorite ,not need to rewrite
-        
-        return FALSE;
-        
-    } else if (!exist&&value) { //not exist and add favorite ,add a record
-        
-        Record *record = [[Record alloc] init];
-        record.itemId = video.videoId;
-        record.favorite = value;
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
-        BqsLog(@"not exist time:%@",time);
-        
-        record.time = time;
-        
-        [self.videoRecords insertObject:record atIndex:i];
-        
-    }
-    
-    if ([self.videoRecords count] > kMaxRecord) {
-        
-        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
-        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
-        
-        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
-        
-        for (int k= [self.videoRecords count]-1; k>=0;k--) {
-            
-            Record *record = [self.videoRecords objectAtIndex:k];
-            NSDate *rDate =[ dateFormatter dateFromString:record.time];
-            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
-            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
-                
-                [self.videoRecords removeObjectAtIndex:k];
-                
-            }
-            
-        }
-        
-    }
-    
-    return TRUE;
-}
-
+//- (Record*)judgeVideoUpType:(Video *)video{
+//    
+//    int i = 0;
+//    int j = [self.videoRecords count] -1;
+//    
+//    while (i<=j) {
+//        
+//        NSInteger temp = (i+j)/2;
+//        Record *tRecord = [self.videoRecords objectAtIndex:temp];
+//        if (tRecord.itemId == video.videoId) {
+//            return tRecord;
+//        }else if (tRecord.itemId<video.videoId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    return nil;
+//}
+//
+//- (BOOL)addRecordVideo:(Video *)video upType:(iJokeUpDownType)type{
+//    
+//    int i = 0;
+//    int j = [self.videoRecords count] -1;
+//    
+//    NSInteger temp = 0;
+//    BOOL exist = FALSE;
+//    while (i<=j && !exist) {
+//        
+//        temp = (i+j)/2;
+//        Record *tRecord = [self.videoRecords objectAtIndex:temp];
+//        if (tRecord.itemId == video.videoId) {
+//            tRecord.type = type;
+//            
+//            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//            BqsLog(@"exist time:%@",time);
+//            tRecord.time = time;
+//            
+//            exist = TRUE;
+//        }else if (tRecord.itemId<video.videoId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    if (!exist) {
+//        Record *record = [[Record alloc] init];
+//        record.itemId = video.videoId;
+//        record.type = type;
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//        BqsLog(@"not exist time:%@",time);
+//        
+//        record.time = time;
+//        
+//        [self.videoRecords insertObject:record atIndex:i];
+//        
+//    }
+//    
+//    if ([self.videoRecords count] > kMaxRecord) {
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        
+//        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
+//        
+//        for (int k= [self.videoRecords count]-1; k>=0;k--) {
+//            
+//            Record *record = [self.videoRecords objectAtIndex:k];
+//            NSDate *rDate =[ dateFormatter dateFromString:record.time];
+//            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
+//            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
+//                
+//                [self.videoRecords removeObjectAtIndex:k];
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    
+//    
+//    return TRUE;
+//    
+//}
+//
+//
+//- (BOOL)addFavoritedVideo:(Video *)video addType:(BOOL)value{ //true for add,false for del
+//    
+//    int i = 0;
+//    int j = [self.videoRecords count] -1;
+//    
+//    NSInteger temp = 0;
+//    BOOL exist = FALSE;
+//    while (i<=j && !exist) {
+//        
+//        temp = (i+j)/2;
+//        Record *tRecord = [self.videoRecords objectAtIndex:temp];
+//        if (tRecord.itemId == video.videoId) {
+//            exist = TRUE;
+//            if (!value) { //del favorite
+//                if (tRecord.type == iJokeUpDownNone) {//have no up and down ,remove item
+//                    [self.videoRecords removeObjectAtIndex:temp];
+//                    break;
+//                }
+//            }
+//            
+//            NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//            dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//            NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//            BqsLog(@"exist time:%@",time);
+//            tRecord.favorite = value;
+//            tRecord.time = time;
+//            
+//            
+//        }else if (tRecord.itemId<video.videoId){
+//            j = temp-1;
+//        }else{
+//            i = temp+1;
+//        }
+//    }
+//    
+//    if (!exist&&!value) { //not exist and remove favorite ,not need to rewrite
+//        
+//        return FALSE;
+//        
+//    } else if (!exist&&value) { //not exist and add favorite ,add a record
+//        
+//        Record *record = [[Record alloc] init];
+//        record.itemId = video.videoId;
+//        record.favorite = value;
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        NSString *time = [dateFormatter stringFromDate:[NSDate date]];
+//        BqsLog(@"not exist time:%@",time);
+//        
+//        record.time = time;
+//        
+//        [self.videoRecords insertObject:record atIndex:i];
+//        
+//    }
+//    
+//    if ([self.videoRecords count] > kMaxRecord) {
+//        
+//        NSDateFormatter* dateFormatter = [[NSDateFormatter alloc] init];
+//        dateFormatter.dateFormat = @"yyyy-MM-dd HH:mm:ss";
+//        
+//        NSTimeInterval nowTimeinterval = [NSDate timeIntervalSinceReferenceDate];
+//        
+//        for (int k= [self.videoRecords count]-1; k>=0;k--) {
+//            
+//            Record *record = [self.videoRecords objectAtIndex:k];
+//            NSDate *rDate =[ dateFormatter dateFromString:record.time];
+//            NSTimeInterval rTimeInterval = [rDate timeIntervalSinceReferenceDate];
+//            if ((nowTimeinterval - rTimeInterval)>kRemoveTimeInterval) {
+//                
+//                [self.videoRecords removeObjectAtIndex:k];
+//                
+//            }
+//            
+//        }
+//        
+//    }
+//    
+//    return TRUE;
+//}
+//
 
 
 #pragma mark
@@ -1056,6 +1059,10 @@ static FTSDataMgr *sharedMgr = nil;
     [FTSNetwork getRecordMessageDownloader:self.downloader Target:self Sel:@selector(recordMessageCB:) Attached:nil];
 }
 
+- (void)removeAllRecordMessage{
+    [FTSDatabaseMgr removeAllRecordManagedObjectContext:((FTSAppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext];
+}
+
 - (void)loginUnionWithSocail{
     NSString *userName = [FTSUserCenter objectValueForKey:kDftUserName];
     NSString *nikeName = [FTSUserCenter objectValueForKey:kDftUserNickName];
@@ -1089,8 +1096,8 @@ static FTSDataMgr *sharedMgr = nil;
     
     NSMutableArray *array = [Record parseJsonData:cb.rspData]; //server record contain words image video
     if (array != nil) {
-        _wordsRecords = array;
-        [Record saveToFile:[self pathOfWordsRecords] Arr:self.wordsRecords];
+        
+        [FTSDatabaseMgr freshRcordWithArray:array managedObjectContext:((FTSAppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext];
     }
     [FTSUserCenter setBoolVaule:YES forKey:kDftMessageSynchroniz];
     

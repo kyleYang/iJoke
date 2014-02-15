@@ -62,6 +62,7 @@
     FTSWordsNewTableView *cell = (FTSWordsNewTableView *)[scrollView dequeueCellWithIdentifier:identifier];
     if (!cell) {
         cell = [[FTSWordsNewTableView alloc] initWithFrame:frame withIdentifier:identifier withController:self];
+        cell.managedObjectContext = self.managedObjectContext;
     }
     return cell;
     

@@ -69,6 +69,7 @@
         cell = (FTSWordsDetailCell *)[scrollView dequeueCellWithIdentifier:celleIdentifier];
         if (!cell) {
             cell = [[FTSWordsDetailCell alloc] initWithFrame:frame withIdentifier:celleIdentifier withController:self];
+            cell.managedObjectContext = self.managedObjectContext;
         }
         
         cell.words = [_dataArray objectAtIndex:index];

@@ -8,26 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import "Downloader.h"
-
-enum UserSection {
-    WordsSectionType = 0,
-    ImageSectionType = 1,
-    VideoSectionType = 2,
-};
-
-
-typedef enum {
-    UnionLogoinTypeNone = 0,
-    UnionLogoinTypeSina = 1,                 //sina weibo
-    UnionLogoinTypeQQSpace = 2,              //QQ space
-    UnionLogoinTypeTenc = 3,                 //tencent weibo
-    UnionLogoinTypeMobileQQ = 4,
-} UnionLogoinType;
-
-typedef enum {
-    UnionLoginUserAttach = 0,
-    UnionLoginUserNew = 1,
-}UnionLoginUserType;
+#import "Constants.h"
 
 @interface FTSNetwork : NSObject
 

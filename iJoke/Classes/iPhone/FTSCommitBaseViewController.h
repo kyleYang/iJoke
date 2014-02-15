@@ -24,6 +24,8 @@
     id<FTSCommitBaseViewControllerDelegate> __weak_delegate _baseDelegate;
 }
 
+@property (nonatomic,strong) NSManagedObjectContext *managedObjectContext;
+
 @property (nonatomic, weak_delegate) id<FTSCommitBaseViewControllerDelegate> baseDelegate;
 @property (nonatomic, strong, readonly) NSArray *dataArray;
 @property (nonatomic, assign) BOOL more;

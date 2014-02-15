@@ -277,7 +277,6 @@
         self.addImg.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
         
         _video.up ++;
-        [[FTSDataMgr sharedInstance] addRecordVideo:_video upType:iJokeUpDownUp];
         CGRect frame = self.addImg.frame;
         frame.origin.y -= 15;
         self.addImg.frame = frame;
@@ -292,7 +291,7 @@
                 self.addImg.alpha = 0.7f;
             } completion:^(BOOL finished){
                 self.addImg.alpha = 0.0f;
-                [self.upBtn calculateWidth:[NSString stringWithFormat:@"-%d",_video.up]];
+                [self.upBtn calculateWidth:[NSString stringWithFormat:@"%d",_video.up]];
                 [self refreshRecordState];
             }];
             
@@ -328,7 +327,7 @@
         self.addImg.transform = CGAffineTransformScale(CGAffineTransformIdentity, 0.7, 0.7);
         
         _video.down ++;
-        [[FTSDataMgr sharedInstance] addRecordVideo:_video upType:iJokeUpDownDown];
+
         
         CGRect frame = self.addImg.frame;
         frame.origin.y -= 15;
@@ -380,14 +379,18 @@
 
 
 - (void)refreshRecordState{
-    Record *record= [[FTSDataMgr sharedInstance] judgeVideoUpType:_video];
+    FTSRecord *record = nil;
+    
+    if ([self.delegate respondsToSelector:@selector(recordForDescriptionTableViewVideo:)]) {
+        record = [self.delegate recordForDescriptionTableViewVideo:_video];
+    }
     
     if (record) {
         
-        if (record.type == iJokeUpDownUp) {
+        if ([record.updown intValue] == iJokeUpDownUp) {
             self.upBtn.buttonSelected = YES;
 //            self.downBtn.buttonSelected = FALSE;
-        }else if (record.type == iJokeUpDownDown){
+        }else if ([record.updown intValue] == iJokeUpDownDown){
             self.upBtn.buttonSelected = FALSE;
 //            self.downBtn.buttonSelected = TRUE;
         }else{
@@ -395,7 +398,7 @@
 //            self.downBtn.buttonSelected = FALSE;
         }
         
-        if (record.favorite) {
+        if ([record.favorite boolValue]) {
             self.favBtn.buttonSelected = TRUE;
         }else{
             self.favBtn.buttonSelected = FALSE;
