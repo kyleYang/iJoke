@@ -8,7 +8,7 @@
 
 #import "FTSDetailBaseView.h"
 #import "PgLoadingFooterView.h"
-#import "ODRefreshControl.h"
+#import "UIScrollView+UzysCircularProgressPullToRefresh.h"
 #import "FTSDatabaseMgr.h"
 
 @interface FTSDetailTableView : FTSDetailBaseView<UITableViewDataSource,UITableViewDelegate>{
@@ -23,7 +23,6 @@
 @property (nonatomic, strong) NSArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *tempArray;
 @property (nonatomic, strong, readonly) UITableView *tableView;
-@property (nonatomic, strong, readonly) ODRefreshControl *pullView;
 @property (nonatomic, strong, readonly) PgLoadingFooterView *loadingMoreFootView;
 
 

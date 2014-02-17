@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "PgLoadingFooterView.h"
-#import "ODRefreshControl.h"
 #import "Downloader.h"
 #import "UMSocial.h"
 #import "UIInputToolbar.h"
+#import "UIScrollView+UzysCircularProgressPullToRefresh.h"
 #import "CustomUIBarButtonItem.h"
 #import "FTSDataMgr.h"
 #import "Msg.h"
@@ -38,7 +38,6 @@
 @property (nonatomic, strong) NSMutableArray *tempArray;
 @property (nonatomic, assign) NSInteger curPage; //set curPage ,then load commit
 @property (nonatomic, strong, readonly) UITableView *tableView;
-@property (nonatomic, strong, readonly) ODRefreshControl *pullView;
 @property (nonatomic, strong, readonly) PgLoadingFooterView *loadingMoreFootView;
 @property (nonatomic, strong, readonly) UIInputToolbar *toolBar;
 @property (nonatomic, strong, readonly) UITextField *inputTextField;

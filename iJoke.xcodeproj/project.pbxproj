@@ -523,6 +523,9 @@
 		18FBD50618AD1CB000F87E7C /* FTSBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50518AD1CB000F87E7C /* FTSBaseModel.m */; };
 		18FBD50918AD1D4400F87E7C /* FTSRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50818AD1D4400F87E7C /* FTSRecord.m */; };
 		18FBD50C18AE0DB600F87E7C /* FTSDatabaseMgr.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD50B18AE0DB600F87E7C /* FTSDatabaseMgr.m */; };
+		18FBD51418B11ACB00F87E7C /* centerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FBD50F18B11ACB00F87E7C /* centerIcon@2x.png */; };
+		18FBD51518B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD51118B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m */; };
+		18FBD51618B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD51318B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m */; };
 		3101B6D517BD1A2A008E8C16 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3101B6D417BD1A28008E8C16 /* ImageIO.framework */; };
 		3101B6D717BD1A7F008E8C16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3101B6D617BD1A7E008E8C16 /* MapKit.framework */; };
 		311418A917A3628D0035D33E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311418A817A3628D0035D33E /* UIKit.framework */; };
@@ -1454,6 +1457,11 @@
 		18FBD50A18AE0DB600F87E7C /* FTSDatabaseMgr.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FTSDatabaseMgr.h; sourceTree = "<group>"; };
 		18FBD50B18AE0DB600F87E7C /* FTSDatabaseMgr.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FTSDatabaseMgr.m; sourceTree = "<group>"; };
 		18FBD50D18AE6E0300F87E7C /* Constants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Constants.h; path = model/Constants.h; sourceTree = "<group>"; };
+		18FBD50F18B11ACB00F87E7C /* centerIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "centerIcon@2x.png"; sourceTree = "<group>"; };
+		18FBD51018B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIScrollView+UzysCircularProgressPullToRefresh.h"; sourceTree = "<group>"; };
+		18FBD51118B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UzysCircularProgressPullToRefresh.m"; sourceTree = "<group>"; };
+		18FBD51218B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysRadialProgressActivityIndicator.h; sourceTree = "<group>"; };
+		18FBD51318B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysRadialProgressActivityIndicator.m; sourceTree = "<group>"; };
 		3101B6D417BD1A28008E8C16 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		3101B6D617BD1A7E008E8C16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		311418A517A3628D0035D33E /* iJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -2797,6 +2805,7 @@
 		1868FB61185B1F4600897344 /* ThirdParty */ = {
 			isa = PBXGroup;
 			children = (
+				18FBD50E18B11ACB00F87E7C /* UzysRadialProgressActivityIndicator */,
 				18FBD4CB18AB987B00F87E7C /* RDVTabBarController */,
 				18CF87F318902A6A002804C3 /* AMScrollingNavbar */,
 				1868FB62185B1F4600897344 /* ASIHTTPRequest */,
@@ -3264,6 +3273,18 @@
 			path = model;
 			sourceTree = "<group>";
 		};
+		18FBD50E18B11ACB00F87E7C /* UzysRadialProgressActivityIndicator */ = {
+			isa = PBXGroup;
+			children = (
+				18FBD50F18B11ACB00F87E7C /* centerIcon@2x.png */,
+				18FBD51018B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.h */,
+				18FBD51118B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m */,
+				18FBD51218B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.h */,
+				18FBD51318B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m */,
+			);
+			path = UzysRadialProgressActivityIndicator;
+			sourceTree = "<group>";
+		};
 		3114189C17A3628D0035D33E = {
 			isa = PBXGroup;
 			children = (
@@ -3544,6 +3565,7 @@
 				18FBD4EA18AB9E1700F87E7C /* first_normal.png in Resources */,
 				1868FE37185B1F4700897344 /* iVersion.bundle in Resources */,
 				1868FDA3185B1F4600897344 /* reveal_background@2x.png in Resources */,
+				18FBD51418B11ACB00F87E7C /* centerIcon@2x.png in Resources */,
 				18FBD4EB18AB9E1700F87E7C /* first_normal@2x.png in Resources */,
 				1868FDCD185B1F4600897344 /* nav_bar_bg@2x.png in Resources */,
 				1868FDC4185B1F4600897344 /* item_cancel_selected@2x.png in Resources */,
@@ -3699,6 +3721,7 @@
 				1868FDD5185B1F4700897344 /* UMContactViewController.m in Sources */,
 				1868FC66185B1F4600897344 /* FTSWebImage.m in Sources */,
 				1868FC71185B1F4600897344 /* JkCategoryButton.m in Sources */,
+				18FBD51518B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m in Sources */,
 				1868FE46185B1F4700897344 /* SDWebImageDownloader.m in Sources */,
 				1868FCA4185B1F4600897344 /* FTSCommentBaseViewController.m in Sources */,
 				1868FD3F185B1F4600897344 /* JSONKit.m in Sources */,
@@ -3799,6 +3822,7 @@
 				1868FD2E185B1F4600897344 /* AnimatedGif.m in Sources */,
 				1868FD37185B1F4600897344 /* HTMLParser.m in Sources */,
 				1868FC74185B1F4600897344 /* PanguCheckButton.m in Sources */,
+				18FBD51618B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m in Sources */,
 				1868FD28185B1F4600897344 /* BqsNewsPaperPageLayout.m in Sources */,
 				1868FE20185B1F4700897344 /* WebSocket.m in Sources */,
 				1868FD50185B1F4600897344 /* ZipArchivePkgFile.m in Sources */,

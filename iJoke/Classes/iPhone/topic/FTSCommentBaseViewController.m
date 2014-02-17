@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
 @property (nonatomic, strong, readwrite) PgLoadingFooterView *loadingMoreFootView;
-@property (nonatomic, strong, readwrite) ODRefreshControl *pullView;
 @property (nonatomic, strong, readwrite) UIInputToolbar *toolBar;
 @property (nonatomic, strong, readwrite) UITextField *inputTextField;
 
@@ -66,10 +65,12 @@
     UIImage *revealRightImagePortrait = [env cacheImage:@"joke_nav_setting.png"];
     UIImage *revealRightImageLandscape = [env cacheImage:@"joke_nav_setting_down.png"];
     
+    UIEdgeInsets contentInset = UIEdgeInsetsMake(0, 0, 0, 0);
     if(DeviceSystemMajorVersion() >=7){
         self.edgesForExtendedLayout = UIRectEdgeAll;
         self.extendedLayoutIncludesOpaqueBars  = YES;
-        self.automaticallyAdjustsScrollViewInsets = YES;
+        self.automaticallyAdjustsScrollViewInsets = NO;
+        contentInset.top = 64;
         
     }
     
@@ -91,12 +92,9 @@
     self.tableView.dataSource = self;
     [self.view addSubview:self.tableView];
     
-    // pull refresh
-    {
-        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
-    }
+    self.tableView.contentInset = contentInset;
     
+    // pull refresh
     
     // loading more footer
     {
@@ -148,6 +146,11 @@
     _hasMore = YES;
     _onceLoaded = NO;
     
+    __weak FTSCommentBaseViewController *weakSelf =self;
+    [_tableView addPullToRefreshActionHandler:^{
+        [weakSelf dataFresh:nil];
+    }];
+
     
     
     [self tableContentFrsh];
@@ -448,7 +451,7 @@
 - (void)onLoadCommitListFinished:(DownloaderCallbackObj *)cb{
     
     _onceLoaded = YES;
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];
     
     if(nil == cb) {
         self.hasMore = TRUE;

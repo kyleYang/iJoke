@@ -175,7 +175,7 @@
     }else if (_login){
         _nTaskId = [FTSNetwork collectInfoDownloader:self.downloader Target:self Sel:@selector(onLoadDownloadFinished:) Attached:nil page:_curPage userId:nil];
     }else {
-        [self.pullView endRefreshing];
+        [self.tableView stopRefreshAnimation];
         return;
     }
    
@@ -505,7 +505,7 @@
     _onceLoaded = YES;
     
     [self.progressHUD hide:YES];
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];
     _nTaskId = -1;
     if(nil == cb) return;
     

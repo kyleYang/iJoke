@@ -248,6 +248,7 @@
 - (void)onLoadCommitListFinished:(DownloaderCallbackObj *)cb{
     
     _onceLoaded = YES;
+    [self.tableView stopRefreshAnimation];
     
     if(nil == cb) return;
     

@@ -7,7 +7,6 @@
 //
 
 #import "FTSTopicVideoDetailViewController.h"
-#import "ODRefreshControl.h"
 #import "PgLoadingFooterView.h"
 #import "FTSVideoTableCell.h"
 #import "FTSMoviePlayerViewController.h"
@@ -23,7 +22,6 @@
 
 @property (nonatomic, strong)  NSIndexPath *playedIndexPath;
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) ODRefreshControl *pullView;
 @property (nonatomic, strong) PgLoadingFooterView *loadingMoreFootView;
 
 @property (nonatomic, assign) int nTotalNum;
@@ -70,11 +68,11 @@
     
     
     // pull refresh
-    {
-        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-        self.pullView.backgroundColor = RGBA(250, 250, 250, 1.0);
-        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
-    }
+//    {
+//        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+//        self.pullView.backgroundColor = RGBA(250, 250, 250, 1.0);
+//        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
+//    }
     
     // loading more footer
     {
@@ -105,6 +103,16 @@
     _hasMore = YES;
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:kUmeng_topic_video_detail];
+    
+    if (DeviceSystemMajorVersion()>=7) {
+        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
+    }
+    
+    __weak FTSTopicVideoDetailViewController *weakSelf =self;
+    [_tableView addPullToRefreshActionHandler:^{
+        [weakSelf dataFresh:nil];
+    }];
+
 
 }
 
@@ -197,7 +205,7 @@
     BqsLog(@"FTSWordsTableView onLoadDataFinished:%@",cb);
     _nTaskId = -1;
     
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];
     if(nil == cb) return;
     
     if(nil != cb.error || 200 != cb.httpStatus) {

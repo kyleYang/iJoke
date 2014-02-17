@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "PgLoadingFooterView.h"
-#import "ODRefreshControl.h"
+#import "UIScrollView+UzysCircularProgressPullToRefresh.h"
 #import "MobClick.h"
 #import "MobclickMarco.h"
 #import "Downloader.h"
@@ -44,7 +44,6 @@
 @property (nonatomic, strong) NSMutableArray *dataArray;
 @property (nonatomic, strong) NSMutableArray *tempArray;
 @property (nonatomic, strong, readonly) YFJLeftSwipeDeleteTableView *tableView;
-@property (nonatomic, strong, readonly) ODRefreshControl *pullView;
 @property (nonatomic, strong, readonly) PgLoadingFooterView *loadingMoreFootView;
 @property (nonatomic, strong, readonly) MBProgressHUD *progressHUD;
 

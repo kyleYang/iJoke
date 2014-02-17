@@ -18,7 +18,6 @@
 
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
-@property (nonatomic, strong, readwrite) ODRefreshControl *pullView;
 @property (nonatomic, strong, readwrite) PgLoadingFooterView *loadingMoreFootView;
 @property (nonatomic, strong) UILabel *noticeLabel;
 
@@ -51,9 +50,9 @@
     
     // pull refresh
     {
-        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-        self.pullView.backgroundColor = RGBA(250, 250, 250, 1.0);
-        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
+//        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
+//        self.pullView.backgroundColor = RGBA(250, 250, 250, 1.0);
+//        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
     }
     
     // loading more footer
@@ -84,26 +83,16 @@
     if(DeviceSystemMajorVersion() >=7){ //use for ios7 with layout full screen
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     }
+    __weak FTSDetailTableView *weakSelf =self;
+    [_tableView addPullToRefreshActionHandler:^{
+        [weakSelf dataFresh:nil];
+    }];
     
-    if(! [self loadLocalDataNeedFresh])
-        return;
-    [self performSelector:@selector(tableContentFrsh) withObject:nil afterDelay:1];
     
+   
     
 }
 
-- (void)tableContentFrsh{
-    CGPoint tableOffset = self.tableView.contentOffset;
-    if (tableOffset.y > 40) {
-        return;
-    }
-    
-    [self.tableView setContentOffset:CGPointMake(0, kFreshOffSet) animated:YES];
-}
-
-- (void)dataFresh:(id)sender{
-    [self loadNetworkDataMore:NO];
-}
 
 -(void)viewDidAppear {
     
@@ -112,9 +101,32 @@
         [self.noticeLabel removeFromSuperview];
         self.noticeLabel = nil;
     }
-    [self.pullView endRefreshing];
+    
+    
+
+    
+    if(! [self loadLocalDataNeedFresh])
+        return;
+    [self performSelector:@selector(tableContentFrsh) withObject:nil afterDelay:1];
+    
+//    [self.pullView endRefreshing];
     
 }
+
+
+- (void)tableContentFrsh{
+    CGPoint tableOffset = self.tableView.contentOffset;
+    if (tableOffset.y > 40) {
+        return;
+    }
+    
+    [_tableView triggerPullToRefresh];
+}
+
+- (void)dataFresh:(id)sender{
+    [self loadNetworkDataMore:NO];
+}
+
 
 
 

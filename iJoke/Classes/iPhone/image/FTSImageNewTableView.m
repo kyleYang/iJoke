@@ -95,7 +95,7 @@
     BqsLog(@"FTSWordsTableView onLoadDataFinished:%@",cb);
     
     self.nTaskId = -1;
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];;
     
     if(nil == cb) return;
     
@@ -154,7 +154,7 @@
 -(void)onLoadNextDataFinished:(DownloaderCallbackObj*)cb {
     BqsLog(@"FTSWordsTableView onLoadDataFinished:%@",cb);
     self.nTaskId = -1;
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];;
     if(nil == cb) {
         self.hasMore = YES;
         return;

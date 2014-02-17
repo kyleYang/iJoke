@@ -21,7 +21,6 @@
 
 @property (nonatomic, strong, readwrite) UITableView *tableView;
 @property (nonatomic, strong, readwrite) PgLoadingFooterView *loadingMoreFootView;
-@property (nonatomic, strong, readwrite) ODRefreshControl *pullView;
 @property (nonatomic, strong, readwrite) UIInputToolbar *toolBar;
 @property (nonatomic, strong, readwrite) UITextField *inputTextField;
 
@@ -61,11 +60,7 @@
     [self addSubview:self.tableView];
     
     // pull refresh
-    {
-        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
-    }
-
+   
     
     // loading more footer
     {
@@ -122,10 +117,17 @@
     [super viewWillAppear];
     _hasMore = YES;
     _onceLoaded = NO;
+    if(DeviceSystemMajorVersion() >=7){ //use for ios7 with layout full screen
+        self.tableView.contentInset = UIEdgeInsetsMake(64+self.videoOffset, 0, 0, 0);
+    }
+    __weak FTSCommitBaseCell *weakSelf =self;
+    [_tableView addPullToRefreshActionHandler:^{
+        [weakSelf dataFresh:nil];
+    }];
     
     
     
-    [self tableContentFrsh];
+    [_tableView triggerPullToRefresh];
 //    [self performSelector:@selector(tableContentFrsh) withObject:nil afterDelay:1];
 
 }
@@ -155,9 +157,6 @@
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillShowNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UIKeyboardWillHideNotification object:nil];
     [self.toolBar clearText];
-    if(DeviceSystemMajorVersion() >=7){ //use for ios7 with layout full screen
-        self.tableView.contentInset = UIEdgeInsetsMake(64+self.videoOffset, 0, 0, 0);
-    }
     
 }
 

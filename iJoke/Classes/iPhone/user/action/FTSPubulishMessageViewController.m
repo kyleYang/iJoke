@@ -357,7 +357,7 @@
 -(void)onLoadTopDownloadFinished:(DownloaderCallbackObj*)cb{
     
     _onceLoaded = YES;
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];
     [self.progressHUD hide:YES];
     _nTaskId = -1;
     if(nil == cb) return;
@@ -407,7 +407,7 @@
 -(void)onLoadNextDownloadFinished:(DownloaderCallbackObj*)cb{
     
     _onceLoaded = YES;
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];
     [self.progressHUD hide:YES];
     _nTaskId = -1;
     if(nil == cb) return;

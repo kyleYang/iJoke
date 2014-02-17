@@ -14,7 +14,6 @@
 @interface FTSActionBaseViewController ()
 
 @property (nonatomic, strong, readwrite) YFJLeftSwipeDeleteTableView *tableView;
-@property (nonatomic, strong, readwrite) ODRefreshControl *pullView;
 @property (nonatomic, strong, readwrite) PgLoadingFooterView *loadingMoreFootView;
 @property (nonatomic, strong, readwrite) MBProgressHUD *progressHUD;
 @end
@@ -69,10 +68,7 @@
     
     
     // pull refresh
-    {
-        self.pullView = [[ODRefreshControl alloc] initInScrollView:self.tableView];
-        [self.pullView addTarget:self action:@selector(dataFresh:) forControlEvents:UIControlEventValueChanged];
-    }
+    
     
     // loading more footer
     {
@@ -123,6 +119,12 @@
     //    if(DeviceSystemMajorVersion() >=7){ //use for ios7 with layout full screen
     //        self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);
     //    }
+    
+    __weak FTSActionBaseViewController *weakSelf =self;
+    [_tableView addPullToRefreshActionHandler:^{
+        [weakSelf dataFresh:nil];
+    }];
+
     
     if (_onceLoaded) {
         return;

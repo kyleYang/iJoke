@@ -215,7 +215,7 @@
 
 - (void)onLoadCommitListFinished:(DownloaderCallbackObj *)cb{
     
-    [self.pullView endRefreshing];
+    [self.tableView stopRefreshAnimation];
     _onceLoaded = YES;
     if(nil == cb) return;
     
