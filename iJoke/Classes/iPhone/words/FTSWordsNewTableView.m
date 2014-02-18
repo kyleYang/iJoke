@@ -24,6 +24,7 @@
 - (void)viewWillAppear{
     [super viewWillAppear];
     [MobClick beginLogPageView:kUmeng_newwordpage];
+    [self.tableView setRefreshTime:[FTSUserCenter objectValueForKey:kDftNewWordsSaveTime]];
 }
 
 - (void)viewWillDisappear{
@@ -48,10 +49,10 @@
         self.hasMore = YES;
     }
        
-    CGFloat lastUploadTs = [FTSUserCenter floatValueForKey:kDftNewWordsSaveTime];
+    NSDate *lastUploadTs = [FTSUserCenter objectValueForKey:kDftNewWordsSaveTime];
     const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    
-    if (fNow - lastUploadTs > kRefreshNewWordIntervalS) {
+    CGFloat flast = [lastUploadTs timeIntervalSinceReferenceDate];
+    if (fNow - flast > kRefreshNewWordIntervalS) {
         return TRUE;
     }
     
@@ -150,8 +151,8 @@
     self.hasMore = YES;
     
     [[FTSDataMgr sharedInstance] saveNewWordsArray:self.dataArray]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:kDftNewWordsSaveTime];
+    [FTSUserCenter setObjectValue:[NSDate date] forKey:kDftNewWordsSaveTime];
+    [self.tableView setRefreshTime:[NSDate date]];
     
 //    "joke.content.nofresh" = "暂无更新，欢迎发表新的";
 //    "joke.content.freshnumber" = "更新了 %d 条";
@@ -220,10 +221,7 @@
         [self.detailController setDataArray:self.dataArray more:self.hasMore];
     }
     
-    [[FTSDataMgr sharedInstance] saveNewWordsArray:self.dataArray]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:kDftNewWordsSaveTime];
-    
+    [[FTSDataMgr sharedInstance] saveNewWordsArray:self.dataArray]; //save data use xml    
     
 }
 

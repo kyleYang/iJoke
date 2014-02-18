@@ -17,6 +17,10 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
     
 };
 
+static NSString *const uzyspullnormal = @"uzyspullnormal";
+static NSString *const uzyspullrelease = @"uzyspullrelease";
+static NSString *const uzyspullloading = @"uzyspullloading";
+static NSString *const uzyspulltimeformat = @"uzyspulltimeformat";
 
 @interface UzysRadialProgressActivityIndicator : UIView
 
@@ -32,6 +36,7 @@ typedef NS_ENUM(NSUInteger, UZYSPullToRefreshState) {
 
 - (void)stopIndicatorAnimation;
 - (void)manuallyTriggered;
+- (void)setRefreshTime:(NSDate *)date;
 
 - (id)initWithImage:(UIImage *)image;
 - (void)setSize:(CGSize) size;

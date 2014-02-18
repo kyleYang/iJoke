@@ -526,6 +526,7 @@
 		18FBD51418B11ACB00F87E7C /* centerIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 18FBD50F18B11ACB00F87E7C /* centerIcon@2x.png */; };
 		18FBD51518B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD51118B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m */; };
 		18FBD51618B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FBD51318B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m */; };
+		18FBD51818B3975900F87E7C /* uzys.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 18FBD51718B3975900F87E7C /* uzys.bundle */; };
 		3101B6D517BD1A2A008E8C16 /* ImageIO.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3101B6D417BD1A28008E8C16 /* ImageIO.framework */; };
 		3101B6D717BD1A7F008E8C16 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3101B6D617BD1A7E008E8C16 /* MapKit.framework */; };
 		311418A917A3628D0035D33E /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 311418A817A3628D0035D33E /* UIKit.framework */; };
@@ -1462,6 +1463,7 @@
 		18FBD51118B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIScrollView+UzysCircularProgressPullToRefresh.m"; sourceTree = "<group>"; };
 		18FBD51218B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UzysRadialProgressActivityIndicator.h; sourceTree = "<group>"; };
 		18FBD51318B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UzysRadialProgressActivityIndicator.m; sourceTree = "<group>"; };
+		18FBD51718B3975900F87E7C /* uzys.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = uzys.bundle; sourceTree = "<group>"; };
 		3101B6D417BD1A28008E8C16 /* ImageIO.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ImageIO.framework; path = System/Library/Frameworks/ImageIO.framework; sourceTree = SDKROOT; };
 		3101B6D617BD1A7E008E8C16 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		311418A517A3628D0035D33E /* iJoke.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iJoke.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -3276,6 +3278,7 @@
 		18FBD50E18B11ACB00F87E7C /* UzysRadialProgressActivityIndicator */ = {
 			isa = PBXGroup;
 			children = (
+				18FBD51718B3975900F87E7C /* uzys.bundle */,
 				18FBD50F18B11ACB00F87E7C /* centerIcon@2x.png */,
 				18FBD51018B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.h */,
 				18FBD51118B11ACB00F87E7C /* UIScrollView+UzysCircularProgressPullToRefresh.m */,
@@ -3496,6 +3499,7 @@
 				1868FDE2185B1F4700897344 /* UMSCommentInputController.xib in Resources */,
 				1868FD84185B1F4600897344 /* square_horizontal_separator@2x.png in Resources */,
 				1868FDC6185B1F4600897344 /* item_ok_selected@2x.png in Resources */,
+				18FBD51818B3975900F87E7C /* uzys.bundle in Resources */,
 				1868FD83185B1F4600897344 /* square_card_pressed@2x.png in Resources */,
 				1868FCF7185B1F4600897344 /* Prefix.pch.save in Resources */,
 				1868FDE9185B1F4700897344 /* UMSocialSDKResourcesNew.bundle in Resources */,

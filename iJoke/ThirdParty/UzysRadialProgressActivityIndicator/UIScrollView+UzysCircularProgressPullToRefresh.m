@@ -38,6 +38,11 @@ static char UIScrollViewPullToRefreshView;
 {
     [self.pullToRefreshView stopIndicatorAnimation];
 }
+
+- (void)setRefreshTime:(NSDate *)date{
+    [self.pullToRefreshView setRefreshTime:date];
+    
+}
 #pragma mark - property
 - (void)setPullToRefreshView:(UzysRadialProgressActivityIndicator *)pullToRefreshView
 {

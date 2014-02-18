@@ -26,6 +26,7 @@
 - (void)viewWillAppear{
     [super viewWillAppear];
     [MobClick beginLogPageView:kUmeng_NewVideoPage];
+    [self.tableView setRefreshTime:[FTSUserCenter objectValueForKey:kDftNewVideoSaveTime]];
 }
 
 - (void)viewWillDisappear{
@@ -50,10 +51,13 @@
         self.hasMore = YES;
     }
     
-    CGFloat lastUploadTs = [FTSUserCenter floatValueForKey:kDftNewVideoSaveTime];
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
+    NSDate *lastUploadTs = [FTSUserCenter objectValueForKey:kDftNewVideoSaveTime];
     
-    if (fNow - lastUploadTs > kRefreshNewVideoIntervalS) {
+    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
+    CGFloat flast = [lastUploadTs timeIntervalSinceReferenceDate];
+
+    
+    if (fNow -flast> kRefreshNewVideoIntervalS) {
         return TRUE;
     }
     
@@ -144,8 +148,8 @@
     self.hasMore = YES;
     
     [[FTSDataMgr sharedInstance] saveNewVideoArray:self.dataArray]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:kDftNewVideoSaveTime];
+    [FTSUserCenter setObjectValue:[NSDate date] forKey:kDftNewVideoSaveTime];
+    [self.tableView setRefreshTime:[NSDate date]];
     
     if (msg.freshSize == 0) {
         
@@ -219,8 +223,6 @@
     //    }
     
     [[FTSDataMgr sharedInstance] saveNewVideoArray:self.dataArray]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:kDftNewVideoSaveTime];
     
     
 }

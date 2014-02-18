@@ -109,7 +109,9 @@
     _hasMore = YES;
     [super viewWillAppear:animated];
     [MobClick beginLogPageView:kUmeng_user_collect_check];
-    
+    if (_user == nil && _login ) {
+        [self.tableView setRefreshTime:[FTSUserCenter objectValueForKey:kDftCollectMessageSaveTimeId]];
+    }
 }
 
 
@@ -138,9 +140,10 @@
             return;
         }else{
             
-            CGFloat lastUploadTs = [FTSUserCenter floatValueForKey:kDftCollectMessageSaveTimeId];
+            NSDate *lastUploadTs = [FTSUserCenter objectValueForKey:kDftCollectMessageSaveTimeId];
             const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-            if (fNow - lastUploadTs > kRefreshCollectMessageIntervalS) {
+            CGFloat flast = [lastUploadTs timeIntervalSinceReferenceDate];
+            if (fNow - flast > kRefreshCollectMessageIntervalS) {
                 [self loadNetworkDataMore:NO];
             }else{
                 self.dataArray = [FTSDataMgr sharedInstance].collectArray;
@@ -546,8 +549,8 @@
     if (_user == nil) {
         
         [[FTSDataMgr sharedInstance] saveCollectMessageArray:self.dataArray];
-        float currett = (float)[NSDate timeIntervalSinceReferenceDate];
-        [FTSUserCenter setFloatVaule:currett forKey:kDftCollectMessageSaveTimeId];
+        [FTSUserCenter setObjectValue:[NSDate date] forKey:kDftCollectMessageSaveTimeId];
+        [self.tableView setRefreshTime:[NSDate date]];
     }
     
 }

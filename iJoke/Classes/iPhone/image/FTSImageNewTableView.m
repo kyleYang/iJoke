@@ -26,6 +26,9 @@
 - (void)viewWillAppear{
     [super viewWillAppear];
     [MobClick beginLogPageView:kUmeng_newImagepage];
+    
+    [self.tableView setRefreshTime:[FTSUserCenter objectValueForKey:kDftNewImageSaveTime]];
+    
 }
 
 - (void)viewWillDisappear{
@@ -44,10 +47,10 @@
     }
    
     
-    CGFloat lastUploadTs = [FTSUserCenter floatValueForKey:kDftNewImageSaveTime];
+    NSDate *lastUploadTs = [FTSUserCenter objectValueForKey:kDftNewImageSaveTime];
     const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    
-    if (fNow - lastUploadTs > kRefreshNewImageIntervalS) {
+    CGFloat flast = [lastUploadTs timeIntervalSinceReferenceDate];
+    if (fNow - flast > kRefreshNewImageIntervalS) {
         return TRUE;
     }
     
@@ -136,8 +139,9 @@
     self.hasMore = YES;
     
     [[FTSDataMgr sharedInstance] saveNewImageArray:self.dataArray]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:kDftNewImageSaveTime];
+   
+    [FTSUserCenter setObjectValue:[NSDate date] forKey:kDftNewImageSaveTime];
+    [self.tableView setRefreshTime:[NSDate date]];
     
     if (msg.freshSize == 0) {
         
@@ -207,8 +211,7 @@
     }
     
     [[FTSDataMgr sharedInstance] saveNewImageArray:self.dataArray]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:kDftNewImageSaveTime];
+
     
 }
 

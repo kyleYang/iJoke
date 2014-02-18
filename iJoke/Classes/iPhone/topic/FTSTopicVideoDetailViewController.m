@@ -112,8 +112,8 @@
     [_tableView addPullToRefreshActionHandler:^{
         [weakSelf dataFresh:nil];
     }];
-
-
+    NSDate *lastUploadTs = [FTSUserCenter objectValueForKey:[NSString stringWithFormat:kDftTopicVideoDetailSaveTimeId, _topic.topicId]];
+    [self.tableView setRefreshTime:lastUploadTs];
 }
 
 
@@ -131,11 +131,12 @@
 - (void)loadLocalDataNeedFresh{
     
     
-    CGFloat lastUploadTs = [FTSUserCenter floatValueForKey:[NSString stringWithFormat:kDftTopicVideoDetailSaveTimeId, _topic.topicId]];
+    NSDate *lastUploadTs = [FTSUserCenter objectValueForKey:[NSString stringWithFormat:kDftTopicVideoDetailSaveTimeId, _topic.topicId]];
     const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
+    CGFloat flast = [lastUploadTs timeIntervalSinceReferenceDate];
     
     BOOL reFresh = FALSE;
-    if (fNow - lastUploadTs > kRefreshTopicVideoDetailIntervalS) {
+    if (fNow - flast > kRefreshTopicVideoDetailIntervalS) {
         reFresh =  TRUE;
     }
     
@@ -231,8 +232,8 @@
     self.hasMore = YES;
     
     [[FTSDataMgr sharedInstance] saveTpoicVideoDetailArray:self.dataArray froId:_topic.topicId]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:[NSString stringWithFormat:kDftTopicVideoDetailSaveTimeId, _topic.topicId]];
+    [FTSUserCenter setObjectValue:[NSDate date] forKey:[NSString stringWithFormat:kDftTopicVideoDetailSaveTimeId, _topic.topicId]];
+    [self.tableView setRefreshTime:[NSDate date]];
     
     if (msg.freshSize == 0) {
         
@@ -303,9 +304,6 @@
     //    }
     
     [[FTSDataMgr sharedInstance] saveTpoicVideoDetailArray:self.dataArray froId:_topic.topicId]; //save data use xml
-    const float fNow = (float)[NSDate timeIntervalSinceReferenceDate];
-    [FTSUserCenter setFloatVaule:fNow forKey:[NSString stringWithFormat:kDftTopicVideoDetailSaveTimeId, _topic.topicId]];
-    
     
 }
 

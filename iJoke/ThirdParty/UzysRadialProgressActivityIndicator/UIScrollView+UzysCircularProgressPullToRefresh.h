@@ -16,4 +16,6 @@
 - (void)addPullToRefreshActionHandler:(actionHandler)handler;
 - (void)triggerPullToRefresh;
 - (void)stopRefreshAnimation;
+
+- (void)setRefreshTime:(NSDate *)date;
 @end
