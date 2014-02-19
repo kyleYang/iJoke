@@ -16,6 +16,7 @@
 #import "MBProgressHUD.h"
 #import "Downloader.h"
 #import "HMPopMsgView.h"
+#import "FTSAppDelegate.h"
 
 @interface FTSTopicDetailBaseViewController : FTSBaseViewController{
     
@@ -30,6 +31,8 @@
 - (void)loadLocalDataNeedFresh;
 - (void)reloadData;
 - (void)dataFresh:(id)sender;
+
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
 
 @property (nonatomic, assign) BOOL hasMore;
 @property (nonatomic, strong) NSArray *dataArray;

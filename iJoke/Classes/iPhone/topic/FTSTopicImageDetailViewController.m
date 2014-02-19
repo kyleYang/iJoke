@@ -196,6 +196,7 @@
         cell = (FTSTopicImageDetailCell *)[scrollView dequeueCellWithIdentifier:celleIdentifier];
         if (!cell) {
             cell = [[FTSTopicImageDetailCell alloc] initWithFrame:frame withIdentifier:celleIdentifier withController:self];
+            cell.managedObjectContext = self.managedObjectContext;
         }
         
         cell.image = [_dataArray objectAtIndex:index];

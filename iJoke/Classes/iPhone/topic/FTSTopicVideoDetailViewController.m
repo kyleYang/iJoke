@@ -439,6 +439,7 @@
     
     FTSMoviePlayerViewController *playViewController = [[FTSMoviePlayerViewController alloc] initWithVideo:info videoArray:videoArray];
     playViewController.delegate = self;
+    playViewController.managedObjectContext = self.managedObjectContext;
 //    [self.flipboardNavigationController presentViewController:playViewController animated:YES completion:^{}];
     [self.flipboardNavigationController pushViewController:playViewController];
 }
@@ -482,6 +483,7 @@
         
         
         FTSMoviePlayerViewController *playViewController = [[FTSMoviePlayerViewController alloc] initWithVideo:info videoArray:videoArray];
+        playViewController.managedObjectContext = self.managedObjectContext;
         playViewController.delegate = self;
         //    [self.flipboardNavigationController presentViewController:playViewController animated:YES completion:^{}];
         [self.flipboardNavigationController pushViewController:playViewController];

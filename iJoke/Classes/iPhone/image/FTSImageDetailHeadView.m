@@ -404,7 +404,7 @@
         return ;
     }
     
-    if (_delegate && [_delegate respondsToSelector:@selector(wordsDetailUpHeadView:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(imageDetailUpHeadView:)]) {
         BqsLog(@"FTSImageDetailHeadView up ");
         [_delegate imageDetailUpHeadView:self];
     }
@@ -433,7 +433,7 @@
             } completion:^(BOOL finished){
                 self.addImg.alpha = 0.0f;
                 [self.upBtn calculateWidth:[NSString stringWithFormat:@"%d",_image.up]];
-                
+                [self refreshRecordState];
             }];
             
         }];

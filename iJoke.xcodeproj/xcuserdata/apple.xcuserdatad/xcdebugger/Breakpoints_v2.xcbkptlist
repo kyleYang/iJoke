@@ -218,11 +218,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/image/FTSImageDetailCell.m"
-            timestampString = "414124583.497852"
+            timestampString = "414519459.944159"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "249"
-            endingLineNumber = "249"
+            startingLineNumber = "246"
+            endingLineNumber = "246"
             landmarkName = "-onLoadCommitListFinished:"
             landmarkType = "5">
          </BreakpointContent>
@@ -712,11 +712,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicDetailBaseViewController.m"
-            timestampString = "407521765.836571"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "84"
+            endingLineNumber = "84"
             landmarkName = "-viewWillAppear:"
             landmarkType = "5">
          </BreakpointContent>
@@ -728,11 +728,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailCell.m"
-            timestampString = "408820852.644319"
+            timestampString = "414519842.376818"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "39"
-            endingLineNumber = "39"
+            startingLineNumber = "46"
+            endingLineNumber = "46"
             landmarkName = "-initWithFrame:withIdentifier:withController:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1404,11 +1404,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "206"
-            endingLineNumber = "206"
+            startingLineNumber = "207"
+            endingLineNumber = "207"
             landmarkName = "-cellViewForScrollView:frame:AtIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1436,11 +1436,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "441"
-            endingLineNumber = "441"
+            startingLineNumber = "442"
+            endingLineNumber = "442"
             landmarkName = "-onLoadRefreshFinished:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1452,11 +1452,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "498"
-            endingLineNumber = "498"
+            startingLineNumber = "499"
+            endingLineNumber = "499"
             landmarkName = "-onLoadNextDataFinished:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1484,11 +1484,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "481"
-            endingLineNumber = "481"
+            startingLineNumber = "482"
+            endingLineNumber = "482"
             landmarkName = "-onLoadRefreshFinished:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1531,22 +1531,6 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailCell.m"
-            timestampString = "408820852.644319"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "-setImage:"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicViewCell.m"
             timestampString = "408817104.23042"
             startingColumnNumber = "9223372036854775807"
@@ -1576,15 +1560,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "364"
-            endingLineNumber = "364"
+            startingLineNumber = "365"
+            endingLineNumber = "365"
             landmarkName = "-imagePopController:curIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1592,15 +1576,15 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "376"
-            endingLineNumber = "376"
+            startingLineNumber = "377"
+            endingLineNumber = "377"
             landmarkName = "-imagePopControllerDidTap:currentIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1612,11 +1596,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSTopicImageDetailViewController.m"
-            timestampString = "409078317.40396"
+            timestampString = "414519114.180576"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "425"
-            endingLineNumber = "425"
+            startingLineNumber = "426"
+            endingLineNumber = "426"
             landmarkName = "-HMImagePopManager:loadIndex:"
             landmarkType = "5">
          </BreakpointContent>
@@ -1672,7 +1656,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSCommentImageViewController.m"
@@ -1704,7 +1688,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/topic/FTSCommentImageViewController.m"
@@ -1833,7 +1817,7 @@
                   symbolName = "jk_parse_string"
                   moduleName = "iJoke"
                   urlString = "file:///Users/apple/offwork/iJoke/iJoke/CommonLib/Classes/util/JSONKit/JSONKit.m"
-                  timestampString = "414434963.750438"
+                  timestampString = "414520369.117986"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1466"
@@ -1847,7 +1831,7 @@
                   symbolName = "jk_parse_string"
                   moduleName = "iJoke"
                   urlString = "file:///Users/apple/offwork/iJoke/iJoke/CommonLib/Classes/util/JSONKit/JSONKit.m"
-                  timestampString = "414434966.920798"
+                  timestampString = "414520372.159498"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
                   startingLineNumber = "1466"
@@ -2258,7 +2242,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/ThirdParty/UzysRadialProgressActivityIndicator/UzysRadialProgressActivityIndicator.m"
@@ -2268,6 +2252,38 @@
             startingLineNumber = "278"
             endingLineNumber = "278"
             landmarkName = "-scrollViewDidScroll:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iJoke/Classes/iPhone/image/FTSImageDetailCell.m"
+            timestampString = "414519231.682986"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "137"
+            endingLineNumber = "137"
+            landmarkName = "-imageDetailUpHeadView:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iJoke/Classes/iPhone/image/FTSImageDetailHeadView.m"
+            timestampString = "414519252.161509"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "401"
+            endingLineNumber = "401"
+            landmarkName = "-upDetail:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

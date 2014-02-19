@@ -11,6 +11,13 @@
 #import "FTSEmptyCell.h"
 #import "FTSUIOps.h"
 #import "FTSUserInfoViewController.h"
+#import "FTSNetwork.h"
+#import "FTSDatabaseMgr.h"
+#import "FTSUserCenter.h"
+#import "FTSDataMgr.h"
+#import "HMPopMsgView.h"
+#import "Msg.h"
+#import "UMSocial.h"
 
 #define kMtoolBarHeigh 44
 
@@ -157,16 +164,120 @@
 
 #pragma mark
 #pragma mark Button method
-- (void)imageDetailHeadViewImageTouch:(FTSImageDetailHeadView *)cell atIndex:(NSUInteger)index{
+
+- (FTSRecord *)imageRecordForeImageDetailHeadViewImage:(Image *)image{
+    return [FTSDatabaseMgr judgeRecordImage:image managedObjectContext:self.managedObjectContext];
+}
+
+- (void)imageDetailHeadViewImageTouch:(FTSImageDetailHeadView *)cell atIndex:(NSUInteger)index
+{
     
-    if (_delegate && [_delegate respondsToSelector:@selector(topicImageDetailCell:popHeadView:atIndex:)]) {
+    if (_delegate && [_delegate respondsToSelector:@selector(topicImageDetailCell:popHeadView:atIndex:)])
+    {
         
         [_delegate topicImageDetailCell:self popHeadView:cell atIndex:index];
     }
     
 }
 
+- (void)imageDetailHeadViewUserInfo:(FTSImageDetailHeadView *)cell{
+    
+    if (_image.user == nil) {
+        BqsLog(@"wordsDetailHeadViewUserInfo word.user == nil");
+        return;
+    }
+    
+    FTSUserInfoViewController *infoViewController = [[FTSUserInfoViewController alloc] initWithUser:_image.user];
+    [FTSUIOps flipNavigationController:self.parCtl.flipboardNavigationController pushNavigationWithController:infoViewController];
+    
+}
 
+
+
+- (void)imageDetailUpHeadView:(FTSImageDetailHeadView *)cell
+{
+    [FTSNetwork dingCaiWordsDownloader:self.downloader Target:self Sel:@selector(upWordsCB:) Attached:nil artId:_image.imageId type:ImageSectionType upDown:1];
+    [FTSDatabaseMgr jokeAddRecordImage:_image upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
+    
+}
+
+- (void)imageDetailFavoriteHeadView:(FTSImageDetailHeadView *)cell addType:(BOOL)value{//vale: true for add and false for del favorite
+    
+    BOOL login  = [FTSUserCenter BoolValueForKey:kDftUserLogin];
+    if (!login) { //save local
+        
+        if (value) {
+            if([[FTSDataMgr sharedInstance] addOneJokeSave:_image]){
+                [FTSDatabaseMgr jokeAddRecordImage:_image favorite:TRUE managedObjectContext:self.managedObjectContext];
+                [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.add.success", nil)];
+                [cell refreshRecordState];
+                return;
+            }
+        }else{
+            
+            if([[FTSDataMgr sharedInstance] removeOneJoke:_image]){
+                [FTSDatabaseMgr jokeAddRecordImage:_image favorite:FALSE managedObjectContext:self.managedObjectContext];
+                [HMPopMsgView showPopMsg:NSLocalizedString(@"jole.useraction.collect.local.del.success", nil)];
+                [cell refreshRecordState];
+                return;
+                
+            }
+        }
+        
+    }else{
+        
+        if (value) {
+            [FTSNetwork addFavoriteDownloader:self.downloader Target:self Sel:@selector(addFavCB:) Attached:nil artId:_image.imageId type:ImageSectionType];
+            
+        }else{
+            [FTSNetwork delFavoriteDownloader:self.downloader Target:self Sel:@selector(delFavCB:) Attached:nil artId:_image.imageId type:ImageSectionType];
+        }
+    }
+    
+    
+}
+
+
+- (void)imageDetailShareHeadView:(FTSImageDetailHeadView *)cell{
+    
+    if ([_image.imageArray count] == 0) {
+        BqsLog(@"[_image.imageArray count] == 0");
+        return;
+    }
+    
+    Picture *picture = [_image.imageArray objectAtIndex:0];
+    
+    NSString *title = picture.content;
+    
+    UIImage *sharImage = nil;
+    if ([cell.imageViews count] != 0) {
+        
+        JKImageCellImageView *cellImage = [cell.imageViews objectAtIndex:0];
+        sharImage = cellImage.imageView.image;
+    }
+    
+    [UMSocialSnsService presentSnsIconSheetView:self.parCtl
+                                         appKey:nil
+                                      shareText:title
+                                     shareImage:sharImage
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToWechatSession,nil]
+                                       delegate:(id<UMSocialUIDelegate>)self];
+    
+    
+}
+
+
+#pragma mark
+#pragma mark UMSocialUIDelegate
+
+-(void)didFinishGetUMSocialDataInViewController:(UMSocialResponseEntity *)response{
+    
+    if (response.responseCode == UMSResponseCodeSuccess) {
+        
+        [FTSNetwork shareCountDownloader:self.downloader Target:self Sel:@selector(shareCountCB:) Attached:nil artId:_image.imageId type:ImageSectionType];
+    }
+    
+}
 
 
 
@@ -184,6 +295,59 @@
 - (void)dataFresh{
     
 }
+
+
+#pragma mark
+#pragma mark networking callback
+
+- (void)addFavCB:(DownloaderCallbackObj *)cb{
+    
+    if(nil == cb) return;
+    
+    if(nil != cb.error || 200 != cb.httpStatus) {
+		BqsLog(@"Error: len:%d, http%d, %@", [cb.rspData length], cb.httpStatus, cb.error);
+        [HMPopMsgView showPopError:cb.error];
+        return;
+	}
+    
+    Msg *msg = [Msg parseJsonData:cb.rspData];
+    if (!msg.code) {
+        [HMPopMsgView showPopMsg:msg.msg];
+        return;
+    }
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
+    [FTSDatabaseMgr jokeAddRecordImage:_image favorite:TRUE managedObjectContext:self.managedObjectContext];
+    
+    
+    [self.headView refreshRecordState];
+    
+    
+}
+
+- (void)delFavCB:(DownloaderCallbackObj *)cb{
+    
+    
+    if(nil == cb) return;
+    
+    if(nil != cb.error || 200 != cb.httpStatus) {
+		BqsLog(@"Error: len:%d, http%d, %@", [cb.rspData length], cb.httpStatus, cb.error);
+        [HMPopMsgView showPopError:cb.error];
+        return;
+	}
+    
+    Msg *msg = [Msg parseJsonData:cb.rspData];
+    if (!msg.code) {
+        [HMPopMsgView showPopMsg:msg.msg];
+        return;
+    }
+    [HMPopMsgView showPopMsg:NSLocalizedString(@"joke.useraction.collect.del.success", nil)];
+    [FTSDatabaseMgr jokeAddRecordImage:_image favorite:FALSE managedObjectContext:self.managedObjectContext];
+    
+    [self.headView refreshRecordState];
+    
+    
+}
+
 
 
 

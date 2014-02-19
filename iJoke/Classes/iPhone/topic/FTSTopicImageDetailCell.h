@@ -23,6 +23,8 @@
     id<TopicImageDetailCellDelegate> __weak_delegate _delegate;
 }
 
+@property (nonatomic, strong) NSManagedObjectContext *managedObjectContext;
+
 @property (nonatomic, weak_delegate) id<TopicImageDetailCellDelegate> delegate;
 @property (nonatomic, strong) Image *image;
 @property (nonatomic, strong, readonly) FTSImageDetailHeadView *headView;

@@ -139,9 +139,6 @@
     [FTSDatabaseMgr jokeAddRecordImage:_image upType:iJokeUpDownUp managedObjectContext:self.managedObjectContext];
     
     
-//    [self.headView refreshRecordState];
-    
-    
     
 }
 - (void)imageDetailDownHeadView:(FTSImageDetailHeadView *)cell{
@@ -151,7 +148,7 @@
     
 }
 
-- (void)wordsDetailFavoriteHeadView:(FTSImageDetailHeadView *)cell addType:(BOOL)value{//vale: true for add and false for del favorite
+- (void)imageDetailFavoriteHeadView:(FTSImageDetailHeadView *)cell addType:(BOOL)value{//vale: true for add and false for del favorite
     
     BOOL login  = [FTSUserCenter BoolValueForKey:kDftUserLogin];
     if (!login) { //save local

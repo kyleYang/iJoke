@@ -68,6 +68,7 @@
     
     self.navigationItem.leftBarButtonItem = [CustomUIBarButtonItem initWithImage:revealLeftImagePortrait eventImg:revealLeftImageLandscape title:nil target:self action:@selector(backSuper:)];
     
+    self.managedObjectContext = ((FTSAppDelegate *)[UIApplication sharedApplication].delegate).managedObjectContext;
     
     self.downloader = [[Downloader alloc] init];
     self.downloader.bSearialLoad = YES;
