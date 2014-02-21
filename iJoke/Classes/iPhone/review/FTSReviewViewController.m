@@ -170,6 +170,8 @@
 - (void)viewDidDisappear:(BOOL)animated{
     [self.downloader cancelAll];
     _nTaskId = -1;
+    _dataArray = nil;
+    self.tempArray = nil;
     [super viewDidDisappear:animated];
     
 }

@@ -7,6 +7,7 @@
 //
 
 #import "FTSNetwork.h"
+#import "FTSUserCenter.h"
 
 //newword
 #define kSENewWordsFreshList @"newwordsfrsh"
@@ -170,6 +171,7 @@
     NSString *url = [env getSEKey:kSENewImageFreshList Def:kSEDefNewImageFreshURL];
     
     url = [BqsUtils setURL:url ParameterName:@"id" Value:[NSString stringWithFormat:@"%d",imageId]];
+    url = [BqsUtils setURL:url ParameterName:@"noWifi" Value:[NSString stringWithFormat:@"%d",[FTSUserCenter BoolValueForKey:kDftNetTypeWifi]]];
     return [dl addTask:url Target:target Callback:action Attached:att];
 }
 
@@ -314,6 +316,7 @@
     
     url = [BqsUtils setURL:url ParameterName:@"id" Value:[NSString stringWithFormat:@"%d",imageId]];
     url = [BqsUtils setURL:url ParameterName:@"topicId" Value:[NSString stringWithFormat:@"%d",topicId]];
+    url = [BqsUtils setURL:url ParameterName:@"noWifi" Value:[NSString stringWithFormat:@"%d",[FTSUserCenter BoolValueForKey:kDftNetTypeWifi]]];
     return [dl addTask:url Target:target Callback:action Attached:att];
 }
 

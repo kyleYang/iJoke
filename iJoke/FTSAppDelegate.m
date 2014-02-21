@@ -284,7 +284,7 @@
 - (void)customizeTabBarForController:(RDVTabBarController *)tabBarController {
     UIImage *finishedImage = [UIImage imageNamed:@"tabbar_selected_background"];
     UIImage *unfinishedImage = [UIImage imageNamed:@"tabbar_normal_background"];
-    NSArray *tabBarItemImages = @[@"first", @"second", @"third",@"first", @"second"];
+    NSArray *tabBarItemImages = @[@"cate_image", @"cate_text", @"cate_video",@"cate_topic", @"cate_verify"];
     
 //  @[NSLocalizedString(@"joke.category.image", nil), NSLocalizedString(@"joke.category.text", nil), NSLocalizedString(@"joke.category.video", nil),NSLocalizedString(@"joke.category.topic", nil),NSLocalizedString(@"joke.category.verify", nil)];
     
@@ -297,7 +297,7 @@
     NSInteger index = 0;
     for (RDVTabBarItem *item in [[tabBarController tabBar] items]) {
         [item setBackgroundSelectedImage:finishedImage withUnselectedImage:unfinishedImage];
-        UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_selected",
+        UIImage *selectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_press",
                                                       [tabBarItemImages objectAtIndex:index]]];
         UIImage *unselectedimage = [UIImage imageNamed:[NSString stringWithFormat:@"%@_normal",
                                                         [tabBarItemImages objectAtIndex:index]]];
