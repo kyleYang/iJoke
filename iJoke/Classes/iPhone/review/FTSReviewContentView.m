@@ -281,7 +281,7 @@
     }else{
         self.userControl.hidden = FALSE;
         self.headBackground.hidden = FALSE;
-        self.userControl.user = _image.user;
+        self.userControl.user = _words.user;
         height += CGRectGetHeight(self.userControl.frame);
     }
     

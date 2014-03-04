@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ05FA957C</string>
+				<string>QQ101030850</string>
 			</array>
 		</dict>
 		<dict>
@@ -53,7 +53,15 @@
 			<string>weixin</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>wxd9a39c7122aa6516</string>
+				<string>wxf5ed7a6e42222c9e</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleURLName</key>
+			<string>com.3speed.iJoke</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>jokespeed</string>
 			</array>
 		</dict>
 	</array>

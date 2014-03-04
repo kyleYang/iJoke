@@ -103,13 +103,12 @@
     _shareRow = indexPath.row;
     
     Words *info = [self.dataArray objectAtIndex:indexPath.row];
-    
-    
+        
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
-                                         appKey:nil
+                                         appKey:[Env sharedEnv].umengId
                                       shareText:info.content
                                      shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToQzone,UMShareToTencent,UMShareToWechatSession,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
                                        delegate:(id<UMSocialUIDelegate>)self];
 }
 

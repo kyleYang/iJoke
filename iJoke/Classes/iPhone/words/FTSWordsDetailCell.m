@@ -177,11 +177,12 @@
 - (void)wordsDetailShareHeadView:(FTSWordsDetailHeadView *)cell{
     
     
+    
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
-                                         appKey:nil
+                                         appKey:[Env sharedEnv].umengId
                                       shareText:_words.content
                                      shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToQzone,UMShareToTencent,UMShareToWechatSession,UMShareToQQ,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
                                        delegate:(id<UMSocialUIDelegate>)self];
     
     

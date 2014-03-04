@@ -92,7 +92,7 @@
         [self.commitBtn addTarget:self action:@selector(commitDetail:) forControlEvents:UIControlEventTouchUpInside];
         [self.touchView addSubview:self.commitBtn];
         
-        self.userControl = [[FTSCellUserControl alloc] initWithFrame:CGRectMake(2, kUserOffY, CGRectGetWidth(self.touchView.frame)-CGRectGetWidth(self.commitBtn.frame)-80, kUserHeight)];
+        self.userControl = [[FTSCellUserControl alloc] initWithFrame:CGRectMake(2, kUserOffY, CGRectGetWidth(self.touchView.frame)-CGRectGetWidth(self.commitBtn.frame)-70, kUserHeight)];
         [self.userControl addTarget:self action:@selector(userInfoTouch:) forControlEvents:UIControlEventTouchUpInside];
         [self.headBackground addSubview:self.userControl];
         

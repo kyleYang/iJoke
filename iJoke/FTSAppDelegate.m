@@ -12,7 +12,9 @@
 #import "MobClick.h"
 #import "UMFeedback.h"
 #import "UMSocial.h"
-#import "WXApi.h"
+#import "UMSocialWechatHandler.h"
+#import <TencentOpenAPI/QQApiInterface.h>       //手机QQ SDK
+#import <TencentOpenAPI/TencentOAuth.h>
 #import "FTSUserCenter.h"
 #import "Video.h"
 #import "HTTPServer.h"
@@ -106,11 +108,11 @@
     
     //设置友盟appkey
     
-    [UMSocialConfig setWXAppId:@"wxd9a39c7122aa6516" url:nil];
+    [UMSocialWechatHandler setWXAppId:@"wxf5ed7a6e42222c9e" url:@"https://itunes.apple.com/cn/app/id789302425"];
     //打开Qzone的SSO开关
     [UMSocialConfig setSupportQzoneSSO:YES importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     //设置手机QQ的AppId，url传nil，将使用友盟的网址
-    [UMSocialConfig setQQAppId:@"100424468" url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
+    [UMSocialConfig setQQAppId:@"101030850" url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     //打开新浪微博的SSO开关
     [UMSocialConfig setSupportSinaSSO:YES];
 

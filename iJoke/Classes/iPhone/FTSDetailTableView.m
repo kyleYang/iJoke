@@ -79,6 +79,7 @@
 - (void)viewWillAppear{
     [super viewWillAppear];
     _hasMore = YES;
+    [self.tableView stopRefreshAnimation];
     
     if(DeviceSystemMajorVersion() >=7){ //use for ios7 with layout full screen
         self.tableView.contentInset = UIEdgeInsetsMake(64, 0, 0, 0);

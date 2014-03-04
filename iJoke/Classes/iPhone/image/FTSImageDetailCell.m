@@ -202,11 +202,12 @@
         sharImage = cellImage.imageView.image;
     }
     
+    
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
-                                         appKey:nil
+                                         appKey:[Env sharedEnv].umengId
                                       shareText:title
                                      shareImage:sharImage
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToWechatSession,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
                                        delegate:(id<UMSocialUIDelegate>)self];
     
     

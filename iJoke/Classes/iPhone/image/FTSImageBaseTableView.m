@@ -121,10 +121,10 @@
     JKImageCellImageView *imageView = [cell.imageViews objectAtIndex:0];
     
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
-                                         appKey:nil
+                                         appKey:[Env sharedEnv].umengId
                                       shareText:piture.content
                                      shareImage:imageView.imageView.image
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToSina,UMShareToWechatTimeline,UMShareToTencent,UMShareToQzone,UMShareToWechatSession,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
                                        delegate:(id<UMSocialUIDelegate>)self];
     
     
