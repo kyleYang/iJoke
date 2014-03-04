@@ -103,7 +103,8 @@
     _shareRow = indexPath.row;
     
     Words *info = [self.dataArray objectAtIndex:indexPath.row];
-        
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeText;
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeDefault;
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
                                          appKey:[Env sharedEnv].umengId
                                       shareText:info.content

@@ -202,7 +202,9 @@
         sharImage = cellImage.imageView.image;
     }
     
-    
+    [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.title = title;
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
                                          appKey:[Env sharedEnv].umengId
                                       shareText:title

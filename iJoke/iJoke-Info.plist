@@ -35,7 +35,7 @@
 			<string></string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>sina.507fcab25270157b37000010</string>
+				<string>sina.5297506656240b0cf0020ae3</string>
 			</array>
 		</dict>
 		<dict>
@@ -43,7 +43,7 @@
 			<string>Editor</string>
 			<key>CFBundleURLSchemes</key>
 			<array>
-				<string>QQ101030850</string>
+				<string>QQ06059BC2</string>
 			</array>
 		</dict>
 		<dict>
@@ -62,6 +62,14 @@
 			<key>CFBundleURLSchemes</key>
 			<array>
 				<string>jokespeed</string>
+			</array>
+		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>tencent101030850</string>
 			</array>
 		</dict>
 	</array>

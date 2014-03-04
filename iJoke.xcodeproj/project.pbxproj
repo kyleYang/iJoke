@@ -297,8 +297,6 @@
 		1868FD4C185B1F4600897344 /* TextRender.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868FA79185B1F4500897344 /* TextRender.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1868FD4D185B1F4600897344 /* XmlParser.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868FA7E185B1F4500897344 /* XmlParser.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1868FD4E185B1F4600897344 /* XmlWriter.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868FA80185B1F4500897344 /* XmlWriter.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1868FD4F185B1F4600897344 /* ZipArchive.mm in Sources */ = {isa = PBXBuildFile; fileRef = 1868FA82185B1F4500897344 /* ZipArchive.mm */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
-		1868FD50185B1F4600897344 /* ZipArchivePkgFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 1868FA84185B1F4500897344 /* ZipArchivePkgFile.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		1868FD51185B1F4600897344 /* commonlib.strings in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA86185B1F4500897344 /* commonlib.strings */; };
 		1868FD52185B1F4600897344 /* ErrViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA88185B1F4500897344 /* ErrViewController.xib */; };
 		1868FD53185B1F4600897344 /* ErrViewController-iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1868FA8A185B1F4500897344 /* ErrViewController-iPad.xib */; };
@@ -1106,10 +1104,6 @@
 		1868FA7E185B1F4500897344 /* XmlParser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlParser.m; sourceTree = "<group>"; };
 		1868FA7F185B1F4500897344 /* XmlWriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XmlWriter.h; sourceTree = "<group>"; };
 		1868FA80185B1F4500897344 /* XmlWriter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XmlWriter.m; sourceTree = "<group>"; };
-		1868FA81185B1F4500897344 /* ZipArchive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchive.h; sourceTree = "<group>"; };
-		1868FA82185B1F4500897344 /* ZipArchive.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ZipArchive.mm; sourceTree = "<group>"; };
-		1868FA83185B1F4500897344 /* ZipArchivePkgFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ZipArchivePkgFile.h; sourceTree = "<group>"; };
-		1868FA84185B1F4500897344 /* ZipArchivePkgFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ZipArchivePkgFile.m; sourceTree = "<group>"; };
 		1868FA87185B1F4500897344 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/commonlib.strings; sourceTree = "<group>"; };
 		1868FA88185B1F4500897344 /* ErrViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ErrViewController.xib; sourceTree = "<group>"; };
 		1868FA8A185B1F4500897344 /* ErrViewController-iPad.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = "ErrViewController-iPad.xib"; sourceTree = "<group>"; };
@@ -2499,10 +2493,6 @@
 				1868FA7E185B1F4500897344 /* XmlParser.m */,
 				1868FA7F185B1F4500897344 /* XmlWriter.h */,
 				1868FA80185B1F4500897344 /* XmlWriter.m */,
-				1868FA81185B1F4500897344 /* ZipArchive.h */,
-				1868FA82185B1F4500897344 /* ZipArchive.mm */,
-				1868FA83185B1F4500897344 /* ZipArchivePkgFile.h */,
-				1868FA84185B1F4500897344 /* ZipArchivePkgFile.m */,
 			);
 			path = util;
 			sourceTree = "<group>";
@@ -3666,7 +3656,6 @@
 				1868FD30185B1F4600897344 /* BqsAttachedInfoItem.m in Sources */,
 				1868FDEC185B1F4700897344 /* ASIDataCompressor.m in Sources */,
 				1868FC97185B1F4600897344 /* FTSImageDetailCell.m in Sources */,
-				1868FD4F185B1F4600897344 /* ZipArchive.mm in Sources */,
 				1868FE50185B1F4700897344 /* UIImage+Editor.m in Sources */,
 				1868FC69185B1F4600897344 /* HMImagePopManager.m in Sources */,
 				1868FC68185B1F4600897344 /* HMImagePopController.m in Sources */,
@@ -3784,7 +3773,6 @@
 				18FBD51618B11ACB00F87E7C /* UzysRadialProgressActivityIndicator.m in Sources */,
 				1868FD28185B1F4600897344 /* BqsNewsPaperPageLayout.m in Sources */,
 				1868FE20185B1F4700897344 /* WebSocket.m in Sources */,
-				1868FD50185B1F4600897344 /* ZipArchivePkgFile.m in Sources */,
 				1868FD07185B1F4600897344 /* EmptyExtIfc.m in Sources */,
 				1868FCC5185B1F4600897344 /* FTSVideoNewTableView.m in Sources */,
 				1868FE2E185B1F4700897344 /* DDTTYLogger.m in Sources */,
