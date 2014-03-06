@@ -109,11 +109,13 @@
     //设置友盟appkey
     
     [UMSocialWechatHandler setWXAppId:@"wxf5ed7a6e42222c9e" url:@"https://itunes.apple.com/cn/app/id789302425"];
+    
+    [UMSocialConfig setShareQzoneWithQQSDK:YES url:@"https://itunes.apple.com/cn/app/id789302425" importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     //打开Qzone的SSO开关
     [UMSocialConfig setSupportQzoneSSO:YES importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
     //设置手机QQ的AppId，url传nil，将使用友盟的网址
     [UMSocialConfig setQQAppId:@"101030850" url:nil importClasses:@[[QQApiInterface class],[TencentOAuth class]]];
-    //打开新浪微博的SSO开关
+
     [UMSocialConfig setSupportSinaSSO:YES];
 
 }

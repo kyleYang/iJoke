@@ -120,17 +120,17 @@
     
     JKImageCellImageView *imageView = [cell.imageViews objectAtIndex:0];
     [UMSocialData defaultData].extConfig.wxMessageType = UMSocialWXMessageTypeImage;
-     [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
+    [UMSocialData defaultData].extConfig.qqData.qqMessageType = UMSocialQQMessageTypeImage;
     [UMSocialData defaultData].extConfig.qqData.title = piture.content;
     [UMSocialSnsService presentSnsIconSheetView:self.parCtl
                                          appKey:[Env sharedEnv].umengId
                                       shareText:piture.content
                                      shareImage:imageView.imageView.image
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToWechatSession,UMShareToQQ,UMShareToTencent,nil]
                                        delegate:(id<UMSocialUIDelegate>)self];
 
     
-    
+//    [NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
 }
 
 

@@ -1724,11 +1724,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/FTSAppDelegate.m"
-            timestampString = "415583710.094811"
+            timestampString = "415727636.894851"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "572"
-            endingLineNumber = "572"
+            startingLineNumber = "574"
+            endingLineNumber = "574"
             landmarkName = "-reachabilityChanged:"
             landmarkType = "5">
             <Locations>
@@ -1809,6 +1809,36 @@
             endingLineNumber = "1465"
             landmarkName = "jk_parse_string()"
             landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "jk_parse_string"
+                  moduleName = "iJoke"
+                  urlString = "file:///Users/apple/offwork/iJoke/iJoke/CommonLib/Classes/util/JSONKit/JSONKit.m"
+                  timestampString = "415808536.669564"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1466"
+                  endingLineNumber = "1466"
+                  offsetFromSymbolStart = "1170">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "jk_parse_string"
+                  moduleName = "iJoke"
+                  urlString = "file:///Users/apple/offwork/iJoke/iJoke/CommonLib/Classes/util/JSONKit/JSONKit.m"
+                  timestampString = "415808539.61742"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "1466"
+                  endingLineNumber = "1466"
+                  offsetFromSymbolStart = "1182">
+               </Location>
+            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -2308,7 +2338,7 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            shouldBeEnabled = "Yes"
+            shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "iJoke/Classes/iPhone/review/FTSReviewContentView.m"
@@ -2350,6 +2380,70 @@
             startingLineNumber = "382"
             endingLineNumber = "382"
             landmarkName = "-configCellForImage:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iJoke/Classes/iPhone/words/FTSWordsDetailCell.m"
+            timestampString = "415691350.749824"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "196"
+            endingLineNumber = "196"
+            landmarkName = "-didFinishGetUMSocialDataInViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iJoke/Classes/iPhone/words/FTSWordsBaseTableView.m"
+            timestampString = "415691449.857714"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "242"
+            endingLineNumber = "242"
+            landmarkName = "-didFinishGetUMSocialDataInViewController:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iJoke/Classes/iPhone/words/FTSWordsBaseTableView.m"
+            timestampString = "415691468.171743"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "97"
+            endingLineNumber = "97"
+            landmarkName = "-wordsTableCell:shareIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "iJoke/Classes/iPhone/image/FTSImageBaseTableView.m"
+            timestampString = "415727672.81108"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "140"
+            endingLineNumber = "140"
+            landmarkName = "-didFinishGetUMSocialDataInViewController:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

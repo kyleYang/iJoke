@@ -109,7 +109,7 @@
                                          appKey:[Env sharedEnv].umengId
                                       shareText:info.content
                                      shareImage:nil
-                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToQQ,UMShareToTencent,UMShareToWechatSession,nil]
+                                shareToSnsNames:[NSArray arrayWithObjects:UMShareToWechatTimeline,UMShareToQzone,UMShareToSina,UMShareToWechatSession,UMShareToQQ,UMShareToTencent,nil]
                                        delegate:(id<UMSocialUIDelegate>)self];
 }
 
