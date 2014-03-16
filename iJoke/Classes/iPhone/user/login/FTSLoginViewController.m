@@ -140,7 +140,7 @@
     
     
     
-    UIButton *sinaButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(registerButton.frame), CGRectGetMaxY(registerButton.frame)+70,CGRectGetWidth(loginButton.frame)/2-10,CGRectGetHeight(loginButton.frame)+10)];
+    UIButton *sinaButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMinX(registerButton.frame), CGRectGetMaxY(registerButton.frame)+70,CGRectGetWidth(loginButton.frame),CGRectGetHeight(loginButton.frame))];
     sinaButton.backgroundColor = [UIColor clearColor];
     sinaButton.tag = UMSocialSnsTypeSina;
     [sinaButton setTitle:NSLocalizedString(@"joke.login.sina.button", nil) forState:UIControlStateNormal];
@@ -152,16 +152,16 @@
     [sinaButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_normal.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateNormal];
     [self.contentView addSubview:sinaButton];
     
-    UIButton *tencentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(sinaButton.frame)+20, CGRectGetMinY(sinaButton.frame),CGRectGetWidth(sinaButton.frame),CGRectGetHeight(sinaButton.frame))];
-    tencentButton.backgroundColor = [UIColor clearColor];
-    [tencentButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_hilight.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateHighlighted];
-    [tencentButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_normal.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateNormal];
-    tencentButton.tag = UMSocialSnsTypeQzone;
-    [tencentButton setTitle:NSLocalizedString(@"joke.login.qq.button", nil) forState:UIControlStateNormal];
-    [tencentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-    [tencentButton addTarget:self action:@selector(weiboLogin:) forControlEvents:UIControlEventTouchUpInside];
-    tencentButton.selected = NO;
-    [self.contentView addSubview:tencentButton];
+//    UIButton *tencentButton = [[UIButton alloc] initWithFrame:CGRectMake(CGRectGetMaxX(sinaButton.frame)+20, CGRectGetMinY(sinaButton.frame),CGRectGetWidth(sinaButton.frame),CGRectGetHeight(sinaButton.frame))];
+//    tencentButton.backgroundColor = [UIColor clearColor];
+//    [tencentButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_hilight.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateHighlighted];
+//    [tencentButton setBackgroundImage:[[Env sharedEnv] cacheResizableImage:@"login_register_normal.png" WithCapInsets:UIEdgeInsetsMake(5, 5, 5, 5)] forState:UIControlStateNormal];
+//    tencentButton.tag = UMSocialSnsTypeQzone;
+//    [tencentButton setTitle:NSLocalizedString(@"joke.login.qq.button", nil) forState:UIControlStateNormal];
+//    [tencentButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//    [tencentButton addTarget:self action:@selector(weiboLogin:) forControlEvents:UIControlEventTouchUpInside];
+//    tencentButton.selected = NO;
+//    [self.contentView addSubview:tencentButton];
 
     
     self.activityNotice = [[MBProgressHUD alloc] initWithView:self.view];

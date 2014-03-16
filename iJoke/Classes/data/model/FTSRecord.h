@@ -12,10 +12,10 @@
 
 @interface FTSRecord : FTSBaseModel
 
-@property(nonatomic, retain) NSNumber* jokeId;
-@property(nonatomic, retain) NSNumber* favorite;
-@property(nonatomic, retain) NSNumber* jokeType;
-@property(nonatomic, retain) NSNumber* updown;
-@property(nonatomic, retain) NSString* jokeTime;
+@property(nonatomic, strong) NSNumber* jokeId;
+@property(nonatomic, strong) NSNumber* favorite;
+@property(nonatomic, strong) NSNumber* jokeType;
+@property(nonatomic, strong) NSNumber* updown;
+@property(nonatomic, strong) NSString* jokeTime;
 
 @end

@@ -18,20 +18,20 @@
 #define kScreenDownType @"screendowntype"
 
 //words
-#define kDftNewWordsSaveTime @"ijoke.new.words"
-#define kDftHotWordsSaveTime @"iJoke.hot.words"
+#define kDftNewWordsSaveTime @"ijoke.new.words.date"
+#define kDftHotWordsSaveTime @"iJoke.hot.words.date"
 #define kRefreshNewWordIntervalS (60*60*0.5)
 #define kRefreshHotWordIntervalS (60*60*0.5)
 
 //image
-#define kDftNewImageSaveTime @"ijoke.new.image"
-#define kDftHotImageSaveTime @"iJoke.hot.image"
+#define kDftNewImageSaveTime @"ijoke.new.image.date"
+#define kDftHotImageSaveTime @"iJoke.hot.image.date"
 #define kRefreshNewImageIntervalS (60*60*0.5)
 #define kRefreshHotImageIntervalS (60*60*0.5)
 
 //video
-#define kDftNewVideoSaveTime @"ijoke.new.video"
-#define kDftHotVideoSaveTime @"iJoke.hot.video"
+#define kDftNewVideoSaveTime @"ijoke.new.video.date"
+#define kDftHotVideoSaveTime @"iJoke.hot.video.date"
 #define kRefreshNewVideoIntervalS (60*60*0.5)
 #define kRefreshHotVideoIntervalS (60*60*0.5)
 
@@ -46,7 +46,7 @@
 #define kDftTopicVideoDetailSaveTimeId @"ijoke.topic.Video.detail.%d"
 #define kRefreshTopicVideoDetailIntervalS (60*60*6)
 
-#define kDftCollectMessageSaveTimeId @"ijoke.collect.message"
+#define kDftCollectMessageSaveTimeId @"ijoke.collect.message.date"
 #define kRefreshCollectMessageIntervalS (60*60*24)
 
 #define kDftPublishMessageSaveTimeId @"ijoke.collect.publish"
